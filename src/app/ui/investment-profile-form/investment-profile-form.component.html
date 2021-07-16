@@ -1,0 +1,336 @@
+<form #firstStep class="pickup__questions pickup__questions_block" *ngIf="investmentClientStep === 1"
+    [formGroup]="formInvestmentClient" (ngSubmit)="onSubmitInvestmentClient()" novalidate>
+    <div class="errors" *ngIf="errorsInvestmentClient.length">
+        <div class="errors__item" *ngFor="let error of errorsInvestmentClient">{{error}}</div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">1.</span> Тип инвестора:</div>
+            <div class="checkbox-list flex">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of investorTypeDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('investor_type').value"
+                        formControlName="investor_type">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('investor_type').hasError('required') && formInvestmentClient.get('investor_type').touched">
+                Обязательно для заполнения
+            </div>
+            <a href="#" class="btn btn_small btn-not-closed" data-src="#info-modal" data-fancybox=""
+                data-modal="true">Какой я инвестор?</a>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">2.</span> Возраст:</div>
+            <div class="checkbox-list flex">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of ageDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('age').value" formControlName="age">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('age').hasError('required') && formInvestmentClient.get('age').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">3.</span> Примерные среднемесячные доходы и
+                среднемесячные расходы за последние 12 месяцев:
+            </div>
+            <div class="checkbox-list ">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of averageMonthlyIncomeDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('average_monthly_income').value"
+                        formControlName="average_monthly_income">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('average_monthly_income').hasError('required') && formInvestmentClient.get('average_monthly_income').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">4.</span> Информация о сбережениях:</div>
+            <div class="checkbox-list">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of savingDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('saving').value" formControlName="saving">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('saving').hasError('required') && formInvestmentClient.get('saving').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">5.</span> Информация о текущих или планируемых в
+                течение 12 месяцев обязательств финансового характера, на сумму, составляющую значительную долю от
+                сбережений:
+            </div>
+            <div class="checkbox-list">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of financialLiabilitiesDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('financial_liabilities').value"
+                        formControlName="financial_liabilities">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('financial_liabilities').hasError('required') && formInvestmentClient.get('financial_liabilities').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">6.</span> Информация о вашем образовании:</div>
+            <div class="checkbox-list ">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of educationDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('education').value" formControlName="education">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('education').hasError('required') && formInvestmentClient.get('education').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">7.</span> Опыт и знания в области инвестирования:
+            </div>
+            <div class="checkbox-list checkbox-list_tablet flex">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of investmentExperienceDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('investment_experience').value"
+                        formControlName="investment_experience">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('investment_experience').hasError('required') && formInvestmentClient.get('investment_experience').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">8.</span> Инвестиционные активы (необходимо
+                выбрать наиболее рисковый актив), с которыми имеется опыт работы:
+            </div>
+            <div class="checkbox-list">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of investmentAssetsDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('investment_assets').value"
+                        formControlName="investment_assets">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('investment_assets').hasError('required') && formInvestmentClient.get('investment_assets').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">9.</span> Наличие опыта снижения стоимости
+                инвестиций:
+            </div>
+            <div class="checkbox-list checkbox-list_block flex">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of reduceCostInvestmentDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('reduce_cost_investment').value"
+                        formControlName="reduce_cost_investment">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('reduce_cost_investment').hasError('required') && formInvestmentClient.get('reduce_cost_investment').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">10.</span> Доля инвестиционного портфеля, возврат
+                которой может понадобиться Вам в течение 12 месяцев:
+            </div>
+            <div class="checkbox-list checkbox-list_tablet flex">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of investmentPortfolioShareDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('investment_portfolio_share').value"
+                        formControlName="investment_portfolio_share">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('investment_portfolio_share').hasError('required') && formInvestmentClient.get('investment_portfolio_share').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">11.</span> Планируемый срок инвестирования
+                (инвестиционный горизонт):
+            </div>
+            <div class="checkbox-list checkbox-list_tablet flex">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of investmentHorizonDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('investment_horizon').value"
+                        formControlName="investment_horizon">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('investment_horizon').hasError('required') && formInvestmentClient.get('investment_horizon').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">12.</span> Цель инвестиций:</div>
+            <div class="checkbox-list">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of investmentPurposeDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('investment_purpose').value"
+                        formControlName="investment_purpose">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('investment_purpose').hasError('required') && formInvestmentClient.get('investment_purpose').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name"><span class="green">13.</span> Ожидаемая доходность инвестирования по
+                окончанию инвестиционного горизонта:
+            </div>
+            <div class="checkbox-list">
+                <label class="checkbox checkbox checkbox_radio" *ngFor="let item of investmentReturnDictionary">
+                    <input type="radio" class="checkbox__input" [value]="item"
+                        [checked]="item == formInvestmentClient.get('investment_return').value"
+                        formControlName="investment_return">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption">{{item}}
+                    </span>
+                </label>
+            </div>
+            <div class="field__error"
+                *ngIf="formInvestmentClient.get('investment_return').hasError('required') && formInvestmentClient.get('investment_return').touched">
+                Обязательно для заполнения
+            </div>
+        </div>
+    </div>
+    <div class="pickup__question pickup__question_items flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name">Для определения Вашего инвестиционного профиля отметьте чекбокс и
+                нажмите кнопку «Принять»
+            </div>
+            <div class="checkbox-list">
+                <label class="checkbox checkbox">
+                    <input type="checkbox" class="checkbox__input" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="isConfirmInvestmentProfile">
+                    <span class="checkbox__theme"></span>
+                    <span class="checkbox__caption green">
+                        Подписывая настоящую Анкету Клиент уведомлен о риске предоставления недостоверной информации
+                        для
+                        определения его инвестиционного профиля, который может повлечь за собой некорректное
+                        определение
+                        Инвестиционного профиля.
+                    </span>
+                </label>
+            </div>
+            <button type="submit" class="pickup__question-btn btn btn_darkgray btn-not-closed"
+                [disabled]="isLoadingInvestmentClient || !isConfirmInvestmentProfile"
+                [class.loading]="isLoadingInvestmentClient">Принять
+            </button>
+        </div>
+    </div>
+</form>
+<div class="pickup__questions pickup__questions_block" *ngIf="investmentClientStep == 2" #smsConfirmation>
+    <div class="pickup__question pickup__question_confirmation flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name">На Ваш телефон отправлено СМС к кодом подтверждения. Введите полученный код в поле ниже.</div>
+            <div class="pickup__question-setting flex">
+                <div class="pickup__question-coll">
+                    <div class="pickup__question-label">Введите код (6 цифр)</div>
+                    <input type="text" [(ngModel)]="smsCode" [ngModelOptions]="{standalone: true}" mask="0 0 0 0 0 0" class="settings__field field field-number" placeholder="_ _ _ _ _ _">
+                </div>
+                <div class="pickup__question-column">
+                    <a data-src="#register-modal" href="#" data-fancybox data-modal="true" class="payment__block-cancel flex">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21.51"><defs><style>.cls-1{fill:none;stroke:#00a19b;stroke-miterlimit:10;}.cls-2{fill:#00a19b;}</style></defs><title>Ресурс 4</title><g id="Слой_2" data-name="Слой 2"><g id="Content"><path class="cls-1" d="M18.11,4.52A10,10,0,1,1,7,1.63"></path><polygon class="cls-2" points="10.5 1.01 6.02 3.98 6.78 1.76 5.22 0 10.5 1.01"></polygon></g></g></svg>
+                        </i>
+                        <span>Выслать код повторно</span>
+                    </a>
+                </div>
+            </div>
+            <a href="javascript:void(0)"
+               (click)="onSubmitInvestmentClient()"
+               class="pickup__question-btn btn btn_darkgray">Подтвердить</a>
+        </div>
+    </div>
+</div>
+<div id="step_2" class="pickup__questions pickup__questions_block" *ngIf="investmentClientStep === 3" #finalStep >
+    <div class="pickup__question pickup__question_profile flex">
+        <div [class.pickup__info]="!paymentMode">
+            <div class="pickup__question-name">Ваш инвестиционный профиль определен.</div>
+            <div class="pickup__question-box">
+                <div class="pickup__question-box__name">Профиль: {{profileName}}</div>
+                <div class="pickup__question-box__desc" [innerHTML]="text">
+
+                </div>
+            </div>
+            <a *ngIf="!paymentMode"
+               [routerLink]="'/broker-service'" class="pickup__question-btn btn btn_darkgray">Перейти в раздел «Брокерское обслуживание»</a>
+        </div>
+    </div>
+</div>
+
+<div id="info-modal" style="display: none;">
+    <info-modal></info-modal>
+</div>

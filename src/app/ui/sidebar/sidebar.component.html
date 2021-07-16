@@ -1,0 +1,45 @@
+<app-logo class="logo" [routerLink]="['/main']"></app-logo>
+<div class="main-menu">
+  <app-menu></app-menu>
+</div>
+<p-toast key="success"></p-toast>
+<p-toast key="saved"></p-toast>
+<div class="sidebar-exit">
+  <div class="sidebar__line"></div>
+  <a (click)="onSignOut()">
+    <img src="/assets/images/main/logout-icon.svg" alt="">
+    <span>Выход из кабинета</span>
+  </a>
+</div>
+
+<div class="sidebar__contacts">
+  <div class="sidebar__line"></div>
+  <div class="sidebar__contacts-title">Связь с финансовым советником</div>
+  <a class="sidebar__contacts-link" href="tel:+74959889821">+7 (495) 988 98 21</a>
+  <div class="sidebar__buttons">
+    <div class="sidebar__buttons">
+      <a href="#" class="sidebar__btn" data-src="#ask-question" data-fancybox data-modal="true">Задать вопрос</a>
+       <!-- <a *ngIf="data" class="sidebar__btn" href="mailto:{{data.financialAdvisor.email}}" target="_blank"  >Написать письмо</a> -->
+      <a href="#" class="sidebar__btn" data-src="#make-appointment" data-fancybox data-modal="true">Назначить встречу</a>
+    </div>
+  </div>
+</div>
+
+<div class="sidebar__contacts">
+  <div class="sidebar__line"></div>
+  <div class="sidebar__contacts-title">Техническая поддержка аккаунта</div>
+  <a class="sidebar__contacts-link" href="tel:+74959889821">+7 (495) 988 98 21</a>
+  <div class="sidebar__buttons">
+    <a  class="sidebar__btn" data-src="#ask-question-tp" data-fancybox data-modal="true">Задать вопрос</a>
+    <!-- <a *ngIf="data" class="sidebar__btn" href="mailto:{{data.config.emails.it}}">Написать письмо</a> -->
+  </div>
+</div>
+<div style="display: none;" id="ask-question">
+  <asked-question></asked-question>
+</div>
+<div style="display: none;" id="ask-question-tp">
+  <asked-question [type]="'support'"></asked-question>
+</div>
+<div style="display: none;" id="make-appointment">
+  <meet-modal></meet-modal>
+</div> 

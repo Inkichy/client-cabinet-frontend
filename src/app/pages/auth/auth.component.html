@@ -1,0 +1,18 @@
+<ng-template [ngIf]="isLoadPreloader">
+  <app-preloader></app-preloader>
+</ng-template>
+
+<div class="site">
+  <app-header-mobile class="header-mobile"></app-header-mobile>
+  <app-header-entrance-mobile class="header-entrance-mobile"></app-header-entrance-mobile>
+  <div class="site flex flex_wrap">
+    <app-sidebar-auth class="sidebar sidebar_entrance"></app-sidebar-auth>
+    <div class="site-content">
+      <app-header-auth class="header-items"></app-header-auth>
+      <div class="site-content__body">
+        <router-outlet (activate)="onActivate($event)"></router-outlet>
+      </div>
+      <app-footer-auth class="footer-items"></app-footer-auth>
+    </div>
+  </div>
+</div>

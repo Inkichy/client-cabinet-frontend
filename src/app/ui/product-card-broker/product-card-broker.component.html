@@ -1,0 +1,34 @@
+
+  <div class="bo-list__contanier bo-list__contanier_new flex" [ngStyle]="{background: product.color}">
+    <div class="iis-icon iis-icon_left" *ngIf="product.child.length">
+      <img src="/assets/images/main/IIS.svg" alt="">
+    </div>
+    <a  [routerLink]="['/broker-service', product.ID]" class="bo-list__img bo-list__img_full">
+      <img [src]="getImage(product, 'desktop')" class="bo-list__img-desktop inverted_img" alt="">
+    </a>
+    <div class="bo-list__info bo-list__info_new">
+      <div class="bo-list__name">{{product.name}}</div>
+      <div class="bo-list__box flex">
+        <div class="bo-list__yield bo-list__yield_new">
+                                                <span>
+                                                    <strong>{{product.MINSUMM * 1 | number:'':'ru-RU'}}</strong>
+                                                </span>
+          <div class="bo-list__caption">минимальная<br> сумма, руб.*</div>
+        </div>
+        <div class="bo-list__currency">
+          <div class="bo-list__currency-items flex">
+            <strong><span class="rur">₽</span></strong>
+            <span>RUR</span>
+          </div>
+          <div class="bo-list__currency-items flex">
+            <strong>$</strong>
+            <span>USD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bo-list__node" *ngIf="product.MINSUMM > 0">Либо эквивалент в долларах</div>
+  <div class="bo-list__description" [innerHTML]="product.previewText"></div>
+  <a *ngIf="product.child.length" class="iis-link" [routerLink]="'/what-is-iis'">Услуга доступна также в рамках ИИС</a>
+  <a class="bo-list__btn btn btn_darkgray" [routerLink]="['/broker-service', product.ID]">Подробнее</a>

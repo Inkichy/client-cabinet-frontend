@@ -1,0 +1,137 @@
+:host {
+  .payment {
+    &__price-currency {
+      font-size: 40px;
+      font-weight: 300;
+      color: rgb(146, 148, 150);
+      margin-left: 10px;
+    }
+  }
+
+  .pickup {
+    position: initial;
+  }
+
+  .fields__row {
+    position: initial;
+  }
+
+  .fields__col-delete {
+    width: 25px;
+    cursor: pointer;
+
+    svg {
+      width: 16px;
+    }
+  }
+
+  .scan {
+    height: 100px;
+    width: 100px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 14px;
+    background-size: contain;
+    position: relative;
+  }
+
+  .close {
+    font-size: 30px;
+    color: grey;
+    position: absolute;
+    right: 4px;
+    top: -4px;
+  }
+  .fileinput-button {
+    display: inline-block;
+  }
+
+.fileinput-button input {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 89px !important;
+  width: 157px;
+  direction: ltr;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  height: 55px;
+}
+
+
+ .settings__files {
+   background: #f7f7f7;
+   min-height: 270px;
+   text-align: center;
+   padding: 130px 0 0 0;
+   align-items: unset;
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: unset;
+   position: relative;
+   align-items: flex-end;
+ }
+
+.file_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 25px;
+  left: 0;
+}
+}
+
+.currency-select {
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 40px;
+  display: inline-block;
+
+  &:after {
+    content: '•';
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  &.active {
+    font-weight: bold;
+    cursor: default;
+
+    span {
+      border-bottom: none;
+    }
+  }
+
+  &.last {
+    margin-right: 0;
+
+    &:after {
+      content: none;
+    }
+  }
+
+  span {
+    text-transform: uppercase;
+    border-bottom: 1px dashed rgb(102, 102, 102);
+    color: rgb(102, 102, 102);
+  }
+}
+
+.checkbox_radio.disabled .checkbox__input:checked+.checkbox__theme:after {
+  background: grey !important;
+}
+@media(max-width: 600px) {
+  .scan {
+    margin: 25px auto;
+  }
+}
+
+.inverted_img img {
+  transform: scale(-1, 1);
+}

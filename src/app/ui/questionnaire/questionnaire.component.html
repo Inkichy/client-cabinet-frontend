@@ -1,0 +1,478 @@
+<div *ngIf="variants && step == 1"  class="payment__box">
+    <div  class="payment__body">
+        <div class="errors" *ngIf="errorsPersonalData.length">
+            <div class="errors__item" *ngFor="let error of errorsPersonalData">{{error}}</div>
+        </div>
+        <div padding-top-50 class="pickup pickup_questionnaire payment__content active" >
+            <form class="pickup__questions" [formGroup]="formPersonalData" (ngSubmit)="onSubmitPersonalData()"
+                novalidate>
+                <div class="pickup__question flex">
+                <div class="pickup__info">
+                  <div class="pickup__question-name"><span class="green js-number"></span> Если Вы родились в США, то
+                    укажите,
+                    отказывались ли Вы от гражданства США или есть ли у Вас иные основания отсутствия
+                    гражданства США?
+                    <span class="green">*</span></div>
+                  <div class="checkbox-list flex">
+                    <label class="checkbox checkbox_radio" *ngFor="let item of usaCitizenshipParentDictionary">
+                      <input type="radio" [value]="item.key" class="checkbox__input"
+                             [checked]="formPersonalData.get('usa_citizenship').value === item.key"
+                             formControlName="usa_citizenship">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">{{item.text}}</span>
+                    </label>
+                    <div class="field__error"
+                         *ngIf="formPersonalData.get('usa_citizenship').hasError('required') && formPersonalData.get('usa_citizenship').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </div>
+                  <div *ngIf="formPersonalData.get('usa_citizenship').value === 'us_citizen'" class="checkbox-list mt">
+                    <label class="checkbox checkbox_radio" *ngFor="let item of usaCitizenshipDictionaryUsCitizen">
+                      <input type="radio" class="checkbox__input"
+                             [checked]="formPersonalData.get('usa_citizenship_variant').value === item.key" [value]="item.key"
+                             formControlName="usa_citizenship_variant">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">{{item.text}}</span>
+                    </label>
+                    <div class="field__error"
+                         *ngIf="formPersonalData.get('usa_citizenship_variant').hasError('required') && formPersonalData.get('usa_citizenship_variant').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </div>
+                  <div *ngIf="formPersonalData.get('usa_citizenship').value === 'w9_exists'" class="checkbox-list mt">
+                    <div class="settings__label mt">
+                      <div class="settings__field-name">Прикрепите сканы формы W9.</div>
+                      <div [class.field_error]="!formPersonalData.get('usa_citizenship_w9_scan').value" class="files settings__files">
+                        <div class="scan" *ngFor="let scan of imageUrls['usa_citizenship_w9_scan']; let i=index">
+                          <a class="close" (click)="close(i, 'usa_citizenship_w9_scan')">×</a>
+                        </div>
+                        <div class="file_button">
+                          <label class="fileinput-button">
+                                          <span class="btn btn_small">
+                                              Загрузить файл >
+                                          </span>
+                            <input type="file" (change)="changeFile($event, 'usa_citizenship_w9_scan')"
+                                   name="files" class="input-hidden">
+                          </label>
+                        </div>
+                        <div class="files__list files__list_v2"></div>
+                      </div>
+                      <div class="field__error"
+                           *ngIf="formPersonalData.get('usa_citizenship_w9_scan').hasError('required') && formPersonalData.get('usa_citizenship_w9_scan').touched">
+                        Обязательно к заполнению
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="formPersonalData.get('usa_citizenship').value === 'denial_docs_exists'" class="checkbox-list mt">
+                    <div class="settings__field-name">Укажите тип документа, подтверждающего отказ от гражданства.</div>
+                    <label class="checkbox checkbox_radio" *ngFor="let item of usaCitizenshipDictionary">
+                      <input type="radio" class="checkbox__input"
+                             [checked]="formPersonalData.get('usa_citizenship_variant').value === item.key" [value]="item.key"
+                             formControlName="usa_citizenship_variant">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">{{item.text}}</span>
+                    </label>
+
+                    <div class="settings__label mt">
+                      <div class="settings__field-name">Прикрепите сканы документов, подтверждающих отказ от гражданства.</div>
+                      <div [class.field_error]="!formPersonalData.get('usa_citizenship_denial_scan').value" class="files settings__files">
+                        <div class="scan" *ngFor="let scan of imageUrls['usa_citizenship_denial_scan']; let i=index">
+                          <a class="close" (click)="close(i, 'usa_citizenship_denial_scan')">×</a>
+                        </div>
+                        <div class="file_button">
+                          <label class="fileinput-button">
+                                          <span class="btn btn_small">
+                                              Загрузить файл >
+                                          </span>
+                            <input type="file" (change)="changeFile($event, 'usa_citizenship_denial_scan')"
+                                   name="files" class="input-hidden">
+                          </label>
+                        </div>
+                        <div class="files__list files__list_v2"></div>
+                      </div>
+                    </div>
+                    <div class="field__error"
+                         *ngIf="formPersonalData.get('usa_citizenship_variant').hasError('required') && formPersonalData.get('usa_citizenship_variant').touched ||
+                         formPersonalData.get('usa_citizenship_denial_scan').hasError('required') && formPersonalData.get('usa_citizenship_denial_scan').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class="pickup__question flex">
+                    <div class="pickup__info">
+                        <div class="pickup__question-name"><span class="green js-number"></span> Укажите свое финансовое
+                            положение:
+                        </div>
+                        <div class="checkbox-list flex">
+                            <label class="checkbox checkbox_radio" *ngFor="let item of finStateDictionary">
+                                <input type="radio" class="checkbox__input" [value]="item"
+                                    [checked]="item == formPersonalData.get('finState').value"
+                                    formControlName="finState">
+                                <span class="checkbox__theme"></span>
+                                <span class="checkbox__caption" capitalize>{{item}}</span>
+                            </label>
+
+                        </div>
+                        <div class="field__error"
+                        *ngIf="formPersonalData.get('finState').hasError('required') && formPersonalData.get('finState').touched">
+                        Обязательно к заполнению
+                    </div>
+                    </div>
+                </div>
+                <div class="pickup__question flex">
+                    <div class="pickup__info">
+                        <div class="pickup__question-name"><span class="green js-number"></span> Укажите характер вашей
+                            деятельности:
+                        </div>
+                        <div class="checkbox-list ">
+
+                          <div class="row" *ngFor="let group of activities">
+                            <label class="checkbox col" *ngFor="let item of group">
+                                <input type="radio" class="checkbox__input"
+                                    (change)="onChangeCheckboxList(item, formPersonalData, 'activity')"
+                                    [checked]="isChecked(item, formPersonalData.get('activity'))">
+                                <span class="checkbox__theme"></span>
+                                <span class="checkbox__caption">{{item}}</span>
+                            </label>
+                          </div>
+                            <div style="padding-top: 20px"
+                                *ngIf="isChecked(activityDictionary[activityDictionary.length-1], formPersonalData.get('activity'))">
+                                <textarea placeholder="Укажите характер вашей деятельности" formControlName="activity_another" name="character[other]"
+                                    class="field"></textarea>
+                                <div class="field__error"
+                                    *ngIf="formPersonalData.get('activity_another').hasError('required') && formPersonalData.get('activity_another').touched">
+                                    Обязательно к заполнению
+                                </div>
+                            </div>
+
+                            <div class="field__error"
+                                *ngIf="formPersonalData.get('activity').hasError('required') && formPersonalData.get('activity').touched">
+                                Обязательно к заполнению
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pickup__question flex">
+                    <div class="pickup__info">
+                        <div class="pickup__question-name"><span class="green js-number"></span> Отметьте сведения о деловой
+                            репутации
+                            (если применимо):
+                        </div>
+                        <div class="checkbox-list ">
+                            <div *ngFor="let item of businessReputationDictionary" class="mt">
+                                <label class="checkbox">
+                                  <input type="checkbox" class="checkbox__input"
+                                         (change)="onChangeCheckboxList((formPersonalData.get(item.key).value !== 'true').toString(), formPersonalData, item.key)"
+                                         [checked]="formPersonalData.get(item.key).value === 'true'">
+                                  <span class="checkbox__theme"></span>
+                                  <span class="checkbox__caption">{{item.text}}</span>
+                                </label>
+
+                                <div class="checkbox__other"
+                                     *ngIf="!!item.advanced && formPersonalData.get(item.key).value == 'true'">
+                                  <textarea class="field" [formControlName]="item.advanced[0].key" [placeholder]="item.advanced[0].text"></textarea>
+                                  <div class="field__error"
+                                       *ngIf="formPersonalData.get(item.advanced[0].key).hasError('required') && formPersonalData.get(item.advanced[0].key).touched">
+                                    Обязательно к заполнению
+                                  </div>
+
+                                  <div *ngFor="let itemAdvanced of filesFields(item.advanced)" class="settings__label mt">
+                                    <div class="settings__field-name">{{itemAdvanced.text}}</div>
+                                    <div [class.field_error]="!formPersonalData.get(itemAdvanced.key).value" class="files settings__files">
+                                      <div class="scan" *ngFor="let scan of imageUrls[itemAdvanced.key]; let i=index">
+                                        <a class="close" (click)="close(i, itemAdvanced.key)">×</a>
+                                      </div>
+                                      <div class="file_button">
+                                    <label class="fileinput-button">
+                                        <span class="btn btn_small">
+                                            Загрузить файл >
+                                        </span>
+                                        <input type="file" (change)="changeFile($event, itemAdvanced.key)"
+                                               name="files" class="input-hidden">
+                                    </label>
+                                      </div>
+                                      <div class="files__list files__list_v2"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pickup__question flex">
+                    <div class="pickup__info">
+                        <div class="pickup__question-name"><span class="green js-number"></span> Относитесь ли Вы к одной из
+                            следующих
+                            категорий лиц: иностранное публичное должностное лицо, должностное лицо публичной
+                            международной
+                            организации, российское публичное должностное лицо (далее ПДЛ)?
+                        </div>
+                        <div class="checkbox-list flex">
+                            <label class="checkbox checkbox_radio">
+                                <input type="radio" value="false" class="checkbox__input"
+                                    [checked]="formPersonalData.get('character_category').value === 'false'"
+                                    formControlName="character_category">
+                                <span class="checkbox__theme"></span>
+                                <span class="checkbox__caption">Нет</span>
+                            </label>
+                            <label class="checkbox checkbox_radio">
+                                <input type="radio" value="true" class="checkbox__input"
+                                    [checked]="formPersonalData.get('character_category').value === 'true'"
+                                    formControlName="character_category">
+                                <span class="checkbox__theme"></span>
+                                <span class="checkbox__caption">Да</span>
+                            </label>
+                        </div>
+                        <div class="field__error"
+                            *ngIf="formPersonalData.get('character_category').hasError('required') && formPersonalData.get('character_category').touched">
+                            Обязательно к заполнению
+                        </div>
+
+                        <div class="checkbox-list" *ngIf="formPersonalData.get('character_category').value === 'true'">
+
+                          <div *ngFor="let item of characterCategoryDictionary" class="mt">
+                            <label class="checkbox checkbox_radio">
+                              <input type="radio" class="checkbox__input" formControlName="character_category_variant"
+                                     [checked]="formPersonalData.get('character_category_variant').value === item.key"
+                                     [value]="item.key">
+                              <span class="checkbox__theme"></span>
+                              <span class="checkbox__caption">{{item.text}}</span>
+                            </label>
+
+                            <div *ngIf="formPersonalData.get('character_category_variant').value === item.key">
+                              <div class="checkbox__other" *ngFor="let itemA of item.advanced">
+                                <textarea class="field" [formControlName]="itemA.key" [placeholder]="itemA.text"></textarea>
+                                <div class="field__error"
+                                     *ngIf="formPersonalData.get(itemA.key).hasError('required') && formPersonalData.get(itemA.key).touched">
+                                  Обязательно к заполнению
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="field__error"
+                               *ngIf="formPersonalData.get('character_category_variant').hasError('required') && formPersonalData.get('character_category_variant').touched">
+                            Обязательно к заполнению
+                          </div>
+
+                        </div>
+                      </div>
+                </div>
+              <div class="pickup__question flex" *ngIf="formPersonalData.get('character_category').value === 'true'">
+                <div class="pickup__info">
+                  <div class="pickup__question-name"><span class="green js-number"></span>Укажите источники происхождения денежных средств
+                  </div>
+                  <div class="">
+                    <textarea class="field"
+                              formControlName="money_origin_text"
+                              placeholder="Ваши источники денежных средств">{{formPersonalData.get('money_origin_text')}}</textarea>
+                    <div class="field__error"
+                         *ngIf="formPersonalData.get('money_origin_text').hasError('required') && formPersonalData.get('money_origin_text').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </div>
+                  <div class="field__error"
+                       *ngIf="formPersonalData.get('money_origin_text').hasError('required') && formPersonalData.get('money_origin_text').touched">
+                    Обязательно к заполнению
+                  </div>
+                </div>
+              </div>
+                <div class="pickup__question flex">
+                  <div class="pickup__info">
+                    <div class="pickup__question-name"><span class="green js-number"></span>
+                      Являетесь ли Вы налоговым резидентом иностранного государства (территории)?
+                    </div>
+                    <div class="checkbox-list flex">
+                      <label class="checkbox checkbox_radio">
+                        <input type="radio" value="false" class="checkbox__input"
+                               [checked]="formPersonalData.get('is_foreign_resident').value === false"
+                               formControlName="is_foreign_resident">
+                        <span class="checkbox__theme"></span>
+                        <span class="checkbox__caption">Нет, являюсь только налоговым резидентом РФ</span>
+                      </label>
+                      <label class="checkbox checkbox_radio">
+                        <input type="radio" value="true" class="checkbox__input"
+                               [checked]="formPersonalData.get('is_foreign_resident').value === true"
+                               formControlName="is_foreign_resident">
+                        <span class="checkbox__theme"></span>
+                        <span class="checkbox__caption">Да, являюсь</span>
+                      </label>
+                      <label class="checkbox checkbox_radio">
+                        <input type="radio" [value]="null" class="checkbox__input"
+                               [checked]="formPersonalData.get('is_foreign_resident').value === null"
+                               formControlName="is_foreign_resident">
+                        <span class="checkbox__theme"></span>
+                        <span class="checkbox__caption">Не являюсь налоговым резидентом ни в одном государстве</span>
+                      </label>
+                    </div>
+                    <div class="field__error"
+                         *ngIf="formPersonalData.get('is_foreign_resident').hasError('required') && formPersonalData.get('is_foreign_resident').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </div>
+                </div>
+                <div class="pickup__question flex" padding-41 *ngIf="formPersonalData.get('is_foreign_resident').value === 'true'" >
+                    <div class="pickup__info">
+                        <div class="pickup__question-name"><span class="green js-number"></span> Укажите страны, налоговым
+                            резидентом
+                            которых Вы являетесь, исключая Российскую Федерацию. Укажите ИНН или его аналог (при
+                            наличии):
+                        </div>
+                        <div class="fields">
+                            <div class="fields__row flex"
+                                *ngFor="let item of formPersonalData.get('tax_foreign')['controls']; let i = index"
+                                [formGroup]="item"
+                                style="align-items: flex-end;">
+                                <div class="fields__col">
+                                    <label class="fields__label">
+                                        <div class="fields__name">Страна / юрисдикция налогового резидентства</div>
+                                        <input type="text" class="field"
+                                            [class.field_error]="item.get('tax_foreign_country').invalid  && item.get('tax_foreign_country').touched"
+                                            formControlName="tax_foreign_country">
+                                    </label>
+                                </div>
+                                <div class="fields__col">
+                                    <label class="fields__label">
+                                        <div class="fields__name">ИНН / TIN или его аналог</div>
+                                        <input type="text" class="field"
+                                            [class.field_error]="item.get('tax_foreign_country_TIN').invalid  && item.get('tax_foreign_country_TIN').touched"
+                                            formControlName="tax_foreign_country_TIN">
+                                    </label>
+                                </div>
+                                <div class="delete_icon fields__col fields__col-delete">
+                                    <span (click)="onDeleteResidencyCounty(i)">
+                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px"
+                                            height="24px" viewBox="0 0 612 612"
+                                            style="enable-background:new 0 0 612 612;" xml:space="preserve">
+                                            <g>
+                                                <g id="cross">
+                                                    <g>
+                                                        <polygon
+                                                            points="612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397 306,341.411 576.521,611.397 612,575.997 341.459,306.011 			" />
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="field__error"
+                                     *ngIf="item.get('tax_foreign_country').hasError('required') && item.get('tax_foreign_country').touched ||
+                                     item.get('tax_foreign_country_TIN').hasError('required') && item.get('tax_foreign_country_TIN').touched">
+                                  Обязательно к заполнению
+                                </div>
+                            </div>
+                            <div class="fields__row">
+                                <button type="button" class="btn btn_darkgray btn_small"
+                                    *ngIf="formPersonalData.get('tax_foreign')['controls'].length < 3"
+                                    (click)="onAddTaxCountry()">Добавить еще
+                                </button>
+                            </div>
+                        </div>
+                        <div class="field__error"
+                             *ngIf="formPersonalData.get('tax_foreign').hasError('required') && formPersonalData.get('tax_foreign').touched">
+                          Обязательно к заполнению
+                        </div>
+                    </div>
+                </div>
+                <div class="pickup__question flex" *ngIf="formPersonalData.get('is_foreign_resident').value === 'true'">
+                  <div class="pickup__info">
+                    <div class="pickup__question-name"><span class="green js-number"></span> В случае, если Вы являетесь
+                      иностранным
+                      налогоплательщиком, отметьте Ваше согласие/не согласие на передачу информации, в том
+                      числе информации
+                      о номере счета/счетах, об остатках по счету/счетам и информации об операциях по
+                      счету/счетам, в
+                      иностранный налоговый орган и(или) иностранному налоговому агенту, уполномоченному
+                      иностранным
+                      налоговым органом на удержание иностранных налогов и сборов, в соответствии с
+                      законодательством
+                      Российской Федерации.
+                    </div>
+                    <div class="checkbox-list flex">
+                      <label class="checkbox checkbox_radio">
+                        <input type="radio" value="true" class="checkbox__input"
+                               [checked]="formPersonalData.get('tax_resident_foreign_country_agreement_agree').value === 'true'"
+                               formControlName="tax_resident_foreign_country_agreement_agree">
+                        <span class="checkbox__theme"></span>
+                        <span class="checkbox__caption">Согласен</span>
+                      </label>
+                      <label class="checkbox checkbox_radio">
+                        <input type="radio" value="false" class="checkbox__input"
+                               [checked]="formPersonalData.get('tax_resident_foreign_country_agreement_agree').value === 'false'"
+                               formControlName="tax_resident_foreign_country_agreement_agree">
+                        <span class="checkbox__theme"></span>
+                        <span class="checkbox__caption">Не согласен</span>
+                      </label>
+                    </div>
+                    <div class="field__error"
+                         *ngIf="formPersonalData.get('tax_resident_foreign_country_agreement_agree').hasError('required') && formPersonalData.get('tax_resident_foreign_country_agreement_agree').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="pickup__question pickup__question_items flex">
+                    <div class="pickup__info">
+                        <div class="pickup__question-name">Для завершения процедуры оформления Анкеты
+                            отметьте чекбокс и
+                            нажмите кнопку «Принять»
+                        </div>
+                        <div class="checkbox-list">
+                            <label class="checkbox">
+                                <input type="checkbox" value="true" [(ngModel)]="isConfirmPersonal"
+                                    [ngModelOptions]="{standalone: true}" class="checkbox__input">
+                                <span class="checkbox__theme"></span>
+                                <span class="checkbox__caption green">Подписывая настоящую Анкету Вы уведомлены о
+                                    риске предоставления недостоверной информации.</span>
+                            </label>
+                        </div>
+                        <button type="submit"
+                            class="pickup__question-btn btn btn_darkgray"
+                            [disabled]="!isConfirmPersonal || isLoadingPersonalData || isImageUpload"
+                            [class.loading]="isLoadingPersonalData">Принять
+                        </button>
+                    </div>
+                </div> -->
+            </form>
+        </div>
+    </div>
+</div>
+<div class="pickup__questions pickup__questions_block" *ngIf="step == 2" #smsConfirmation>
+    <div class="pickup__question pickup__question_confirmation flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name">На Ваш телефон отправлено СМС к кодом подтверждения. Введите полученный код в поле ниже.</div>
+            <div class="pickup__question-setting flex">
+                <div class="pickup__question-coll">
+                    <div class="pickup__question-label">Введите код (6 цифр)</div>
+                    <input type="text" [(ngModel)]="smsCode" [ngModelOptions]="{standalone: true}" mask="0 0 0 0 0 0" class="settings__field field field-number" placeholder="_ _ _ _ _ _">
+                </div>
+                <div class="pickup__question-column">
+                    <a (click)="requestSmsCode()" href="#" [class.disabled]="sendSmsDisabled" class="payment__block-cancel flex">
+                        <i *ngIf="!sendSmsDisabled">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21.51"><defs><style>.cls-1{fill:none;stroke:#00a19b;stroke-miterlimit:10;}.cls-2{fill:#00a19b;}</style></defs><title>Ресурс 4</title><g id="Слой_2" data-name="Слой 2"><g id="Content"><path class="cls-1" d="M18.11,4.52A10,10,0,1,1,7,1.63"></path><polygon class="cls-2" points="10.5 1.01 6.02 3.98 6.78 1.76 5.22 0 10.5 1.01"></polygon></g></g></svg>
+                        </i>
+                        <i *ngIf="sendSmsDisabled" class="fa fa-spinner fa-spin" ></i>
+                        <span>Выслать код повторно</span>
+                    </a>
+                </div>
+            </div>
+            <a href="javascript:void(0)"
+               (click)="onSubmitPersonalData()"
+               [class.disabled]="isLoadingPersonalDataConfirm"
+               [class.loading]="isLoadingPersonalDataConfirm"
+               class="pickup__question-btn btn btn_darkgray">
+              <i *ngIf="isLoadingPersonalDataConfirm" class="fa fa-spinner fa-spin"></i>
+              <span *ngIf="!isLoadingPersonalDataConfirm" >Подтвердить</span></a>
+        </div>
+    </div>
+</div>
+<div class="pickup__questions pickup__questions_block" *ngIf="step == 3" #finalStep>
+    <div class="pickup__question pickup__question_profile flex">
+        <div class="pickup__info">
+            <div class="pickup__question-name">Спасибо! Вы успешно заполнили анкету клиента.</div>
+
+            <a [routerLink]="'/account'" class="pickup__question-btn btn btn_darkgray">Ваш аккаунт</a>
+        </div>
+    </div>
+</div>

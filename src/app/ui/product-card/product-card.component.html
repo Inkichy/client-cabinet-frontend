@@ -1,0 +1,20 @@
+<div class="iis-icon" *ngIf="item?.child && item?.child.length">
+  <img src="/assets/images/main/IIS.svg" alt="">
+</div>
+<a class="du-list__contanier"  [routerLink]="[item?.ITEM_TYPE === 'Доверительное управление' ? '/trust-management' : '/broker-service' , item.ID]">
+  <div class="du-list__name"*ngIf="item?.name !== 'Еврооблигации' && item?.name !== 'Мой сейф +' ">{{item?.name}}</div>
+  <div class="du-list__name" *ngIf="item?.name === 'Еврооблигации'">Евро<br>облигации</div>
+  <div class="du-list__name" *ngIf="item?.name === 'Мой сейф +'">Мой<br>сейф +</div>
+  <div class="du-list__yield" *ngIf="item?.ITEM_TYPE == 'Брокерское обслуживание'">{{(item?.MINSUMM || 0) | number}}</div>
+  <div class="du-list__caption"  *ngIf="item?.ITEM_TYPE == 'Брокерское обслуживание'">минимальная<br> сумма, руб.*</div>
+  <div class="du-list__currency-items" *ngIf="item?.ITEM_TYPE == 'Брокерское обслуживание'">
+    <span class="rur">₽</span>
+    <span>$</span>
+  </div>
+  <div class="du-list__yield" *ngIf="item && item?.ITEM_TYPE == 'Доверительное управление' && item.targetYield">{{item?.targetYield}}%</div>
+  <div class="du-list__caption" *ngIf="item?.ITEM_TYPE == 'Доверительное управление'">целевая<br> доходность</div>
+  <div class="du-list__img du-list__img_desktop du-list__img_big"><img [ngClass] ="item?.ITEM_TYPE === 'Брокерское обслуживание' ? 'inverted_img-right' : '' " [src]="getImage()" alt="{{item?.name}}"></div>
+</a>
+<div class="du-list__description" [innerHTML]="item?.previewText"></div>
+<a class="iis-link" [routerLink]="'/what-is-iis'" *ngIf="item?.child && item?.child.length">Услуга доступна также в рамках ИИС</a>
+<a [routerLink]="[item?.ITEM_TYPE === 'Доверительное управление' ? '/trust-management' : '/broker-service', item.ID]" class="du-list__btn btn btn_darkgray">Подробнее</a>

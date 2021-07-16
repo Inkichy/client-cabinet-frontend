@@ -1,0 +1,72 @@
+<app-layout>
+  <div class="top-panel top-panel_payment top-panel_brokers flex" *ngIf="userProduct">
+    <div class="top-panel__title">
+      <div class="top-panel__title-small"></div>
+      <strong>Оформление покупки <span class="greey">• Шаг 3</span></strong>
+    </div>
+    <div class="top-panel__title">
+      <div class="top-panel__title-small">{{userProduct.product.ITEM_TYPE}}</div>
+      <strong><span class="green">{{userProduct.product.name}}</span></strong>
+    </div>
+    <div class="top-panel__images">
+      <img class="top-panel__images-desktop" [src]="getImage(userProduct.product, 'desktop')" alt="">
+    </div>
+  </div>
+
+  <div class="payment payment-step3">
+    <div class="payment__box payment__box_bb">
+      <div class="payment-step3__box flex">
+        <div class="payment-step3__price">
+          <div class="payment-step3__price__value">
+            <span>Сумма к оплате</span>
+            <strong>{{summ | number:'1.2-2':'ru-RU'}} {{getCurrencyTitle(currency)}}</strong>
+          </div>
+        </div>
+        <div class="payment-step3__box-content">
+          <div class="payment__block-desc">
+            <p><strong>Официальные реквизиты компании ИК «КьюБиЭф». Вы можете осуществить перевод денежных средств для оплаты договора в удобном для Вас банке.</strong></p>
+          </div>
+          <div class="payment-step3__caption settings__title--js">
+            <span>3 способа перевода средств по реквизитам:</span>
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13"><defs><style>.cls-1{fill:none;stroke:#999;stroke-miterlimit:10;stroke-width:0.75px;}</style></defs><title>Ресурс 16</title><g id="Слой_2" data-name="Слой 2"><g id="Content"><polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline></g></g></svg>
+            </i>
+          </div>
+          <div class="payment-step3__list settings__items--js settings__items_hide active">
+            <ol>
+              <li>Вы можете обратиться в отделение своего банка и осуществить перевод.</li>
+              <li>Вы можете самостоятельно осуществить перевод через свой онлайн-банк по данным реквизитам.</li>
+              <li> Вы можете передать данные реквизиты персональному менеджеру в вашем банке для осуществления перевода.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-step3__content">
+        <div class="payment__caption">Выберите банк для перевода</div>
+        <div class="payment-step3__row flex">
+          <div class="payment-step3__coll" *ngFor="let requisite of requisites">
+            <div class="payment-step3__coll-top">
+              <div class="payment-step3__logo">
+                <img [src]="getImage(requisite, 'default')" alt="">
+              </div>
+              <div class="payment-step3__name">{{requisite.NAME}}</div>
+            </div>
+            <div class="payment-step3__coll-bottom">
+              <div class="payment-step3__desc">{{requisite.PREVIEW_TEXT}}
+              </div>
+              <a [routerLink]="'/payment-details/'+userProduct.ID" [queryParams]="{bank:requisite.CODE, summ:summ}" class="btn btn_darkgray">Получить
+                реквизиты</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="payment__box">
+      <div class="settings__links">
+        <!--<a href="#" class="settings__link">Максимальная сумма инвестирования на ИИС &gt;</a>-->
+      </div>
+    </div>
+  </div>
+
+</app-layout>

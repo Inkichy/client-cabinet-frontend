@@ -1,0 +1,272 @@
+<app-layout [isSiteGray]="true">
+  <app-top-panel class="top-panel flex" title="Ваш Личный кабинет" smallTitle='Функции'></app-top-panel>
+
+  <div class="products-block faq site-map">
+    <div class="faq__desc">
+      <strong>Уважаемый Клиент!</strong>
+      <p>В кабинете Вы можете ознакомиться с продуктами компании QBF, оформить их покупку, управлять своими действующими портфелями и воспользоваться дополнительными функциями.</p>
+    </div>
+    <div class="faq__row">
+
+      <div class="faq__accordion">
+        <div class="faq__accordion-items flex">
+          <div class="btn btn_with_img flex">
+            <div>
+              <img src="/assets/images/main-page/icon-1.svg" alt="">
+            </div>
+          </div>
+          <div class="faq__accordion-block">
+            <div class="faq__accordion-caption">Продукты</div>
+            <div class="faq__accordion-arrow flex">
+              <div class="faq__accordion-arrow__caption">
+                <span class="open-acc">Развернуть</span>
+                <span class="close-acc">Свернуть</span>
+              </div>
+              <i>
+                <span>></span>
+              </i>
+            </div>
+          </div>
+        </div>
+        <div class="faq__content">
+          <div class="faq__block">
+            <p><strong>Продукты сезона</strong>Информация по новым продуктам компании. Самые актуальные продукты сезона по Акциям и Облигациям в рамках Брокерского обслуживания.</p>
+            <a [routerLink]="'/main'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+          <div class="faq__block">
+            <p><strong>Доверительное управление</strong>Список основных продуктов компании, предлагаемых в рамках Доверительного управления.</p>
+            <p>Доверительное управление  — продукт, который в одинаковой мере востребован как у начинающих, так и у опытных инвесторов. Сам процесс управления активами осуществляется специалистами инвестиционной компании, клиент получает отчеты, в которых видит все основные изменения за период. </p>
+            <p>Целевая доходность по стратегиям и результаты управления варьируются, подбор конкретного портфеля основывается на риск-профиле клиента. Стратегии управления активами подобраны под различный клиентский профиль и задачи.</p>
+            <a [routerLink]="'/trust-management'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+          <div class="faq__block">
+            <p><strong>Брокерское обслуживание</strong>Услуги компании QBF, предлагаемые в рамках Брокерского обслуживания, а также самые актуальные предложения по Акциям и Облигациям ведущих компаний.</p>
+            <p>Брокерское обслуживание – это 2 тарифных плана нашей компании, которые позволяют клиенту самостоятельно торговать ценными бумагами на биржах.
+              Нашим Клиентам доступны тарифы: «Базовый» тариф, где все решения клиент принимает самостоятельно и тариф «Персональный брокер», где специалисты нашей компании консультируют клиента в соответствии с его инвестиционным профилем.</p>
+            <a [routerLink]="'/broker-service'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+        </div>
+      </div>
+      <div class="faq__accordion">
+        <div class="faq__accordion-items flex">
+          <div class="btn btn_with_img flex">
+            <div>
+              <img src="/assets/images/faq/2.svg" alt="">
+            </div>
+          </div>
+          <div class="faq__accordion-block">
+            <div class="faq__accordion-caption">Портфель клиента</div>
+            <div class="faq__accordion-arrow flex">
+              <div class="faq__accordion-arrow__caption">
+                <span class="open-acc">Развернуть</span>
+                <span class="close-acc">Свернуть</span>
+              </div>
+              <i>
+                <span>></span>
+              </i>
+            </div>
+          </div>
+        </div>
+        <div class="faq__content">
+          <div class="faq__block">
+            <p><strong>Подключенные продукты</strong>Общая структурная информация по всем подключенным продуктам клиента. Доли продуктов в портфеле – распределение всех подключенных продуктов в общем инвестиционном портфеле клиента.</p>
+            <p>Вы можете перейти с данной страницы на вкладки по каждому отдельному продукту и ознакомиться с ними подробно. Данные страницы становится доступными после оформления продуктов и внесения средств.</p>
+            <a [routerLink]="'/portfolio'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+          <div class="faq__block">
+            <p><strong>Детализация по подключенным продуктам</strong>Данные страницы становится доступными после оформления продуктов и внесения денежных средств.</p>
+            <p>Здесь Вы сможете увидеть всю необходимую информацию по подключенному продукту. Она включает в себя отображение текущей доходности, баланса, тарифа. Список всех ценных бумаг, их стоимость, распределение долей в общем объеме и графики доходности/баланса. </p>
+            <p>Перейдя по ссылкам со страниц детальной информации по продукту, клиент может посмотреть отчеты по продуктам, подписанные договоры и посмотреть вводы/выводы денежных средств…</p>
+            <a [routerLink]="'/portfolio'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+          <!-- <div class="faq__block">
+            <p><strong>Брокерское обслуживание: покупка/продажа ценных бумаг </strong>Данные страницы становится доступными после подключения тарифа и внесения денежных средств.</p>
+            <p>Если Вы подключили один из тарифов Брокерского обслуживания, то вам становиться доступным сервис: «Онлайн заявка на покупку/продажу ценных бумаг».
+              Страницу сервиса вы сможете найти также в этом разделе - на странице подключенного тарифа Брокерского обслуживания.
+              Это дает вам возможность оперативно по телефону оставить заявку брокеру на покупку/продажу ценных бумаг и Ваша сделка будет реализована.</p>
+            <a *ngIf="brokerProductInPortfolio" [routerLink]="['/online-request', brokerProductInPortfolio.id]" class="btn btn_small btn_darkgray">Перейти</a>
+          </div> -->
+        </div>
+      </div>
+      <div class="faq__accordion">
+        <div class="faq__accordion-items flex">
+          <div class="btn btn_with_img flex">
+            <div>
+              <img src="/assets/images/faq/3.svg" alt="">
+            </div>
+          </div>
+          <div class="faq__accordion-block">
+            <div class="faq__accordion-caption">Функции кабинета</div>
+            <div class="faq__accordion-arrow flex">
+              <div class="faq__accordion-arrow__caption">
+                <span class="open-acc">Развернуть</span>
+                <span class="close-acc">Свернуть</span>
+              </div>
+              <i>
+                <span>></span>
+              </i>
+            </div>
+          </div>
+        </div>
+        <div class="faq__content">
+          <div class="faq__block no-item">
+            <p>На данной странице собраны ссылки на различные страницы ресурса для быстрого доступа к основным функциям и настройкам Кабинета.</p>
+          </div>
+          <div class="faq__block">
+            <p><strong>Навигация по кабинету </strong>Описание разделов Личного кабинета для понимания основных возможностей портала. Страница, на которой вы находитесь сейчас.</p>
+          </div>
+          <div class="faq__block">
+            <p><strong>Реквизиты</strong>Быстрый переход на страницу пополнения денежных средств по подключенным продуктам.</p>
+            <a [routerLink]="'/payment'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+          <div class="faq__block">
+            <p><strong>Смена пароля входа в Кабинет</strong>Страница, где Клиент имеет возможность сменить свой пароль входа в Кабинет в любое удобное для него время.</p>
+            <a [routerLink]="'/password-change'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+
+          <div class="faq__block">
+            <p><strong>Управление Аккаунтом</strong>Страница, где собраны данные клиента, необходимые для оформления продуктов QBF и обратной связи с компанией. Также здесь находится «Обязательная анкета клиента» и «Анкета определения инвестиционного профиля» для Брокерского обслуживания.</p>
+            <a [routerLink]="'/account'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+          <div class="faq__block">
+            <p><strong>Часто задаваемые вопросы (FAQ)</strong>На данной странице собраны часто задаваемые вопросы клиентов по продуктам и услугам компании и работе Кабинета. </p>
+            <a [routerLink]="'/faq'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+          <!-- <div class="faq__block">
+            <p><strong>Уведомления и сообщения</strong>Страница, куда поступают системные сообщения от компании, уведомления о  изменениях в регламентах компании, информация о новых возможностях Кабинета.</p>
+            <a [routerLink]="'/notices'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div> -->
+          <!-- <div class="faq__block">
+            <p><strong>Рассылки</strong>Здесь вы можете подписаться на информационные рассылки компании по продуктам или же отключить уже оформленную ранее подписку на рассылки.</p>
+          </div> -->
+          <!-- <div class="faq__block">
+            <p><strong>Заявка на конвертацию</strong>На этой странице вы можете оставить заявку на конвертацию денежных средств.</p>
+          </div> -->
+        </div>
+      </div>
+      <div class="faq__accordion">
+        <div class="faq__accordion-items flex">
+          <div class="btn btn_with_img flex">
+            <div>
+              <img src="/assets/images/faq/4.svg" alt="">
+            </div>
+          </div>
+          <div class="faq__accordion-block">
+            <div class="faq__accordion-caption">Реквизиты</div>
+            <div class="faq__accordion-arrow flex">
+              <div class="faq__accordion-arrow__caption">
+                <span class="open-acc">Развернуть</span>
+                <span class="close-acc">Свернуть</span>
+              </div>
+              <i>
+                <span>></span>
+              </i>
+            </div>
+          </div>
+        </div>
+        <div class="faq__content">
+          <div class="faq__block">
+            <p><strong>Пополнение баланса по подключенным продуктам</strong>Раздел, где клиент может осуществить перевод денежных средств для пополнения баланса по подключенным продуктам Доверительного управления и Брокерского обслуживания. </p>
+            <p>1) Клиент выбирает продукт. 2) Вводит сумму для пополнения средств. 3) Выбирает банк для получения реквизитов на оплату. Осуществляет перевод денежных средств.</p>
+            <a [routerLink]="'/payment'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+        </div>
+      </div>
+      <div class="faq__accordion">
+        <div class="faq__accordion-items flex">
+          <div class="btn btn_with_img flex">
+            <div>
+              <img src="/assets/images/faq/5.svg" alt="">
+            </div>
+          </div>
+          <div class="faq__accordion-block">
+            <div class="faq__accordion-caption">Аккаунт клиента</div>
+            <div class="faq__accordion-arrow flex">
+              <div class="faq__accordion-arrow__caption">
+                <span class="open-acc">Развернуть</span>
+                <span class="close-acc">Свернуть</span>
+              </div>
+              <i>
+                <span>></span>
+              </i>
+            </div>
+          </div>
+        </div>
+        <div class="faq__content">
+          <div class="faq__block">
+            <p><strong>Общие данные</strong>На этой странице собраны данные о клиенте, которые необходимы для оформления продуктов QBF. Это ФИО, email, телефон для связи, паспортные данные, банковские реквизиты и прочие данные.
+              </p>
+            <a [routerLink]="'/account'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+          <div class="faq__block">
+            <p><strong>Анкета клиента</strong>Список обязательных вопросов для клиентов при оформлении первой покупки. Данную анкету необходимо обновлять раз в год для подтверждения актуальности ваших данных.</p>
+            <a [routerLink]="'/account-customer-questionnaire'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+          <!-- <div class="faq__block">
+            <p><strong>Профиль инвестора </strong>Данная анкета предназначена для определения инвестиционного профиля клиента при подключении тарифа «Персональный брокер» в рамках услуги «Брокерское обслуживание». Исходя из этой анкеты наша компания будет консультировать Вас по определенным инвестиционным продуктам. </p>
+            <a [routerLink]="'/investment-profile'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div> -->
+          <div class="faq__block">
+            <p><strong>Смена пароля для входа в Кабинет </strong>Клиент имеет возможность в любое удобное для него время сменить свой пароль входа в Кабинет. Для этого достаточно пройти по ссылке со страницы Аккаунт и получить подтверждение о смене пароля через электронную почту или мобильный телефон.</p>
+            <a [routerLink]="'/password-change'" class="btn btn_small btn_darkgray">Перейти</a>
+          </div>
+        </div>
+      </div>
+      <div class="faq__accordion">
+        <div class="faq__accordion-items flex">
+          <div class="btn btn_with_img flex">
+            <div>
+              <img src="/assets/images/faq/6.svg" alt="">
+            </div>
+          </div>
+          <div class="faq__accordion-block">
+            <div class="faq__accordion-caption">Служба поддержки</div>
+            <div class="faq__accordion-arrow flex">
+              <div class="faq__accordion-arrow__caption">
+                <span class="open-acc">Развернуть</span>
+                <span class="close-acc">Свернуть</span>
+              </div>
+              <i>
+                <span>></span>
+              </i>
+            </div>
+          </div>
+        </div>
+        <div class="faq__content">
+          <div class="faq__block">
+            <p><strong>Связь с финансовым советником</strong>На каждой странице Кабинета в левой стороне экрана (компьютер), либо в разделе Меню (мобильные устройства) находится информация для быстрой связи с финансовым советником Клиента. </p>
+            <p>Клиент может позвонить в компанию QBF и его оперативно соединят со специалистом. Также здесь есть возможность написать электронное письмо своему финансовому советнику или запланировать встречу на конкретную дату и время.</p>
+            <div class="faq__block-btn flex">
+              <a  href="#" class="btn btn_small btn_darkgray"
+                data-src="#ask-question-func" data-fancybox data-modal="true">Написать</a>
+                <a href="#" class="btn btn_small btn_darkgray"
+                data-src="#make-appointment-func" data-fancybox data-modal="true">Назначить встречу</a>
+              <!-- <a href="tel:+74959889821" class="btn btn_small btn_darkgray">Позвонить</a> -->
+            </div>
+          </div>
+          <div class="faq__block">
+            <p><strong>Связь с технической поддержкой Аккаунта</strong>На каждой странице Кабинета в левой стороне экрана (компьютер), либо в разделе Меню (мобильные устройства) находится информация для быстрой связи с Отделом технической поддержки Аккаунта клиента. </p>
+            <p>Клиент может обратиться по телефону или написать письмо в тех поддержку, где ему оперативно ответят на все вопросы, связанные с работой Личного кабинета. </p>
+            <div class="faq__block-btn flex">
+              <!-- <a  href="mailto:mail@mail.ru" target="_blank" class="btn btn_small btn_darkgray">Написать</a> -->
+              <a  class="btn btn_small btn_darkgray" data-src="#ask-question-tp-func" data-fancybox data-modal="true">Написать</a>
+              <a href="tel:+74959889821" class="btn btn_small btn_darkgray">Позвонить</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none;" id="ask-question-func">
+    <asked-question></asked-question>
+  </div>
+  <div style="display: none;" id="ask-question-tp-func">
+    <asked-question [type]="'support'"></asked-question>
+  </div>
+  <div style="display: none;" id="make-appointment-func">
+    <meet-modal></meet-modal>
+  </div>
+
+  <app-footer-slick></app-footer-slick>
+</app-layout>

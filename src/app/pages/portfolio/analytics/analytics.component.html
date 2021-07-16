@@ -1,0 +1,80 @@
+<app-layout [isSiteGray]="true">
+    <app-top-panel *ngIf="item" class="top-panel flex" title="{{item.product.name}}" smallTitle="Ваш портфель">
+    </app-top-panel>
+    <app-invest-modal></app-invest-modal>
+<app-top-panel-image
+  [ngClass]="item.product.ITEM_TYPE === 'Брокерское обслуживание' ? 'deposit_and_withdrawl-top_panel' : '' "
+  *ngIf="item" [product]="item.product"></app-top-panel-image>
+    <div class="products-block" *ngIf="item && item.product">
+        <div class="ycf__body">
+            <div class="ycf__coll-big">
+                <div class="main__title main__title_min">Аналитические обзоры по продукту «{{item.product.name}}»</div>
+
+                <p class="ycf__preloader_wrapper" *ngIf="isLoadedYear && yearsArr.length === 0 && reports.length === 0">У Вас пока нет отчетов</p>
+                <div *ngIf="yearsArr.length > 0" class="ycf__list-year">
+                    <ul>
+                        <li *ngFor="let year of yearsArr"><a (click)="getAnalytics(year, bxId)"
+                                [class.active]="year.isActive">{{year.year}}</a></li>
+                    </ul>
+                </div>
+
+                <div class="ycf__content">
+                    <div class="ycf__preloader_wrapper" *ngIf="!isLoadedYear"><i class="fa fa-spinner fa-spin fa-3x"></i>
+                    </div>
+
+                    <ng-template [ngIf]="isLoadedYear && reports.length > 0">
+                        <div *ngFor="let report of reports" class="ycf__finance">
+                            <div class="ycf__finance-coll ycf__finance-coll_analitics flex">
+                                <div class="ycf__finance-icons">
+                                    <img src="/assets/images/your-case-golden-ratio-analitics/icon.svg" alt="">
+                                </div>
+                                <div class="ycf__finance-box">
+                                    <div class="ycf__finance-caption">
+                                        <span class="ycf__finance-date-analytics">{{report.date}}</span>
+                                        <span class="ycf__finance-caption_green">•</span>
+                                        <span>{{report.description}}</span>
+                                    </div>
+                                    <!--<a [href]="report.file_url" class="ycf__finance-link">Посмотреть PDF ></a>-->
+                                    <div class="ycf__finance-link-wrapper">
+                                    <a target="_blank" (click)="ShowFile(report.file_url)"
+                                        class="ycf__finance-link">Посмотреть
+                                        PDF ></a>
+                                    <a target="_blank" (click)="Download(report.description, report.file_url)"
+                                        class="ycf__finance-link">Скачать ></a>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <p class="ycf__preloader_wrapper"
+                        *ngIf="isLoadedYear && yearsArr.length !== 0 && reports.length === 0">У Вас пока нет
+                        отчетов</p>
+                </div>
+
+                <div *ngIf="yearsArr.length > 0" class="ycf__list-year">
+                    <ul>
+                        <li *ngFor="let year of yearsArr"><a (click)="getAnalytics(year, bxId)"
+                                [class.active]="year.isActive">{{year.year}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pd__body flex" padding-bottom-60>
+        <app-product-menu *ngIf="item" [type]="item.product.ITEM_TYPE" [id]="id" class="pd__column flex">
+        </app-product-menu>
+        <div class="pd__coll">
+            <app-bottom-portfolio-btns></app-bottom-portfolio-btns>
+        </div>
+    </div>
+
+    <div *ngIf="item.product.ITEM_TYPE === 'Брокерское обслуживание'; then broker else trust"></div>
+    <ng-template #broker>
+        <app-product-slider class="products-block products-block_pb products-block_gray products-block_pt">
+        </app-product-slider>
+    </ng-template>
+    <ng-template #trust>
+        <app-footer-slick></app-footer-slick>
+    </ng-template>
+</app-layout>

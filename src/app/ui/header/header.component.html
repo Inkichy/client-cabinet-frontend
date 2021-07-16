@@ -1,0 +1,42 @@
+<a class="user__name" [routerLink]="'/portfolio'">
+  <i class="fa fa-spin fa-spinner" *ngIf="!data"></i>
+  <img *ngIf="data" src="/assets/images/main/user-icon.svg" alt="">
+  <span>
+    <ng-container *ngIf="data.client.isLegalEntity; else physicalEntity">
+      <strong>{{firstLegalEntityNameWord}}</strong> {{otherLegalEntityNameWords}}
+    </ng-container>
+    <ng-template #physicalEntity>
+      <strong>{{data?.client.lastName}}</strong> {{data?.client.name}} {{data?.client.patronymic}}
+    </ng-template>
+  </span>
+</a>
+<div class="user__info flex" *ngIf="data">
+  <div class="user__balance flex">
+    <span class="user__caption">Ваш портфель:</span>
+    <a [routerLink]="'/portfolio'"><span class="user__total">{{balance | number:'1.2-2':'ru-RU'}} руб</span></a>
+    <span class="user__point">•</span>
+    <a [routerLink]="'/payment'" class="user__replenish">Пополнить <span>></span></a>
+  </div>
+  <a class="user__messages flex" [routerLink]="['/notices']">
+    <span class="user__caption">Уведомления </span>
+    <div class="user__messages-icon" [class.user__messages-icon_active]="isNewNotice">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.47 20.93">
+        <g>
+          <g>
+            <g>
+              <rect class="user__messages-cls-1" x="0.25" y="5.56" width="20.22" height="15.12" rx="0.44"/>
+              <path class="user__messages-cls-1" d="M20.47,6l-9.69,9a.62.62,0,0,1-.84,0L.25,6"/>
+              <line class="user__messages-cls-1" x1="7.88" y1="13.12" x2="0.25" y2="20.24"/>
+              <line class="user__messages-cls-1" x1="20.47" y1="20.24" x2="12.84" y2="13.12"/>
+              <circle class="user__messages-new-message" cx="20.47" cy="6" r="5"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </a>
+  <a class="user__exit flex" (click)="onSignOut()">
+    <span class="user__caption">Выход</span>
+    <img src="/assets/images/main/exit-icon.svg" alt="">
+  </a>
+</div>

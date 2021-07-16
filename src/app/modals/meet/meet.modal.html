@@ -1,0 +1,45 @@
+<div>
+    <div class="modal__window">
+        <div class="modal__row">
+            <div class="modal__caption">Назначить встречу</div>
+            <div class="modal__subtitle">с Вашим финансовым советником</div>
+            <form action="" [formGroup]="meetGroup" class="settings__form settings__form_modal">
+                <label class="settings__label">
+                    <div class="settings__field-name">телефон</div>
+                    <input formControlName="phone" type="text" class="settings__field field"
+                        mask="0 (000) 000 00 00" placeholder="+7 911 876 54 32">
+                    <div class="field__error"
+                        *ngIf="meetGroup.get('phone').hasError('required') && meetGroup.get('phone').touched">Поле не
+                        может быть пустым
+                    </div>
+                </label>
+                <label class="settings__label">
+                    <div class="settings__field-name">Удобная дата</div>
+                    <p-calendar rPCalendarMask formControlName="date" [locale]="ru" dateFormat="dd.mm.yy" placeholder="20.05.2019">
+                    </p-calendar>
+                    <div class="field__error"
+                        *ngIf="meetGroup.get('date').hasError('required') && meetGroup.get('date').touched">Поле не
+                        может быть пустым
+                    </div>
+                </label>
+                <label class="settings__label">
+                    <div class="settings__field-name">Удобное время для встречи</div>
+                    <p-dropdown [options]="timesArr" formControlName="time" optionLabel="name" placeholder="18 : 00  —  22 : 00">
+                    </p-dropdown>
+                    <div class="field__error"
+                        *ngIf="meetGroup.get('time').hasError('required') && meetGroup.get('time').touched">Поле не может быть пустым
+                    </div>
+                </label>
+                <div class="settings__buttons flex">
+                    <div (click)="makeMeet()" class="settings__button">
+                        <input [disabled]="meetGroup.invalid" type="button" class="btn btn_darkgray" data-fancybox-close
+                            value="Отправить">
+                    </div>
+                    <div (click)="closeModal()" class="settings__button">
+                        <input type="button" class="btn btn_small" data-fancybox-close value="Отмена">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+stages:
+    - deploy 
+
+before_script:
+    - whoami
+    - cd /home/cabinet/cabinet/site/www/frontend
+    - git reset --hard
+    - git clean -fxd 
+    - git checkout master
+    - git pull origin master
+    - docker exec -i node bash -c 'cd /var/www/site/www/frontend && npm install && ng build'
+    - mkdir /home/cabinet/cabinet/site/www/public/uploads
+    - mkdir /home/cabinet/cabinet/site/www/public/uploads/account
+    - chmod -R 777 /home/cabinet/cabinet/site/www/public/uploads/account 
+
+production:
+    stage: deploy
+    script:
+        - pwd
+    only:
+        - master
+    environment: production
+
+
+development:
+    stage: deploy
+    script:
+        - pwd
+    only:
+        - devel
+    environment: development

@@ -1,0 +1,87 @@
+<div class="products-block__colunm-body">
+  <div class="products-block__title">Брокерское обслуживание</div>
+  <div class="products-block__description">Подключив тариф «Базовый»&nbsp;Вы сможете самостоятельно покупать и продавать ценные бумаги ведущих компаний мира.</div>
+  <div class="du-list">
+    <div class="du-list__top flex">
+      <div class="du-list__tab" [class.active]="activeTab == 1" (click)="activeTab = 1">Акции / Облигации</div>
+    </div>
+    <div class="du-list__body">
+      <div class="du-list__item du-list__item_block" [class.active]="activeTab == 1">
+        <div class="du-list__offers">
+          <img [src]="getImage(NewStockAndBond)" alt="{{NewStockAndBond.name}}"
+            class="du-list__offers-img du-list__offers-img_desktop">
+          <div class="du-list__offers-flex flex">
+            <div class="du-list__offers-content">
+              <div class="du-list__offers-name">{{NewStockAndBond.name}}</div>
+              <div class="du-list__offers-row flex">
+                <div class="du-list__offers-coll">
+                  <div class="du-list__offers-value">{{NewStockAndBond.GROW_RATE}}%</div>
+                  <div class="du-list__offers-desc">потенциал роста</div>
+                </div>
+                <!-- <div class="du-list__offers-coll">
+                  <div class="du-list__offers-recommendation">{{NewStockAndBond.RATING}}</div>
+                  <div class="du-list__offers-desc">рекомендация</div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="du-list__description" [innerHTML]="NewStockAndBond.previewText"></div>
+        <!-- <a class="iis-link not-iis-link remove-fancybox-mobile" data-fancybox data-type="iframe"
+          [href]="'api/cabinet/pdfProductAnalytic/' + NewStockAndBond.ANALITICS_FILE">Подробнее ></a> -->
+
+        <div class="du-list__flex flex">
+          <!-- <a class="du-list__btn btn btn_darkgray" *ngIf="!productInstalled" data-src="#invest-modal" data-fancybox
+            data-modal="true">Инвестировать</a>
+          <a class="du-list__btn btn btn_darkgray" *ngIf="productInstalled" [routerLink]="['/online-request']"
+            data-modal="true">Инвестировать</a> -->
+          <a class="du-list__btn btn btn_darkgray" data-fancybox data-type="iframe" [href]="'api/cabinet/pdfProductAnalytic/' +
+                NewStockAndBond.ANALITICS_FILE" (click)="ifIEOpenNewTab($event)">Подробнее</a>
+
+          <a class="du-list__offers-btn" [routerLink]="['/broker-service']">
+            <div class="du-list__offers-btn-icons">
+              <i>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.28 24.08">
+                  <defs>
+                    <style>
+                      .cls-1 {
+                        fill: none;
+                        stroke: #fff;
+                        stroke-miterlimit: 10;
+                        stroke-width: 0.5px;
+                      }
+
+                    </style>
+                  </defs>
+                  <title>Ресурс 5</title>
+                  <g id="Слой_2" data-name="Слой 2">
+                    <g id="Content">
+                      <g id="DU">
+                        <rect class="cls-1" x="0.25" y="0.25" width="6.83" height="23.58" rx="0.65" />
+                        <circle class="cls-1" cx="3.67" cy="20.48" r="1.93" />
+                        <line class="cls-1" x1="1.65" y1="4.34" x2="5.6" y2="4.34" />
+                        <line class="cls-1" x1="1.65" y1="5.65" x2="5.6" y2="5.65" />
+                        <line class="cls-1" x1="1.65" y1="6.96" x2="5.6" y2="6.96" />
+                        <rect class="cls-1" x="9.22" y="0.25" width="6.83" height="23.58" rx="0.65" />
+                        <circle class="cls-1" cx="12.64" cy="20.48" r="1.93" />
+                        <line class="cls-1" x1="10.63" y1="4.34" x2="14.57" y2="4.34" />
+                        <line class="cls-1" x1="10.63" y1="5.65" x2="14.57" y2="5.65" />
+                        <line class="cls-1" x1="10.63" y1="6.96" x2="14.57" y2="6.96" />
+                        <rect class="cls-1" x="18.19" y="0.25" width="6.83" height="23.58" rx="0.65" />
+                        <circle class="cls-1" cx="21.61" cy="20.48" r="1.93" />
+                        <line class="cls-1" x1="19.6" y1="4.34" x2="23.54" y2="4.34" />
+                        <line class="cls-1" x1="19.6" y1="5.65" x2="23.54" y2="5.65" />
+                        <line class="cls-1" x1="19.6" y1="6.96" x2="23.54" y2="6.96" />
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </div>
+            <span>Все инвестидеи</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

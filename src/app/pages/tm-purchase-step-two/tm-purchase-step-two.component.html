@@ -1,0 +1,163 @@
+<app-layout>
+  <div class="top-panel top-panel_payment top-panel_brokers flex" *ngIf="product">
+    <div class="top-panel__title">
+      <div class="top-panel__title-small"></div>
+      <strong *ngIf="!oldUserProduct">Оформление покупки <span class="greey"> • Шаг {{step+1}}</span></strong>
+      <strong *ngIf="oldUserProduct">Смена тарифа <span *ngIf="step<=3" class="greey"> • Шаг {{step+1}}</span></strong>
+    </div>
+    <div class="top-panel__title" *ngIf="!oldUserProduct">
+      <div class="top-panel__title-small">{{product.ITEM_TYPE}}</div>
+      <strong><span class="green">{{product.name}}</span></strong>
+    </div>
+    <div class="top-panel__bottom flex" *ngIf="oldUserProduct">
+      <div class="top-panel__title">
+        <div class="top-panel__title-small">{{oldUserProduct.product.ITEM_TYPE}}</div>
+        <strong><span class="green">{{oldUserProduct.product.name}}</span></strong>
+      </div>
+      <div class="top-panel__icons">
+        <img src="/assets/images/brokerage-service-base-rate-tariff-change-step-1/arrow.svg" alt="">
+      </div>
+      <div class="top-panel__title" *ngIf="product">
+        <div class="top-panel__title-small">{{product.ITEM_TYPE}}</div>
+        <strong><span class="green">{{product.name}}</span></strong>
+      </div>
+    </div>
+    <div class="top-panel__images">
+      <img class="top-panel__images-desktop" [src]="getImage(product, 'desktop')" alt="">
+    </div>
+  </div>
+
+  <div class="payment">
+    <div class="payment__box">
+      <div class="payment__block payment__block-step1 active" *ngIf="step==1">
+        <div class="payment__block-desc">На основе введенных Вами данных были сформированы необходимые для оформления
+          договора документы. Пожалуйста, просмотрите / скачайте документы и проверьте их.
+        </div>
+        <div class="payment__block-list">
+          <ul>
+            <li *ngFor="let item of documents">
+              <strong>{{item.title}}</strong>
+              <span>•</span>
+              <a [href]="item.url" target="_blank">Посмотреть</a>
+              <span>•</span>
+              <a [href]="item.url + '?download=true'" target="_blank">Скачать</a>
+            </li>
+          </ul>
+        </div>
+        <form action="" class="settings__form settings__form_block-step1">
+          <label class="checkbox">
+            <input type="checkbox" name="type" class="checkbox__input"
+                   onchange="$('.step-2-js').toggleClass('disabled');">
+            <span class="checkbox__theme"></span>
+            <span class="checkbox__caption">
+              Подтверждаю, что все Документы верны
+            </span>
+          </label>
+        </form>
+        <div class="payment__block-desc">Отметьте чекбокс, что «Все Документы верны» и затем нажмите <strong>«Подтвердить»</strong>.<br>
+          После этого Вам будет отправлено СМС с кодом подтверждения, необходимого для подписания договоров.
+        </div>
+        <div class="payment__block-button flex">
+          <a (click)="step = 2" class="payment__block-btn btn btn_darkgray disabled step-2-js">Подтвердить</a>
+          <a [routerLink]="['/tm-purchase']" class="payment__block-cancel flex">
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21.51">
+                <defs>
+                  <style>.cls-1 {
+                    fill: none;
+                    stroke: #00a19b;
+                    stroke-miterlimit: 10;
+                  }
+
+                  .cls-2 {
+                    fill: #00a19b;
+                  }</style>
+                </defs>
+                <title>Ресурс 4</title>
+                <g id="Слой_2" data-name="Слой 2">
+                  <g id="Content">
+                    <path class="cls-1" d="M18.11,4.52A10,10,0,1,1,7,1.63"/>
+                    <polygon class="cls-2" points="10.5 1.01 6.02 3.98 6.78 1.76 5.22 0 10.5 1.01"/>
+                  </g>
+                </g>
+              </svg>
+            </i>
+            <span>Отменить</span>
+          </a>
+        </div>
+      </div>
+      <div class="payment__block payment__block-step2 active" *ngIf="step == 2">
+        <div class="payment__block-desc">На Ваш телефон отправлено СМС к кодом подтверждения.<br> Введите полученный код
+          в поле ниже.
+        </div>
+        <form action="" class="settings__form settings__form_block-step2">
+          <label class="settings__label">
+            <div class="settings__field-name">Введите код (6 цифр)</div>
+            <input type="text" class="settings__field field field-number"
+                   mask="0 0 0 0 0 0"
+                   placeholder="_ _ _ _ _ _" [(ngModel)]="sms" [ngModelOptions]="{standalone: true}">
+          </label>
+          <a (click)="onResendSms()" data-src="#code-modal" data-fancybox="" data-modal="true" class="payment__block-cancel flex">
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21.51">
+                <defs>
+                  <style>.cls-1 {
+                    fill: none;
+                    stroke: #00a19b;
+                    stroke-miterlimit: 10;
+                  }
+
+                  .cls-2 {
+                    fill: #00a19b;
+                  }</style>
+                </defs>
+                <title>Ресурс 4</title>
+                <g id="Слой_2" data-name="Слой 2">
+                  <g id="Content">
+                    <path class="cls-1" d="M18.11,4.52A10,10,0,1,1,7,1.63"/>
+                    <polygon class="cls-2" points="10.5 1.01 6.02 3.98 6.78 1.76 5.22 0 10.5 1.01"/>
+                  </g>
+                </g>
+              </svg>
+            </i>
+            <span>Выслать код повторно</span>
+          </a>
+        </form>
+        <div class="payment__block-button flex">
+          <button (click)="navigateToPayment()" [disabled]="!sms" class="payment__block-btn btn btn_darkgray">Подтвердить</button>
+        </div>
+      </div>
+      <div class="payment__block payment__block-step3 active" *ngIf="!oldUserProduct && step === 3 && product.ITEM_TYPE !== 'Брокерское обслуживание'">
+        <div class="payment__caption">Ваш договор успешно оформлен! Можно производить оплату.</div>
+        <div class="payment__block-button flex">
+          <a (click)="navigateToPayment()" class="payment__block-btn btn btn_darkgray">Перейти к оплате</a>
+        </div>
+      </div>
+      <div class="payment__block payment__block-step3 active" *ngIf="!oldUserProduct && step === 3 && product.ITEM_TYPE === 'Брокерское обслуживание'">
+        <div class="payment__caption">Ваш договор успешно оформлен! <br> Как только мы подпишем его со своей стороны – Вам придет уведомление на почту и в Личный кабинет.</div>
+        <div class="payment__block-button flex">
+          <a [routerLink]="'/portfolio'" class="payment__block-btn btn btn_darkgray">Перейти в Портфель</a>
+        </div>
+      </div>
+      <div class="payment__block payment__block-step3 active" *ngIf="oldUserProduct && step === 3 && product.ITEM_TYPE === 'Брокерское обслуживание'">
+        <div class="pickup__question-name">Уважаемый клиент! <span>Переход на тариф «Персональный брокер» завершен.</span></div>
+        <div class="payment__block-button flex">
+          <a [routerLink]="'/broker-service'" class="payment__block-btn btn btn_darkgray">Перейти в раздел<br> «Брокерское обслуживание»</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</app-layout>
+
+<div id="code-modal" style="display: none;">
+  <div class="modal__register">
+    <form class="modal__content">
+      <div class="modal__title">Новый код подтверждения</div>
+      <div class="modal__desc">
+        <p>Вам направлен новый код подтверждения. Введите его и закончите<br> процедуру покупки.</p>
+      </div>
+      <a href="javascript:void(0)" class="btn btn_darkgray" data-fancybox-close>Закрыть</a>
+    </form>
+  </div>
+</div>

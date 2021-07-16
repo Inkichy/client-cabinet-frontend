@@ -1,0 +1,113 @@
+{
+  "/user-portfolio/graph": {
+    "target": {
+      "host": "127.0.0.1",
+      "protocol": "http:",
+      "port": "8080"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/user-portfolio/graph-yield": {
+    "target": {
+      "host": "127.0.0.1",
+      "protocol": "http:",
+      "port": "8080"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/cabinet/pick-up-products": {
+    "target": "https://virtserver.swaggerhub.com/Rubedite/qbfinance/1.0.0/",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/cabinet": {
+    "target": {
+      "host": "127.0.0.1",
+      "protocol": "http:",
+      "port": "8080"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/auth/forgot/sms-confirm": {
+    "target": {
+      "host": "127.0.0.1",
+      "protocol": "http:",
+      "port": "8080"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/auth/forgot": {
+    "target": {
+      "host": "client.qbfin.ru",
+      "protocol": "https:",
+      "port": "443"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/cabinet/pdfRequisites": {
+    "target": {
+      "host": "client.qbfin.ru",
+      "protocol": "https:",
+      "port": "443"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/cabinet/sendEmailWithBankDetail": {
+    "target": {
+      "host": "client.qbfin.ru",
+      "protocol": "https:",
+      "port": "443"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/auth/sms-confirm": {
+    "target": {
+      "host": "127.0.0.1",
+      "protocol": "http:",
+      "port": "8080"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+
+  "/auth/login": {
+    "target": {
+      "host": "127.0.0.1",
+      "protocol": "http:",
+      "port": "8080"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/auth/registration": {
+    "target": {
+      "host": "client.qbfin.ru",
+      "protocol": "https:",
+      "port": "443"
+    },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/profile": {
+    "target": "https://virtserver.swaggerhub.com/Rubedite/qbfinance/1.0.0/",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/public": {
+    "target": "https://virtserver.swaggerhub.com/Rubedite/qbfinance/1.0.0/",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/tm/": {
+    "target": "https://virtserver.swaggerhub.com/Rubedite/qbfinance/1.0.0/",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

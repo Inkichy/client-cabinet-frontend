@@ -1,0 +1,132 @@
+<app-layout [isSiteGray]="true">
+    <app-top-panel *ngIf="item" class="top-panel flex" title="{{item.product.name}}" smallTitle="Ваш портфель">
+    </app-top-panel>
+    <app-invest-modal></app-invest-modal>
+    <app-top-panel-image
+            [ngClass]="item.product.ITEM_TYPE === 'Брокерское обслуживание' ? 'deposit_and_withdrawl-top_panel' : '' "
+            *ngIf="item" [product]="item.product" [insidePortfolio]="true"></app-top-panel-image>
+    <div class="products-block" *ngIf="item.product && item.years.length !== 0;else emptyYear">
+        <div class="ycf__body">
+            <div class="ycf__coll-big">
+                <div class="main__title main__title_min">Отчеты по продукту «{{item.product.name}}»</div>
+                <div class="ycf__display-period ycf__display-period_items">
+                    <div class="ycf__display-period-title">Выберите желаемый период:</div>
+                    <div class="ycf__display-period-date flex products-block--flex-box">
+                        <div class="flex datepicker-box">
+                            <div class="ycf__display-period-row flex">
+                                <div class="ycf__display-period-caption">C:</div>
+                                <app-datepicker (onChangeDate)="onChangeDateStart($event)"
+                                                [date]="start ? start : defaultStart"
+                                                [placeholder]="'18.04.2019'">
+                                </app-datepicker>
+                            </div>
+                            <div class="ycf__display-period-row flex">
+                                <div class="ycf__display-period-caption">До:</div>
+                                <app-datepicker (onChangeDate)="onChangeDateEnd($event)" [date]="end ? end : defaultEnd"
+                                                [placeholder]="'19.04.2019'">
+                                </app-datepicker>
+                            </div>
+                        </div>
+                        <div class="ycf__finance-box">
+                            <div class="ycf__finance-caption">
+                <span>Отчет по продукту «{{item.product.name}}» за период: c
+                  <strong>{{start ? start : defaultStart}}</strong> по
+                  <strong>{{end ? end : defaultEnd}}</strong></span>
+                            </div>
+                          <div class="ycf__finance-link-wrapper">
+                              <a *ngIf="!errorMessages.length" (click)="ShowInfo()" target='_blank'
+                                 class="ycf__finance-link">Отправить
+                                  на почту ></a>
+                              <a *ngIf="!errorMessages.length" target='_blank'
+                                 (click)="Download(item.product.name)"
+                                 class="ycf__finance-link">Скачать ></a>
+                              <a *ngIf="!errorMessages.length" target='_blank'
+                                 (click)="Reports()"
+                                 class="ycf__finance-link">Все отчеты ></a>
+                          </div>
+                            <div class="products-block-errors" *ngIf="errorMessages.length">
+                                <div class="errors__item" *ngFor="let error of errorMessages">{{error}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="errors" *ngIf="errors.length">
+                        <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+                    </div>
+                </div>
+                <div class="ycf__display-period ycf__display-period_items">
+                    <div class="main__title main__title_min"> Готовые ежемесячные отчеты по продукту:</div>
+                    <!-- <p class="ycf__preloader_wrapper" *ngIf="isLoadedYear"> У Вас пока нет
+                        отчетов</p> -->
+                    <div *ngIf="yearsArr.length > 0" class="ycf__list-year">
+                        <ul>
+                            <li *ngFor="let year of yearsArr"><a (click)="getPeriodReports(year)"
+                                                                 [class.active]="year.isActive">{{year.year}}</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="ycf__content">
+                        <div *ngIf="!isLoadedYear" class="ycf__preloader_wrapper"><i
+                            class="fa fa-spinner fa-spin fa-3x"></i></div>
+
+
+                        <div *ngIf="isLoadedYear && currentReports.length > 0" class="ycf__finance">
+                            <div *ngFor="let report of currentReports" class="ycf__finance-coll flex">
+                                <div class="ycf__finance-date">{{report.date}}</div>
+                                <div class="ycf__finance-box ycf__finance-box-item">
+                                    <div class="ycf__finance-caption">
+                                        <span>{{report.description}}</span>
+                                    </div>
+<div class="ycf__finance-link-wrapper">
+                                    <a target='_blank' (click)="sendReport(report.file_url)" class="ycf__finance-link">Отправить
+                                        на почту
+                                        ></a>
+                                    <a target='_blank'
+                                       (click)="Download(item.product.name, report.date.split('-')[0], report.date.split('-')[1])"
+                                       class="ycf__finance-link">Скачать ></a>
+</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="ycf__preloader_wrapper" *ngIf="currentReports.length === 0 && isLoadedYear"> У Вас пока нет отчетов</p>
+                    </div>
+                    <div *ngIf="yearsArr.length > 0" class="ycf__list-year">
+                        <ul>
+                            <li *ngFor="let year of yearsArr"><a (click)="getPeriodReports(year)"
+                                                                 [class.active]="year.isActive">{{year.year}}</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #emptyYear>
+        <div class="products-block">
+            <p class="ycf__preloader_wrapper"> У Вас пока нет отчетов</p>
+        </div>
+    </ng-template>
+    <div class="pd__body flex" padding-bottom-60>
+        <app-product-menu *ngIf="item" [type]="item.product.ITEM_TYPE" [id]="id"
+                          class="pd__column flex"></app-product-menu>
+        <div class="pd__coll">
+            <app-bottom-portfolio-btns></app-bottom-portfolio-btns>
+        </div>
+    </div>
+
+    <div *ngIf="item.product.ITEM_TYPE === 'Брокерское обслуживание'; then broker else trust" ></div>
+    <ng-template #broker>
+        <app-product-slider class="products-block products-block_pb products-block_gray products-block_pt">
+        </app-product-slider>
+    </ng-template>
+    <ng-template #trust>
+        <app-footer-slick></app-footer-slick>
+    </ng-template>
+    <div class="preloader_wrapper" *ngIf="isReportLoading">
+      <div class="preloader_bg"></div>
+      <div class="spinner-wrapper">
+        <i class="preloader_spinner fa fa-spinner fa-spin fa-5x"></i>
+      </div>
+    </div>
+</app-layout>

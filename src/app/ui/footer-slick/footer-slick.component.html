@@ -1,0 +1,92 @@
+<div class="products-block products-block_gray products-block_pt products-block__bottom iedetection">
+
+  <div class="du-list flex">
+
+    <div class="offers flex">
+
+      <div class="main__title">Продукты сезона</div>
+
+      <div class="offers__body" >
+        <div class="offers__slick" *ngIf="products" [items]="products" slick>
+          <div class="offers__slide" *ngFor="let product of products">
+            <a [routerLink]="getDetailLink(product)" class="du-list__item du-list__item_offers">
+              <div class="iis-icon" *ngIf="product.child.length">
+                <img src="/assets/images/main/IIS.svg" alt="">
+              </div>
+              <div class="du-list__contanier">
+                <div class="du-list__name">{{product.name}}</div>
+                <div class="du-list__subtitle">{{product.ITEM_TYPE}}</div>
+                <div class="du-list__yield">
+                  <span>{{product.targetYield}}%</span>
+                  <div class="du-list__caption">целевая<br> доходность</div>
+                </div>
+                <a class="du-list__btn btn btn_darkgray">Подробнее</a>
+                <div class="du-list__img du-list__img_desktop"><img [src]="getImage(product, 'desktop')" alt=""></div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <a href="javascript:void(0)" class="arrow arrow_prev" slickPrev>
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27" />
+                </g>
+              </g>
+            </svg>
+          </i>
+        </a>
+        <a href="javascript:void(0)" class="arrow arrow_next" slickNext>
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27" />
+                </g>
+              </g>
+            </svg>
+          </i>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="main-products">
+
+      <div class="main__title">Подобрать продукт</div>
+
+      <div class="du-list__item du-list__item_main du-list__item_dark">
+        <div class="du-list__contanier" >
+          <div class="du-list__name">Определите свой<br> инвестиционный профиль<br> и мы предложим наиболее<br>
+            подходящие для вас продукты
+          </div>
+          <a [routerLink]="'/select-product'" class="du-list__btn btn btn_darkgray">Подобрать продукт</a>
+          <div class="du-list__img du-list__img_desktop"><img src="/assets/images/faq/7.svg" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

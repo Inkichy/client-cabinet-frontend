@@ -1,0 +1,67 @@
+<app-layout [isSiteGray]="true">
+    <app-top-panel class="top-panel flex" title="Брокерское обслуживание" smallTitle='Продукты'></app-top-panel>
+    <app-invest-modal></app-invest-modal>
+    <div class="errors" *ngIf="errors.length">
+      <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+    </div>
+    <div class="bo-body">
+        <div class="main__title">Станьте совладельцем ведущих компаний</div>
+        <div class="bo-list__description">Подключив <a [routerLink]="['/broker-service', baseId]">тариф «Базовый»</a> Вы сможете самостоятельно покупать и продавать ценные бумаги ведущих компаний мира.
+            Посмотреть все актуальные аналитические обзоры можно в разделе «Здесь и Сейчас» на нашем
+            сайте: <a href="https://qbfin.ru/service/personal/here-and-now/" target="_blank">QBF ||| Portfolio
+                Management &gt;</a></div>
+        <div class="bo-body__content">
+            <div class="bo-body__top">
+                <div class="bo-body__tab" [class.active]="activeTab == 1">Акции / Облигации</div>
+            </div>
+            <div class="bo-body__box">
+                <div class="bo-body__block" [class.active]="activeTab == 1">
+                    <app-products-block-wide-slider *ngIf="stocksAndBonds.length"
+                            [items]="stocksAndBonds"
+                            [productInstalled]="productInstalled">
+                    </app-products-block-wide-slider>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="we-present">
+        <div class="we-present__contanier flex">
+            <div class="we-present__title">
+                Мы<br> предоставляем
+            </div>
+            <div class="we-present__items flex">
+                <div class="we-present__item flex">
+                    <div class="we-present__icon flex">
+                        <img src="/assets/images/brokerage-service/icon-1.svg" alt="">
+                    </div>
+                    <div class="we-present__text">
+                        Доступ на российские<br> биржи
+                    </div>
+                </div>
+                <div class="we-present__item flex">
+                    <div class="we-present__icon flex">
+                        <img src="/assets/images/brokerage-service/icon-2.svg" alt="">
+                    </div>
+                    <div class="we-present__text">
+                        Технологии<br> интернет-трейдинга
+                    </div>
+                </div>
+                <div class="we-present__item flex">
+                    <div class="we-present__icon flex">
+                        <img src="/assets/images/brokerage-service/icon-3.svg" alt="">
+                    </div>
+                    <div class="we-present__text">Профессиональное<br> сопровождение </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="products-block">
+        <div class="products-block__content">
+            <div class="bo-list bo-list_v2 flex">
+                <div class="bo-list__item bo-list__item"  *ngFor="let tariff of tariffs">
+                    <app-product-card-broker [product]="tariff"></app-product-card-broker>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-layout>

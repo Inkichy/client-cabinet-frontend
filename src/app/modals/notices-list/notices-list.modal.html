@@ -1,0 +1,42 @@
+<div *ngIf="isShow" class="modal__window">
+  <div class="requister__box">
+    <div *ngIf="step === 1"  class="requister__title">Уведомления</div>
+    <div *ngIf="step === 1"  class="requister__subtitle">
+      Здесь Вы можете управлять своими уведомлениями.
+    </div>
+    <form *ngIf="step === 1" [formGroup]="noticesGroup" (ngSubmit)="setNotices()" class="requister__form-list">
+      <label formArrayName="subscriptions" *ngFor="let notice of formData.controls; let i = index; let c = count;" class="checkbox">
+        <ng-container [formGroupName]="i">
+          <span class="checkbox__caption"> {{notices[i].title}}</span>
+          <span class="checkbox__first flex">
+            <input
+            [formControlName]="notices[i].fieldName"
+              type="checkbox"
+              class="checkbox__input"
+            />
+            <span class="checkbox__theme"></span>
+          </span>
+        </ng-container>
+      </label>
+      <div class="settings__buttons flex">
+        <div class="settings__button">
+          <button type="submit" class="btn btn_darkgray" value="Сохранить">
+            Сохранить
+          </button>
+        </div>
+        <div class="settings__button">
+          <button type="button" class="btn btn_small" data-fancybox-close value="Закрыть">
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </form>
+    <i *ngIf="isLoading && step === 2" class="fa fa-spinner fa-spin fa-2x" ></i>
+    <div *ngIf="!isLoading && step === 2">
+      <div class="requister__title">Уважаемый клиент</div>
+    <div class="requister__subtitle">
+      Ваши уведомления обновлены
+    </div>
+    </div>
+  </div>
+</div>

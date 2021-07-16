@@ -1,0 +1,31 @@
+<div class="filter__switcher flex" onclick="$('.filter__form').slideToggle();">
+  <div class="filter__switcher-icon">
+    <img src="assets/images/open-fonds/filter-icon.svg" alt="">
+  </div>
+  <div class="filter__switcher-title">Фильтр по профилю</div>
+  <div class="filter__switcher-arrow">
+    <img src="assets/images/open-fonds/arrow.png" alt="">
+  </div>
+</div>
+<div class="filter__form">
+  <div class="filter__items flex">
+    <div class="filter__item" *ngFor="let item of items">
+      <div class="filter__top">
+        <label class="radio">
+          <input type="radio" (click)="onSetValue(item)" [checked]="selectedId === item.ID" [value]="item.ID" name="type" class="radio__input">
+          <span class="radio__theme"></span>
+          <span class="radio__caption">
+            Профиль: <span class="green">{{item.name}}</span>
+          </span>
+        </label>
+      </div>
+      <div class="filter__bottom">
+        <div class="filter__desription" [innerHTML]="item.previewText"></div>
+      </div>
+    </div>
+  </div>
+  <div class="filter__buttons flex" >
+    <a #results type="button" [class.disabled]="!selectedId" (click)="onSubmit()" class="btn btn_small" >Применить</a>
+    <input type="button" (click)="onReset()" class="btn btn_small" value="Сбросить">
+  </div>
+</div>

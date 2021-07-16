@@ -1,0 +1,91 @@
+POST https://client.qbfin.ru/auth/registration
+Content-Type: application/json
+
+{
+  "email": "1teswfwefweft@sdffdsftest.ru",
+  "lastName": "Ивsdаsdfsdfнfов",
+  "name": "Иdsvsdvsfdvмя",
+  "repeatPassword": "1twefwsdvefdsfsdfest",
+  "password": "1twefwsdvefdsfsdfest",
+  "patronymic": "1twefwsdvfedsfsdfest",
+  "phone": "tfewrfwrsdfsdffdst"
+}
+
+###
+
+POST https://client.qbfin.ru/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@yandex.ru",
+  "password": "gk9yv3CIBH2rFSz4gU5z2peWsuVNgjJk"
+}
+
+###
+
+
+#### адрес
+GET http://client.qbfin.ru/cabinet/get-cabinet-data?session_val=74401db2279bfc6e81f13cde97182862
+Content-Type: application/json
+
+###
+
+
+
+#http://api.qbfin.ru/auth/sms-confirm?session_val=8a87ac46aeaa9520bf052ff366a8978f
+
+POST https://client.qbfin.ru/api/auth/forgot
+Content-Type: application/json
+
+{
+  "email": "feedback-lk@qbfin.ru" || "phone": 79162891074
+}
+
+Ответ:
+
+{
+  "success": true,
+  "timeout": 30
+}
+
+POST https://client.qbfin.ru//api/auth/forgotConfirm
+Content-Type: application/json
+
+Подтверждение кода:
+
+{
+  "code": 123456
+}
+
+Ответ:
+
+{
+  "success": true
+}
+
+Повторная отправка на почту или мобилу
+
+{
+  "type": "resend" || "mail"
+}
+
+Ответ:
+
+{
+  "success": true
+}
+
+Запрос на смену пароля по хэшу
+
+{
+  "hash": "589c089db55843722ecee9ca03d54a44",
+  "password": "Qbfin1"
+}
+
+Ответ:
+
+{
+  "success": true
+}
+
+###

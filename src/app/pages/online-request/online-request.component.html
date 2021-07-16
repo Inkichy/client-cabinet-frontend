@@ -1,0 +1,229 @@
+<app-layout>
+  <app-top-panel *ngIf="tariff" class="top-panel flex" title="{{tariff.name}}" smallTitle='{{tariff.ITEM_TYPE}}'></app-top-panel>
+
+  <div class="product-anons-v2 product-anons-v2_top flex">
+    <div class="product-anons-v2__characteristics flex">
+
+      <div class="product-anons-v2__top">
+        <div class="product-anons-v2__currency">
+          <div class="product-anons-v2__caption">валюта</div>
+          <div class="product-anons-v2__currency-value flex">
+            <div class="product-anons-v2__currency-items">RUR</div>
+            <div class="product-anons-v2__currency-items">USD</div>
+          </div>
+        </div>
+
+        <!--div class="product-anons-v2__small">целевая доходность</div-->
+        <div class="product-anons-v2__img product-anons-v2__img_desktop product-anons-v2__img_right">
+          <img [ngClass] ="tariff.ITEM_TYPE === 'Брокерское обслуживание' ? 'inverted_img-right' : '' " [src]="getImage(tariff, 'desktop')" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--- product-anons-v2 END --->
+
+  <div *ngIf="user.client.isKval !== '' && item.generalAgreement" class="products-block product-anons-v2 products-block_gray flex pd pd_wrap">
+    <div class="product-anons-v2__characteristics pd__block pd__block_items pd__block_or" *ngIf="item">
+      <div class="pd__description flex">
+        <div class="pd__description-items pd__description-items_bo">
+          <span>Номер договора</span>
+          <strong>{{item?.agreementNumber}}</strong>
+        </div>
+        <div class="pd__description-items pd__description-items_bo">
+          <span>Баланс свободных средств</span>
+          <div class="pd__description-items__value">
+            <strong>{{!!item?.freeMoney ? (item?.freeMoney|number:'1.2-2':'ru-RU') : 0}} <p>RUR</p></strong>
+          </div>
+        </div>
+      </div>
+      <div class="pd__block-link">
+        <button href="#" data-src="#ipo-assignment" data-fancybox id="ipo-assignmetn-btn" data-modal="true" class="du-list__btn btn btn_darkgray">Подать поручение</button>
+      </div>
+    </div>
+
+    <div  class="product-anons-v2__characteristics pd__block_items pd__block">
+      <div *ngIf="!investmentRequests.length && isLoading" class="assignmentLoader">
+        <i  class="fa fa-spinner fa-spin fa-2x" ></i>
+      </div>
+      <div *ngIf="!investmentRequests.length && !isLoading"  class="faq__accordion">
+        <div class="faq__accordion-items flex active">
+          <div class="main__title">В настоящее время отправленных поручений нет</div>
+        </div>
+      </div>
+      <div *ngIf="investmentRequests.length && !isLoading"  class="faq__accordion">
+        <div class="faq__accordion-items flex active">
+          <div class="main__title">Список отправленных поручений</div>
+        </div>
+
+
+        <div class="faq__content active">
+          <div class="pd__table">
+            <div *ngFor="let investmentRequest of investmentRequests; trackBy: trackById" class="pd__table-td active">
+              <div class="pd__table-column">
+                <div class="pd__table-desc">Продукт</div>
+                <div class="pd__table-value">{{investmentRequest.product}}</div>
+              </div>
+              <div class="pd__table-coll">
+                <div class="pd__table-desc">Cумма</div>
+                <div class="pd__table-value">{{investmentRequest.summ | number:'1.0-0':'ru-RU'}}</div>
+              </div>
+              <div class="pd__table-coll">
+                <div class="pd__table-desc">Статус</div>
+                <div class="pd__table-value">{{investmentRequest.status}}</div>
+              </div>
+              <div class="pd__table-coll">
+                <div class="pd__table-desc">Документ</div>
+                <div class="pd__table-value">
+                  <a class="ycf__finance-link ipo-link" (click)="getAssignmentDocument('order_buy_ga', investmentRequest.id)">Поручение</a>
+                </div>
+              </div>
+              <div class="pd__table-coll">
+                <div class="pd__table-desc">Дата подачи поручения</div>
+                <div class="pd__table-value">{{investmentRequest.createDateTime}}</div>
+              </div>
+              <!-- <div
+                class="pd__table-coll"
+                (click)="onOpenDeleteInvestmentConfirmation(investmentRequest.id)"
+                data-src="#confirm-modal"
+                data-fancybox
+                id="delete-assignmetn-btn"
+                data-modal="true"
+              >
+                <i *ngIf="investmentRequest.status === 'Подписан' && (investmentRequest.createDateTime | function:checkAssignmentDate)" class="pd__table-delite">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.71 15.71"><defs><style>.cls-2{fill:none;stroke:#e51753;stroke-miterlimit:10;}</style></defs><title></title><g id="Слой_2" data-name="Слой 2"><g id="Content"><line class="cls-2" x1="0.35" y1="0.35" x2="15.35" y2="15.35"/><line class="cls-2" x1="15.35" y1="0.35" x2="0.35" y2="15.35"/></g></g></svg>
+                </i>
+              </div> -->
+            </div>
+          </div>
+          <!-- <a *ngIf="!isAllRequest" (click)="loadMoreRequests()" href="javascript:void(0)" class="pd__table-link">
+            <span>Больше</span>
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13"><defs><style>.cls-1{fill:none;stroke:#999;stroke-miterlimit:10;stroke-width:0.75px;}</style></defs><title></title><g id="Слой_2" data-name="Слой 2"><g id="Content"><polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline></g></g></svg>
+            </i>
+          </a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="products-block products-block_pt">
+    <div *ngIf="user.client.isKval !== '' && item.generalAgreement" class="products-block request">
+      <div class="request__title"><span class="green">Онлайн-заявка:</span>Покупка и продажа ценных бумаг на бирже</div>
+      <div class="request__row flex">
+        <div class="request__coll">
+          <div class="request__desc">Уважаемый клиент! Для того чтобы оставить заявку на покупку/продажу ценных бумаг – свяжитесь с нами по телефону, который указан ниже. Наш специалист примет заявку в рабочие дни, с 9:00 до 18:00 по МСК. </div>
+          <div class="request__box">
+            <div class="request__phone">
+              <span>Телефон для онлайн-заявки</span>
+              <a href="tel:84959889821">8 (495) 988 98 21</a>
+            </div>
+            <div class="request__box-row flex">
+              <div class="request__box-button">
+                <a href="tel:84959889821" class="btn btn_gray">Позвонить</a>
+                <a href="javascript:void(0)" class="btn btn_gray" data-src="#request-modal" data-fancybox data-modal="true">FAQ по терминам</a>
+              </div>
+              <div class="request__box-img">
+                <img src="/assets/images/your-case-brokerage-service-base-rate-online-request/headphones.jpg" alt="">
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="request__coll">
+          <div class="request__caption">Для онлайн заявки Вам необходимо:</div>
+          <div class="request__list">
+            <div class="request__number">1</div>
+            <div class="request__item">
+              <div class="request__item-title">Позвонить нам по номеру телефона: <a href="tel:84959889821">8 (495) 988 98 21</a></div>
+            </div>
+          </div>
+          <div class="request__list">
+            <div class="request__number">2</div>
+            <div class="request__item">
+              <div class="request__item-title">Пройти процедуру идентификации, назвать:</div>
+              <ul>
+                <li>ФИО</li>
+                <li>Номер договора</li>
+                <li>Код клиента</li>
+              </ul>
+            </div>
+          </div>
+          <div class="request__list">
+            <div class="request__number">3</div>
+            <div class="request__item">
+              <div class="request__item-title">Оставить заявку на покупку / продажу ценных бумаг(ЦБ), указав:</div>
+              <ul>
+                <li>Название ценной бумаги.</li>
+                <li>Вид, категория / тип, выпуск, транш, серия ценной бумаги <span>(тикер/ISIN)</span></li>
+                <li>Вид сделки <span>(покупка / продажа)</span></li>
+                <li>Количество ценных бумаг <span>(количество, либо объем средств на покупку ЦБ)</span></li>
+                <li>Валюта цены</li>
+                <li>Цена одной ценной бумаги <span>(фиксированная / по рынку)</span></li>
+                <li>Срок действия поручения</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf=" user.client.isKval === '' || user.client.isKval === null || !item.generalAgreement" class="products-block request">
+      <div class="modal__caption">Уважаемый клиент!</div>
+        <div class="modal__subtitle">К сожалению, данный раздел вам не доступен, так как вы не подтвердили свою квалификацию инвестора </div>
+    </div>
+    <div class="pd__body flex">
+      <app-product-menu *ngIf="tariff && item" [type]="tariff.ITEM_TYPE"  [id]="item.id" class="pd__column flex"></app-product-menu>
+      <div class="pd__coll" *ngIf="item">
+        <a [routerLink]="['/portfolio', item.id]" class="btn btn_gray">
+          <span>< На страницу продукта</span>
+        </a>
+        <a [routerLink]="'/portfolio'" class="btn btn_darkgray">
+          <span>Ваш портфель</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+  <!--- product-anons-v2 END --->
+
+
+  <app-product-slider></app-product-slider>
+
+  <div id="request-modal" style="display: none;">
+      <div class="request__modal-window">
+          <div class="request__modal-content">
+              <div class="faq__block">
+                  <p><strong>Эмитент ЦБ / лицо, выдавшее ЦБ</strong>Необходимо указать название компании, выпустившую данную ценную бумагу, например “Газпром”, “Сбербанк”.</p>
+              </div>
+              <div class="faq__block">
+                  <p><strong>Эмитент ЦБ / лицо, выдавшее ЦБ</strong>В данном пункте клиенту достаточно указать тикер или ISIN ценной бумаги.</p>
+                  <p>Тикер – это краткое наименование компании на бирже – например тикер “Газпром” GAZP, тикер «Сбербанк” SBER.</p>
+                  <p>ISIN – это международный идентификационный код ценной бумаги. Доступен в открытых источниках по каждой ценной бумаге.</p>
+              </div>
+              <div class="faq__block">
+                  <p><strong>Вид сделки</strong>Покупка или продажа ценных бумаг.</p>
+              </div>
+              <div class="faq__block">
+                  <p><strong>Количество ЦБ</strong>Количество, либо объем средств на покупку ценных бумаг.</p>
+              </div>
+              <div class="faq__block">
+                  <p><strong>Валюта цены</strong>Указать, в какой валюте предполагается продажа / покупка ценных бумаг.</p>
+              </div>
+              <div class="faq__block">
+                  <p><strong>Цена одной ЦБ (фиксированная / по рынку)</strong>Клиент может либо сам указать цену, по которой он хочет осуществить сделку, либо купить / продать ценную бумагу по текущей рыночной цене.</p>
+              </div>
+              <div class="faq__block">
+                  <p><strong>Срок действия поручения</strong>Клиент указывает какой срок действия у его поручения, например – рабочий день, сутки или до реализации.</p>
+              </div>
+          </div>
+          <div class="text__center">
+              <a class="btn btn_darkgray" data-fancybox-close>Закрыть</a>
+          </div>
+      </div>
+  </div>
+  <ipo-assignment [portfolioId]="id" id="ipo-assignment" style="display: none;" (addAssignmentRequest)="addAssignmentToList($event)" pageType="online-request"></ipo-assignment>
+  <app-confirm-modal
+    id="confirm-modal"
+    (confirmDeletion)="deleteInvestment($event)"
+    [idToDelete]="idToDelete"
+    style="display: none;"></app-confirm-modal>
+</app-layout>

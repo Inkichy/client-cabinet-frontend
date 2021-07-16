@@ -1,0 +1,108 @@
+<app-layout [isSiteGray]="true">
+  <app-top-panel class="top-panel flex" title="Функции"></app-top-panel>
+
+  <div class="products-block">
+    <div class="du-list flex">
+      <div class="function__coll">
+        <div class="function__content">
+          <div class="function__items">
+            <div class="function__items-icons function__items-icons_requisites">
+              <img src="/assets/images/functions/1.svg" alt="" />
+            </div>
+            <div class="function__items-caption">Навигация по Кабинету</div>
+          </div>
+          <a [routerLink]="['/site-map']" class="function__btn btn btn_gray"
+            >Посмотреть</a
+          >
+        </div>
+      </div>
+      <div class="function__coll">
+        <div class="function__content">
+          <div class="function__items">
+            <div class="function__items-icons function__items-icons_requisites">
+              <img src="/assets/images/functions/icon6.svg" alt="" />
+            </div>
+            <div class="function__items-caption">Реквизиты</div>
+          </div>
+          <a [routerLink]="['/payment']" class="function__btn btn btn_gray"
+            >Посмотреть</a
+          >
+        </div>
+      </div>
+      <div class="function__coll">
+        <div class="function__content">
+          <div class="function__items">
+            <div class="function__items-icons function__items-icons_users">
+              <img src="/assets/images/functions/icon3.svg" alt="" />
+            </div>
+            <div class="function__items-caption">
+              Смена пароля<br />
+              входа в Кабинет
+            </div>
+          </div>
+          <a
+            [routerLink]="['/account/password-change']"
+            class="function__btn btn btn_gray"
+            >Сменить</a
+          >
+        </div>
+      </div>
+      <div class="function__coll">
+        <div class="function__content">
+          <div class="function__items">
+            <div class="function__items-icons function__items-icons_control">
+              <img src="/assets/images/functions/icon4.svg" alt="" />
+            </div>
+            <div class="function__items-caption">Управление аккаунтом</div>
+          </div>
+          <a [routerLink]="['/account']" class="function__btn btn btn_gray"
+            >Мой аккаунт</a
+          >
+        </div>
+      </div>
+      <div class="function__coll">
+        <div class="function__content">
+          <div class="function__items">
+            <div class="function__items-icons function__items-icons_faq">
+              <img src="/assets/images/functions/icon2.svg" alt="" />
+            </div>
+            <div class="function__items-caption">Часто задаваемые вопросы</div>
+          </div>
+          <a [routerLink]="['/faq']" class="function__btn btn btn_gray"
+            >Посмотреть</a
+          >
+        </div>
+      </div>
+      <!-- <div class="function__coll">
+        <div class="function__content">
+          <div class="function__items">
+            <div class="function__items-icons function__items-icons_messages">
+              <img src="/assets/images/functions/icon1.svg" alt="">
+            </div>
+            <div class="function__items-caption">Уведомления<br> и сообщения</div>
+          </div>
+          <a [routerLink]="['/notices']" class="function__btn btn btn_gray">Посмотреть</a>
+        </div>
+      </div> -->
+      <div class="function__coll">
+        <div class="function__content">
+          <div class="function__items">
+            <div class="function__items-icons function__items-icons_newsletters">
+              <img src="assets/images/functions/icon7.svg" alt="" />
+            </div>
+            <div class="function__items-caption">Уведомления</div>
+          </div>
+          <div class="function__buttons">
+            <!-- <a href="#" class="btn btn_gray">Подписаться</a>
+            <a href="#" class="btn btn_gray">Отключить</a> -->
+            <a  href="#" class="function__btn btn btn_gray" data-src="#notices-list" data-fancybox data-modal="true">Управлять</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display: none;" id="notices-list">
+    <notices-list></notices-list>
+  </div>
+  <app-footer-slick></app-footer-slick>
+</app-layout>

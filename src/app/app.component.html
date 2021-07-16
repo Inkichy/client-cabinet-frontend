@@ -1,0 +1,11 @@
+<ng-template [ngIf]="!data && loaded">
+    <app-preloader></app-preloader>
+</ng-template>
+<ng-template [ngIf]="data && !isLogout">
+  <app-messenger (messenger)="setMessenger($event)"></app-messenger>
+</ng-template>
+
+<app-notifications></app-notifications>
+
+<router-outlet></router-outlet>
+

@@ -1,0 +1,46 @@
+<div id="invest-modal" style="display: none;">
+  <div class="invest-modal">
+    <div class="invest-modal__body">
+      <div class="invest-modal__text">
+        <p>Уважаемый клиент,</p>
+        <p>Вы можете оформить покупку данной ценной бумаги, подключив услугу брокерского обслуживания и выбрав
+          соответствующий тариф!</p>
+      </div>
+      <div class="invest-modal__row flex">
+        <div class="invest-modal__coll" *ngIf="personal">
+          <div class="invest-modal__top" style="background-color: #a1cb2b;">
+            <div class="invest-modal__name">Персональный<br> брокер</div>
+            <div class="invest-modal__items">
+              <div class="invest-modal__desc">минимальная сумма</div>
+              <div class="invest-modal__price">500 000 <small><span class="rur">&nbsp;₽</span></small></div>
+              <div class="invest-modal__desc">или эквивалент в $</div>
+            </div>
+          </div>
+          <div class="invest-modal__bottom">
+            <div class="invest-modal__description">Подключите продукт<br> «Персональный брокер» и получайте
+              профессиональную консультацию в процессе торговли от Вашего персонального брокера.</div>
+            <a (click)="onClose()" [routerLink]="['/broker-service', this.personal.ID]" class="btn btn_darkgray">Подключить</a>
+          </div>
+        </div>
+        <div class="invest-modal__coll"  *ngIf="base">
+          <div class="invest-modal__top" style="background-color: #87b4c6;">
+            <div class="invest-modal__name">Базовый<br> тариф</div>
+            <div class="invest-modal__items">
+              <div class="invest-modal__desc">минимальная сумма</div>
+              <div class="invest-modal__price">0 <small><span class="rur">&nbsp;₽</span></small></div>
+              <div class="invest-modal__desc">или эквивалент в $</div>
+            </div>
+          </div>
+          <div class="invest-modal__bottom">
+            <div class="invest-modal__description">Для самостоятельного доступа<br> ко всем рынкам – достаточно
+              подключить «Базовый тариф» – начать можно с 1 ценной бумаги!</div>
+            <a (click)="onClose()" [routerLink]="['/broker-service', this.base.ID]" class="btn btn_darkgray">Подключить</a>
+          </div>
+        </div>
+      </div>
+      <div class="invest-modal__button">
+        <a class="btn btn_small btn_gray" (click)="onClose()">Закрыть</a>
+      </div>
+    </div>
+  </div>
+</div><!-- end invest-modal -->

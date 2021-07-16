@@ -1,0 +1,23 @@
+<div class="pd__column-icons">
+  <img src="/assets/images/your-case-golden-ratio-product-details/icon.svg" alt="">
+</div>
+<div class="pd__column-list">
+  <a [routerLink]="['/payment', this.id]"  class="pd__column-link">Пополнить счет</a>
+  <!-- <a [routerLink]="['/online-request', this.id]"
+     *ngIf="type === 'Брокерское обслуживание'"
+     class="pd__column-link">Купить \ Продать
+    ценные бумаги</a> -->
+  <a [routerLink]="['/portfolio',id,'products-reports']" [class.pd__column-link_current]="getPath('products-reports')" class="pd__column-link">Посмотреть отчеты</a>
+  <a [routerLink]="['/portfolio',id,'deposit-and-withdrawal-of-funds']" [class.pd__column-link_current]="getPath('deposit-and-withdrawal-of-funds')" class="pd__column-link">Посмотреть
+    ввод \ вывод средств</a>
+  <!-- <a [routerLink]="['/portfolio',id,'signed-contracts']"  [class.pd__column-link_current]="getPath('signed-contracts')" class="pd__column-link">Подписанные
+    документы</a> -->
+  <!-- <a [routerLink]="['/portfolio',id,'withdraw-request']" [class.pd__column-link_current]="getPath('withdraw-request')"
+     class="pd__column-link">Заказать вывод средств</a> -->
+  <a *ngIf="type === 'Брокерское обслуживание'" [routerLink]="['/portfolio',id,'quik']"
+     [class.pd__column-link_current]="getPath('quik')" class="pd__column-link">Программы для торговли</a>
+  <!-- <a *ngIf="type === 'Брокерское обслуживание'"
+    [routerLink]="['/portfolio',id,'change-tariff']" class="pd__column-link">Сменить тариф</a>-->
+  <a  *ngIf="type !== 'Брокерское обслуживание'" [routerLink]="['/portfolio',id,'analytics']"
+    [class.pd__column-link_current]="getPath('analytics')" class="pd__column-link">Аналитические обзоры</a>
+</div>

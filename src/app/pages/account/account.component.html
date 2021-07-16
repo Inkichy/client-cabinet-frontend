@@ -1,0 +1,580 @@
+<app-layout>
+  <app-top-panel class="top-panel flex" title="Управление аккаунтом" smallTitle='Аккаунт'></app-top-panel>
+  <app-invest-modal></app-invest-modal>
+  <div class="settings" #settings>
+    <div *ngIf="!isSended" class="settings__row flex">
+      <div class="settings__col" #clientForm>
+        <div (click)="isOpenForm1 = !isOpenForm1"
+              [class.settings__title_error]="formClient.invalid && formClient.touched"
+              class="settings__title settings__title--js">
+          <div class="settings__title-caption">
+            <span>Пользователь аккаунта</span>
+            <small>имя • отчество • фамилия • дата рождения • электронная почта • телефон</small>
+          </div>
+          <i *ngIf="operationFormClient">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                </g>
+              </g>
+            </svg>
+          </i>
+          <i *ngIf="!operationFormClient" class="fa fa-spinner fa-spin" ></i>
+
+        </div>
+        <div *ngIf="operationFormClient" [class.settings__items_hide]="!isOpenForm1"
+              class="settings__items settings__items_client settings__items--js">
+          <form class="settings__form" (ngSubmit)="onSubmitClientInfo()" [formGroup]="formClient" novalidate>
+            <div *ngIf="!operationFormClient.smsConfirmation">
+              <label class="settings__label">
+                <div class="settings__field-name">Фамилия</div>
+                <input type="text" class="settings__field field"
+                        [class.field_error]="formClient.get('lastName').invalid  && formClient.get('lastName').touched"
+                        formControlName="lastName" placeholder="Кондратий" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formClient.get('lastName').hasError('required') && formClient.get('lastName').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Имя</div>
+                <input type="text" class="settings__field field"
+                        [class.field_error]="formClient.get('name').invalid  && formClient.get('name').touched"
+                        formControlName="name" placeholder="Кондратьев" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formClient.get('name').hasError('required') && formClient.get('name').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Отчество</div>
+                <input type="text" class="settings__field field"
+                        [class.field_error]="formClient.get('patronymic').invalid  && formClient.get('patronymic').touched"
+                        formControlName="patronymic" placeholder="Валерьевич" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formClient.get('patronymic').hasError('required') && formClient.get('patronymic').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Дата рождения</div>
+                <input type="text" class="settings__field field field-data"
+                        [class.field_error]="formClient.get('birthDate').invalid  && formClient.get('birthDate').touched"
+                        mask="00.00.0000" formControlName="birthDate" placeholder="__.__.____" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formClient.get('birthDate').hasError('required') && formClient.get('birthDate').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Электронная почта</div>
+                <input type="email" class="settings__field field"
+                        [class.field_error]="formClient.get('email').invalid  && formClient.get('email').touched"
+                        formControlName="email" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formClient.get('email').hasError('required') && formClient.get('email').touched">
+                  Укажите email
+                </div>
+                <div class="field__error"
+                     *ngIf="formClient.get('email').hasError('email') && formClient.get('email').touched">
+                  Неверный email адрес
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">телефон</div>
+                <input type="tel" class="settings__field field field-phone" prefix="+7 "
+                        mask="(000) 000 00 00"
+                        [class.field_error]="formClient.get('phone').invalid  && formClient.get('phone').touched"
+                        formControlName="phone" disabled="disabled">
+              </label>
+              <div class="field__error"
+                   *ngIf="formClient.get('phone').hasError('required') && formClient.get('phone').touched">
+                Укажите номер телефона
+              </div>
+            </div>
+           <div *ngIf="operationFormClient.smsConfirmation">
+              <div class="pickup__question-name">На Ваш телефон отправлено СМС к кодом подтверждения. Введите полученный
+                код в поле ниже.
+              </div>
+            </div>
+
+            <div class="settings__buttons flex">
+                <button type="submit" [disabled]="operationFormClient.loading"
+                        [class.loading]="operationFormClient.loading"
+                        class="btn btn_darkgray" value="Далее">Далее</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="settings__col" #passportForm>
+        <div (click)="isOpenForm2 = !isOpenForm2"
+             [class.settings__title_error]="formPassport.invalid && formPassport.touched"
+             class="settings__title settings__title--js">
+          <div class="settings__title-caption">
+            <span>Паспортные данные</span>
+            <small>серия / номер • кем выдан • дата выдачи • код подразделения • место рождения</small>
+          </div>
+          <i *ngIf="operationFormPassport">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                </g>
+              </g>
+            </svg>
+          </i>
+          <i *ngIf="!operationFormPassport" class="fa fa-spinner fa-spin" ></i>
+
+        </div>
+
+        <div *ngIf="operationFormPassport" [class.settings__items_hide]="!isOpenForm2"
+             class="settings__items settings__items_client settings__items--js">
+          <form class="settings__form" [formGroup]="formPassport" (ngSubmit)="onSubmitPassport()" novalidate>
+            <div *ngIf="!operationFormPassport.smsConfirmation">
+              <div class="settings__passport flex">
+                <label class="settings__label settings__passport-series">
+                  <div class="settings__field-name">Серия</div>
+                  <input type="text" class="settings__field field  field-seria"
+                         [class.field_error]="formPassport.get('passportSeries').invalid  && formPassport.get('passportSeries').touched"
+                         formControlName="passportSeries" mask="00 00" placeholder="93 18" disabled="disabled">
+                  <div class="field__error"
+                       *ngIf="formPassport.get('passportSeries').hasError('required') && formPassport.get('passportSeries').touched">
+                    Обязательно к заполнению
+                  </div>
+                </label>
+                <span> – </span>
+                <label class="settings__label settings__passport-number">
+                  <div class="settings__field-name">Номер</div>
+                  <input type="text" class="settings__field field"
+                         [class.field_error]="formPassport.get('passportNumber').invalid  && formPassport.get('passportNumber').touched"
+                         formControlName="passportNumber" mask="000 000" placeholder="123 456" disabled="disabled">
+                  <div class="field__error"
+                       *ngIf="formPassport.get('passportNumber').hasError('required') && formPassport.get('passportNumber').touched">
+                    Обязательно к заполнению
+                  </div>
+                </label>
+              </div>
+
+
+              <label class="settings__label">
+                <div class="settings__field-name">Кем выдан</div>
+                <input type="text" class="settings__field field"
+                       [class.field_error]="formPassport.get('passportIssuedBy').invalid  && formPassport.get('passportIssuedBy').touched"
+                       formControlName="passportIssuedBy"
+                       placeholder="УФМС Ленинградской обл., гор. Санкт-Петербурга" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formPassport.get('passportIssuedBy').hasError('required') && formPassport.get('passportIssuedBy').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+
+              <label class="settings__label">
+                <div class="settings__field-name">Дата выдачи</div>
+                <input type="text" class="settings__field field  field-data"
+                       [class.field_error]="formPassport.get('passportIssueDate').invalid  && formPassport.get('passportIssueDate').touched"
+                       formControlName="passportIssueDate" mask="00.00.0000" placeholder="23.05.1994" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formPassport.get('passportIssueDate').hasError('required') && formPassport.get('passportIssueDate').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Код&nbsp;подразделения</div>
+                <input type="text" class="settings__field field field-code"
+                       [class.field_error]="formPassport.get('passportIssueId').invalid  && formPassport.get('passportIssueId').touched"
+                       formControlName="passportIssueId" mask="000 - 000" placeholder="123 - 456" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formPassport.get('passportIssueId').hasError('required') && formPassport.get('passportIssueId').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+
+              <label class="settings__label">
+                <div class="settings__field-name">Место рождения</div>
+                <input type="text" class="settings__field field" dadata
+                       [class.field_error]="formPassport.get('birthPlace').invalid  && formPassport.get('birthPlace').touched"
+                       formControlName="birthPlace" placeholder="Санкт-Петербург" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formPassport.get('birthPlace').hasError('required') && formPassport.get('birthPlace').touched" disabled="disabled">
+                  Обязательно к заполнению
+                </div>
+              </label>
+
+              <div class="settings__label ">
+                <div class="settings__field-name">Загрузить скан паспорта</div>
+                <div class="files settings__files">
+                  <div class="scan" *ngFor="let scan of scansImageArray;let i=index">
+                    <a class="close" (click)="close(i)">×</a>
+                  </div>
+                  <div class="file_button">
+                                    <span class="fileinput-button">
+                                        <span class="btn btn_small">Загрузить файл ></span>
+                                        <input formControlName="passportScan" id="fileupload-3" type="file" (change)="changeImage($event)" name="files" disabled="disabled">
+                                    </span>
+                  </div>
+                  <div id="files-3" class="files__list files__list_v2"></div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="operationFormPassport.smsConfirmation">
+              <div class="pickup__question-name">На Ваш телефон отправлено СМС к кодом подтверждения. Введите полученный
+                код в поле ниже.
+              </div>
+            </div>
+            <div class="settings__buttons flex">
+                <button type="submit" [disabled]="operationFormClient.loading"
+                       [class.loading]="operationFormClient.loading"
+                       class="btn btn_darkgray" value="Далее">Далее</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="settings__col" #bankForm>
+
+        <div (click)="isOpenForm3 = !isOpenForm3"
+             [class.settings__title_error]="formBank.invalid && formBank.touched"
+             class="settings__title settings__title_error settings__title--js">
+          <div class="settings__title-caption">
+            <span>Банковские реквизиты</span>
+            <small>бик • наименование банка • корреспондентский счет • расчетный счет</small>
+          </div>
+          <i *ngIf="operationFormBank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                </g>
+              </g>
+            </svg>
+          </i>
+          <i *ngIf="!operationFormBank" class="fa fa-spinner fa-spin" ></i>
+
+        </div>
+        <div *ngIf="operationFormBank" class="settings__items settings__items_client settings__items--js"
+             [class.settings__items_hide]="!isOpenForm3">
+
+          <form class="settings__form" [formGroup]="formBank" (ngSubmit)="onSubmitBankData()" novalidate>
+            <div *ngIf="!operationFormBank.smsConfirmation">
+              <label class="settings__label">
+                <div class="settings__field-name">БИК</div>
+                <input type="text" class="settings__field field" formControlName="bankBik"
+                       (input)="onSetBank($event)">
+                <div class="field__error"
+                     *ngIf="formBank.get('bankBik').hasError('required') && formBank.get('bankBik').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Наименование банка</div>
+                <input type="text" class="settings__field field" formControlName="bankName" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formBank.get('bankName').hasError('required') && formBank.get('bankName').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Корреспондентский счет</div>
+                <input type="text" class="settings__field field" formControlName="bankCorr" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formBank.get('bankCorr').hasError('required') && formBank.get('bankCorr').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Номер расчетного счета получателя</div>
+                <input type="text" class="settings__field field" formControlName="bankAccount">
+                <div class="field__error"
+                     *ngIf="formBank.get('bankAccount').invalid && formBank.get('bankAccount').touched">
+                  Обязательно к заполнению (20 цифр)
+                </div>
+              </label>
+            </div>
+            <div class="settings__buttons flex">
+              <button type="submit" [disabled]="operationFormClient.loading"
+              [class.loading]="operationFormClient.loading"
+              class="btn btn_darkgray" value="Далее">Далее</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="settings__col" #additionInfoForm>
+        <div (click)="isOpenForm4 = !isOpenForm4"
+             [class.settings__title_error]="formAdditionalInformation.invalid && formAdditionalInformation.touched"
+             class="settings__title settings__title--js">
+          <div class="settings__title-caption">
+            <span>Прочие данные</span>
+            <small>
+              <ng-container *ngIf="isLegalEntity; else physicalEntity">Название юридического лица • ИНН • КПП </ng-container>
+              <ng-template #physicalEntity>ИНН • СНИЛС </ng-template>
+              • Адрес регистрации • Почтовый адрес • Кодовое слово</small>
+          </div>
+          <i *ngIf="operationFormAdditional" >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                </g>
+              </g>
+            </svg>
+          </i>
+          <i *ngIf="!operationFormAdditional" class="fa fa-spinner fa-spin" ></i>
+
+        </div>
+        <div *ngIf="operationFormAdditional" [class.settings__items_hide]="!isOpenForm4"
+             class="settings__items settings__items_client settings__items--js">
+          <form (ngSubmit)="onSubmitAdditionalInformation()" class="settings__form"
+                [formGroup]="formAdditionalInformation" novalidate>
+            <div *ngIf="!operationFormAdditional.smsConfirmation">
+              <label *ngIf="isLegalEntity" class="settings__label">
+                <div class="settings__field-name">Название юридического лица</div>
+                <input type="text" class="settings__field field field-snils"
+                       [class.field_error]="formAdditionalInformation.get('legalEntityName').invalid  && formAdditionalInformation.get('legalEntityName').touched"
+                       formControlName="legalEntityName">
+                <div class="field__error"
+                     *ngIf="formAdditionalInformation.get('legalEntityName').hasError('required') && formAdditionalInformation.get('legalEntityName').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">ИНН</div>
+                <input type="text" class="settings__field field field_error field-inn"
+                       [class.field_error]="formAdditionalInformation.get('documentInn').invalid  && formAdditionalInformation.get('documentInn').touched"
+                       formControlName="documentInn" mask="000000000000" placeholder="123456789123" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formAdditionalInformation.get('documentInn').hasError('required') && formAdditionalInformation.get('documentInn').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label *ngIf="isLegalEntity; else physicalEntitySnils" class="settings__label">
+                <div class="settings__field-name">КПП</div>
+                <input type="text" class="settings__field field field-snils"
+                       [class.field_error]="formAdditionalInformation.get('KPP').invalid  && formAdditionalInformation.get('KPP').touched"
+                       formControlName="KPP" mask="000000000" placeholder="123456789" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formAdditionalInformation.get('KPP').hasError('required') && formAdditionalInformation.get('KPP').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <ng-template #physicalEntitySnils>
+                <label class="settings__label">
+                  <div class="settings__field-name">СНИЛС</div>
+                  <input type="text" class="settings__field field field-snils"
+                        [class.field_error]="formAdditionalInformation.get('documentSnils').invalid  && formAdditionalInformation.get('documentSnils').touched"
+                        formControlName="documentSnils" mask="000 - 000 - 000 - 00" placeholder="123 - 456 - 789 - 12" disabled="disabled">
+                  <div class="field__error"
+                      *ngIf="formAdditionalInformation.get('documentSnils').hasError('required') && formAdditionalInformation.get('documentSnils').touched">
+                    Обязательно к заполнению
+                  </div>
+                </label>
+              </ng-template>
+              <label class="settings__label">
+                <div class="settings__field-name">Адрес регистрации</div>
+                <input type="text" class="settings__field field" dadata
+                       (onChange)="updateValue($event, formAdditionalInformation.get('actualAddr'))"
+                       [class.field_error]="formAdditionalInformation.get('actualAddr').invalid  && formAdditionalInformation.get('actualAddr').touched"
+                       formControlName="actualAddr" placeholder="Санкт-Петербург, ул. Рубинштейна, 13" disabled="disabled">
+
+
+                <div class="field__error"
+                     *ngIf="formAdditionalInformation.get('actualAddr').hasError('required') && formAdditionalInformation.get('actualAddr').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Почтовый адрес</div>
+                <input type="text" class="settings__field field" dadata
+                       (onChange)="updateValue($event, formAdditionalInformation.get('postAddr'))"
+                       [class.field_error]="formAdditionalInformation.get('postAddr').invalid  && formAdditionalInformation.get('postAddr').touched"
+                       formControlName="postAddr" placeholder="140145, Санкт-Петербург, ул. Рубинштейна, 13" disabled="disabled">
+                <div class="field__error"
+                     *ngIf="formAdditionalInformation.get('postAddr').hasError('required') && formAdditionalInformation.get('postAddr').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label *ngIf="brokerProductInPortfolio" class="settings__label">
+                <div class="settings__field-name">Кодовое слово</div>
+                <input type="text" class="settings__field field"
+                  formControlName="privateWord" placeholder="Ваше кодовое слово" disabled="disabled">
+              </label>
+            </div>
+            <div class="settings__buttons flex">
+              <button type="submit" [disabled]="operationFormAdditional.loading"
+              [class.loading]="operationFormAdditional.loading"
+              class="btn btn_darkgray" value="Далее">Далее</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div  class="settings__buttons flex">
+        <button (click)="saveChanges()"
+        [disabled]="formPassport.invalid || formAdditionalInformation.invalid || formBank.invalid"
+        class="btn btn_darkgray" value="Далее">Сохранить данные</button>
+      </div>
+    </div>
+
+
+    <div *ngIf='isSended'>
+      <div class="site-content__body">
+      <div class="register__title">Код подтверждения</div>
+
+      <div *ngIf="!smsError;else codeToEmail" class="site-content__subtitle">На Ваш телефон отправлено смс к кодом подтверждения. Необходимо ввести этот код
+        в нижестоящее поле.
+      </div>
+      <ng-template #codeToEmail>
+        <div class="site-content__subtitle">На Ваш email отправлен код подтверждения. Необходимо ввести этот код
+          в нижестоящее поле.
+        </div>
+      </ng-template>
+
+      <div class="errors" *ngIf="errors.length">
+        <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+      </div>
+      <form class="settings__form" [formGroup]="formConfirm" (ngSubmit)="onSubmitSms()" novalidate>
+        <label class="settings__label settings__label_register">
+          <div class="settings__field-name">Введите код подтверждения</div>
+          <input type="text" class="settings__field field field-number" mask="0 0 0 0 0 0" placeholder="_ _ _ _ _ _" formControlName="code">
+        </label>
+        <label class="settings__label">
+          <button type="submit" [disabled]="formConfirm.invalid || isLoading" class="btn btn_darkgray btn_save">Сохранить</button>
+        </label>
+        <div class="settings__buttons settings__buttons_top flex">
+          <div *ngIf="!smsError" class="settings__button">
+
+            <input
+                   type="button"
+                   [disabled]="isDisableResendSms"
+                     [class.disabled]="isDisableResendSms"
+                    class="btn btn_small"
+                    value="Выслать код повторно"
+                    (click)="onResendSms()">
+            <div *ngIf="isDisableResendSms" class="timer_cover" [innerHTML]='counter'></div>
+          </div>
+          <div  *ngIf="!smsError" class="settings__button">
+            <input type="button"
+            [disabled]="isDisableResendEmail"
+            [class.disabled]="isDisableResendEmail"
+            class="btn btn_small"
+            value="Выслать код на почту"
+            (click)="sendToMail()">
+     <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+          </div>
+          <div *ngIf="smsError" class="settings__button">
+            <input type="button"
+                   [disabled]="isDisableResendEmail"
+                   [class.disabled]="isDisableResendEmail"
+                   class="btn btn_small"
+                   value="Выслать код повторно"
+                   (click)="sendToMail()">
+            <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+          </div>
+
+          <div *ngIf="smsError"  class="settings__button">
+            <a class="btn btn_green btn_save" (click)="cancel()">Отмена</a>
+          </div>
+        </div>
+        <label *ngIf="!smsError" class="settings__label">
+            <a class="btn btn_green btn_save" (click)="cancel()">Отмена</a>
+        </label>
+      </form>
+
+      <!-- <app-auth-modal id="code-modal" style="display: none;" title='Новый код подтверждения'
+                      description='Вам направлен новый код подтверждения. Введите его и закончите процедуру
+        регистрации Личного кабинета.'>
+      </app-auth-modal> -->
+      </div>
+    </div>
+
+    <!-- <div class="settings__row settings__row_last flex"> -->
+    <div class="settings__row  flex">
+      <div class="settings__col">
+        <div class="settings__title">Смена пароля для входа в Кабинет</div>
+        <div class="settings__items settings__items_change_password">
+          <div class="settings__items-password">
+            <div class="settings__description">Для смены пароля входа в Личный кабинет нажмите на кнопку и
+              следуйте инструкциям.
+            </div>
+            <a [routerLink]="['password-change']" class="btn btn_darkgray">Сменить пароль</a>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="settings__col">
+        <div class="settings__title">Анкеты клиента</div>
+        <div class="settings__items settings__items_anketa">
+          <div class="settings__anketa flex">
+            <div class="settings__anketa-icon">
+              <img src="assets/images/client-account/icon.svg" alt="">
+            </div>
+            <div class="settings__anketa-content">
+              <div class="settings__description">
+                <p>«Анкета клиента» - список обязательных вопросов для клиентов. Ее необходимо обновлять
+                  раз в год.</p>
+                <!-- <p>«Профиль инвестора» - анкета определения вашего оптимального инвестиционного профиля.
+                </p> -->
+              <!--</div>
+              <a routerLink="/account-customer-questionnaire" class="btn btn_gray">Анкета клиента</a>
+              <a *ngIf="showInvestmentProfile" routerLink="/investment-profile" class="btn btn_gray">Профиль
+                инвестора</a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+    </div>
+
+
+    <div class="settings__links">
+      <a target="_blank" href="https://client.qbfin.ru/api/docs/getOpdDocument" class="settings__link">Согласие на
+        Обработку персональных данных ></a>
+      <a target="_blank" href="https://client.qbfin.ru/api/docs/getEdoDocument" class="settings__link">Согласие на
+        Электронный документооборот (ЭДО) ></a>
+    </div>
+
+  </div>
+</app-layout>

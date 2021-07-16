@@ -1,0 +1,151 @@
+<app-layout>
+    <div class="top-panel top-panel_payment flex">
+        <div class="top-panel__title">
+            <div class="top-panel__title-small"></div>
+            <strong>Реквизиты</strong>
+        </div>
+        <div class="top-panel__title" *ngIf="product">
+            <div class="top-panel__title-small">{{product.product?.ITEM_TYPE}}</div>
+            <strong><span class="green">{{product.product?.name}}</span></strong>
+        </div>
+        <div class="top-panel__images">
+        </div>
+    </div>
+
+    <div class="payment payment-step4" *ngIf="bankDetails">
+        <div class="payment__box payment__box_bb">
+            <div class="payment-step4__caption flex">
+                <div class="payment-step4__icons-sberbank">
+                    <img [src]="getImage(bankDetails)"/>
+                </div>
+                <strong>Реквизиты банка {{bankDetails.NAME}}</strong>
+                <div *ngIf="qr === NULL && bankDetails.NAME === 'Сбербанк'">
+                  <i class="fa fa-spinner fa-spin fa-2x"></i>
+                </div>
+                <div *ngIf='qr !== NULL' class="parent" [innerHTML]="qr"></div>
+            </div>
+            <div class="payment__block-desc">Банковские реквизиты специального счета ООО ИК «КьюБиЭф» для денежных
+                расчетов по Договору.<br>
+                Предоставьте Вашему банку реквизиты указанные ниже.
+            </div>
+            <div class="payment-step4__table" *ngIf="product">
+                <div class="payment-step4__items">
+                    <div class="payment-step4__name">Получатель</div>
+                    <div class="payment-step4__value">{{bankDetails.RECEIVER}}</div>
+                </div>
+
+                <div *ngIf="currency == 'USD'" class="payment-step4__items">
+                    <div class="payment-step4__name">Банк получателя</div>
+                    <div class="payment-step4__value">{{bankDetails.BANK_NAME}}</div>
+                </div>
+                <div *ngIf="currency == 'USD'" class="payment-step4__items">
+                    <div class="payment-step4__name">№ счета получателя</div>
+                    <div class="payment-step4__value">{{bankDetails.BANK_ACCOUNT}}</div>
+                </div>
+                <div *ngIf="currency == 'USD'" class="payment-step4__items">
+                    <div class="payment-step4__name">SWIFT</div>
+                    <div class="payment-step4__value">{{bankDetails.SWIFT}}</div>
+                </div>
+                <div *ngIf="currency == 'USD'" class="payment-step4__items">
+                    <div class="payment-step4__name">Банк посредник</div>
+                    <div class="payment-step4__value">{{bankDetails.RECEIVER_INN}}</div>
+                </div>
+                <div *ngIf="currency == 'USD'" class="payment-step4__items">
+                    <div class="payment-step4__name">SWIFT</div>
+                    <div class="payment-step4__value">{{bankDetails.SWIFT_BIK}}</div>
+                </div>
+                <div *ngIf="currency == 'USD'" class="payment-step4__items">
+                    <div class="payment-step4__name">Счет в банке посреднике</div>
+                    <div class="payment-step4__value">{{bankDetails.K_ACCOUNT}}</div>
+                </div>
+
+
+                <div *ngIf="currency == 'RUR'" class="payment-step4__items">
+                    <div class="payment-step4__name">Наименование банка</div>
+                    <div class="payment-step4__value">{{bankDetails.BANK_NAME}}</div>
+                </div>
+                <div *ngIf="currency == 'RUR'" class="payment-step4__items">
+                    <div class="payment-step4__name">Расчетный счет</div>
+                    <div class="payment-step4__value">{{bankDetails.BANK_ACCOUNT}}</div>
+                </div>
+                <div *ngIf="currency == 'RUR'" class="payment-step4__items">
+                    <div class="payment-step4__name">ИНН получателя</div>
+                    <div class="payment-step4__value">{{bankDetails.RECEIVER_INN}}</div>
+                </div>
+                <div *ngIf="currency == 'RUR'" class="payment-step4__items">
+                    <div class="payment-step4__name">Корреспондентский счет</div>
+                    <div class="payment-step4__value">{{bankDetails.K_ACCOUNT}}</div>
+                </div>
+                <div *ngIf="currency == 'RUR'" class="payment-step4__items">
+                    <div class="payment-step4__name">БИК</div>
+                    <div class="payment-step4__value">{{bankDetails.BIK}}</div>
+                </div>
+
+
+                <div class="payment-step4__items">
+                    <div class="payment-step4__name">Назначение платежа</div>
+                    <div class="payment-step4__value"
+                         *ngIf="product.product.ITEM_TYPE == 'Доверительное управление' && currency == 'RUR'">
+                        Перевод по договору доверительного управления №{{product.agreementNumber}} от {{product.d_date}}
+                    </div>
+                    <div class="payment-step4__value" *ngIf="product.product.ITEM_TYPE == 'Доверительное управление'
+        && currency == 'USD'">
+                        Payments of agreement №{{product.agreementNumber}}
+                    </div>
+                    <div class="payment-step4__value" *ngIf="product.product.ITEM_TYPE == 'Брокерское обслуживание'
+        && currency == 'RUR' && market == 'moscow'">
+                        Перевод денежных средств по Договору присоединения № {{product.agreementNumber}} от
+                        {{this.product.d_date}} г. (МБ ФР). Без НДС.
+                    </div>
+                    <div class="payment-step4__value" *ngIf="product.product.ITEM_TYPE == 'Брокерское обслуживание'
+        && currency == 'RUR' && market == 'spb'">
+                        Перевод денежных средств по Договору присоединения № {{product.agreementNumber}} от
+                        {{this.product.d_date}} г. (СПБ). Без НДС.
+                    </div>
+                    <div class="payment-step4__value"
+                         *ngIf="product.product.ITEM_TYPE == 'Брокерское обслуживание' && currency == 'USD'">
+                        TRANSFER OF FUNDS UNDER AGMT{{product.agreementNumber}} DD {{dateEn}} (MB SM). NO VAT.
+                    </div>
+                </div>
+                <div class="payment-step4__items">
+                    <div class="payment-step4__name">Сумма платежа</div>
+                    <div class="payment-step4__value">{{summ | number:'1.2-2':'ru-RU'}} {{getCurrencyTitle(currency)}}
+                    </div>
+                </div>
+            </div>
+            <div class="payment__box__req-buttons">
+                <a (click)="getPdf()" target="_blank" class="payment-step4__pdf btn">
+                    <i>
+                        <img src="/assets/images/payment-DU-requisites-Alfa-Bank/PDF-icon.svg" alt="">
+                    </i>
+                    <span>Распечатать реквизиты</span>
+                </a>
+
+                <a (click)="sendByEmail()" class="payment__mail btn">Отправить почтой</a>
+                <div *ngIf="bankDetails.ACQUIRING" (click)="getAcquiring(bankDetails.CODE)" class="btn acquiring">Пополнить с карты</div>
+            </div>
+        </div>
+        <div class="payment__box">
+            <div class="payment__translation-method">
+                <div class="payment__translation-method__caption">3 способа перевода средств по реквизитам:</div>
+                <div class="payment-step3__list">
+                    <ol>
+                        <li>Вы можете обратиться в отделение своего банка и осуществить перевод.</li>
+                        <li>Вы можете самостоятельно осуществить перевод через свой онлайн-банк по данным реквизитам.
+                        </li>
+                        <li>Вы можете передать данные реквизиты персональному менеджеру в вашем банке для осуществления
+                            перевода.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="payment__box">
+            <div class="payment__block active">
+                <a [routerLink]="'/payment/'+product.id" class="payment__block-btn btn btn_darkgray">Вернуться к
+                    реквизитам</a>
+                <a [routerLink]="'/portfolio'" class="payment__block-btn btn btn_darkgray">Ваш портфель</a>
+            </div>
+        </div>
+    </div>
+</app-layout>

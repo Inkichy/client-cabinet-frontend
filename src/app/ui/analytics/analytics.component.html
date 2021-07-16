@@ -1,0 +1,69 @@
+<div class="analytics__left">
+  <div class="analytics__title">Аналитика</div>
+  <div class="top-panel__title-line"></div>
+  <div class="analytics__img">
+    <img src="/assets/images/main/Analitics-desktop.jpg" alt="">
+  </div>
+</div>
+<div class="analytics__right">
+  <div class="analytics__body">
+    <div class="analytics__slick" [items]="articles" slick>
+      <div class="analytics__slide" *ngFor="let article of articles">
+        <div class="analytics__caption">
+          <strong>{{article.NAME}}</strong>
+          <small>•</small>
+          <span>{{article.ACTIVE_FROM}}</span>
+        </div>
+        <div class="analytics__text" [innerHTML]='article.PREVIEW_TEXT'></div>
+      </div>
+    </div>
+    <div slickPrev class="bo-body__arrow bo-body__arrow_left" slickPrev >
+      <i>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+          <defs>
+            <style>
+              .cls-1 {
+                fill: none;
+                stroke: #999;
+                stroke-miterlimit: 10;
+                stroke-width: 0.75px;
+              }
+
+            </style>
+          </defs>
+          <title>Ресурс 16</title>
+          <g id="Слой_2" data-name="Слой 2">
+            <g id="Content">
+              <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+            </g>
+          </g>
+        </svg>
+      </i>
+    </div>
+    <div slickNext class="bo-body__arrow bo-body__arrow_right" slickNext>
+      <i>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+          <defs>
+            <style>
+              .cls-1 {
+                fill: none;
+                stroke: #999;
+                stroke-miterlimit: 10;
+                stroke-width: 0.75px;
+              }
+
+            </style>
+          </defs>
+          <title>Ресурс 16</title>
+          <g id="Слой_2" data-name="Слой 2">
+            <g id="Content">
+              <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+            </g>
+          </g>
+        </svg>
+      </i>
+    </div>
+  </div>
+  <a href="https://qbfin.ru/analytics/reviews/" target="_balnk" class="analytics__link">Больше аналитики Вы можете
+    посмотреть на сайте QBF III Portfolio management</a>
+</div>

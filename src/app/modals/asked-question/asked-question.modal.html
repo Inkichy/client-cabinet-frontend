@@ -1,0 +1,55 @@
+<div class="modal__window">
+    <div class="modal__row">
+        <div class="modal__caption">Задать вопрос</div>
+        <div class="modal__subtitle" *ngIf="type !== 'support'">Вашему финансовому советнику</div>
+        <div class="modal__subtitle" *ngIf="type === 'support'">по технической поддержке аккаунта</div>
+        <form [formGroup]="questionGroup" action="" class="settings__form settings__form_modal">
+            <label class="settings__label">
+                <div text-start class="settings__field-name">Почта</div>
+                <input type="text" formControlName="email"
+                        class="settings__field field" placeholder="test@yandex.ru">
+                <div class="field__error"
+                     *ngIf="questionGroup.get('email').hasError('required') && questionGroup.get('email').touched">Поле
+                    не может быть пустым
+                </div>
+            </label>
+            <label class="settings__label">
+                <div text-start class="settings__field-name">Телефон для обратной связи</div>
+                <input type="text" formControlName="phone"  mask=" 0 (000) 000 00 00"
+                    class="settings__field field" placeholder="+7 911 876 54 32">
+                <div class="field__error"
+                    *ngIf="questionGroup.get('phone').hasError('required') && questionGroup.get('phone').touched">Поле
+                    не может быть пустым
+                </div>
+            </label>
+            <div class="settings__label">
+                <div text-start class="settings__field-name">Удобное время звонка</div>
+                    <p-calendar formControlName="time" placeholder="10:20" [timeOnly]="true"></p-calendar>
+                <div class="field__error"
+                    *ngIf="questionGroup.get('time').hasError('required') && questionGroup.get('time').touched">Поле
+                    не может быть пустым
+                </div>
+            </div>
+            <label class="settings__label">
+                <div text-start class="settings__field-name">Ваш вопрос</div>
+                <textarea *ngIf="type == 'support'" formControlName="question" class="settings__field settings__field_text field"
+                    placeholder="Как мне сменить логин и пароль от моего аккаунта?'"></textarea>
+                <textarea *ngIf="type != 'support'" formControlName="question" class="settings__field settings__field_text field"
+                    placeholder="Как торговать на бирже?'"></textarea>
+                <div class="field__error"
+                    *ngIf="questionGroup.get('question').hasError('required') && questionGroup.get('question').touched">
+                    Поле не может быть пустым
+                </div>
+            </label>
+            <div class="settings__buttons flex">
+                <div (click)="sendQuestion()" class="settings__button">
+                    <input [disabled]="questionGroup.invalid" type="button" class="btn btn_darkgray" data-fancybox-close
+                        value="Отправить">
+                </div>
+                <div (click)="closeModal()" class="settings__button">
+                    <input type="button" class="btn btn_small" data-fancybox-close value="Отмена">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

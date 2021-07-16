@@ -1,0 +1,42 @@
+<app-layout [isSiteGray]="true">
+  <app-top-panel class="top-panel flex" title="Уведомления и сообщения" smallTitle="Личный кабинет" ></app-top-panel>
+  <div class="products-block">
+    <div class="ycf__body">
+      <div class="ycf__coll-big ycf__coll-big_top">
+        <div class="ycf__list-year">
+          <ul>
+            <li *ngFor="let year of years"><a (click)="getNotices(year)" [class.active]="year.isActive">{{year.year}}</a></li>
+          </ul>
+        </div>
+        <div class="ycf__content">
+          <div class="ycf__finance">
+            <div class="ycf__preloader_wrapper" *ngIf="!isLoadedNotices">
+              <i class="fa fa-spinner fa-spin fa-3x"></i>
+            </div>
+            <p class="ycf__preloader_wrapper" *ngIf="isLoadedNotices && notices.length === 0"> У Вас пока нет уведомлений</p>
+            <ng-template [ngIf]="isLoadedNotices && notices.length > 0">
+              <div *ngFor="let notice of notices" class="ycf__finance-coll flex" #ipoNotices>
+                <div class="ycf__finance-date">{{notice.create_datetime}}</div>
+                <div class="ycf__finance-box">
+                  <span>{{notice.title}}</span>
+                  <div class="ycf__finance-caption">
+                    <div  class="ycf__finance-text" [innerHTML]="notice.content"></div>
+                    <a class="ycf__finance-link" *ngIf="notice.isHugeNotice" (click)="toggle($event)">Подробнее</a>
+                  </div>
+                  <a *ngIf="notice.file != 0"  (click)="getFile(notice.file)" class="ycf__finance-link">Посмотреть PDF ></a>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+        <div class="ycf__list-year ycf__list-year_bottom">
+          <ul>
+            <li *ngFor="let year of years"><a (click)="getNotices(year)" [class.active]="year.isActive">{{year.year}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ipo-assignment [tickerName]="tickerName" pageType="notices" id="ipo-assignment" style="display: none;"></ipo-assignment>
+  <app-footer-slick></app-footer-slick>
+</app-layout>

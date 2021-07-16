@@ -1,0 +1,138 @@
+<ng-container *ngIf='smsConfirmation === false'>
+  <div class="site-content__title">Вход в Личный кабинет</div>
+  <div class="errors-sign-in" *ngIf="this.errors.length">
+    <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+  </div>
+  <div class="errors-sign-in" *ngIf="this.validateErrors.length">
+    <div class="errors__item" *ngFor="let error of validateErrors">{{error}}</div>
+  </div>
+  <form class="settings__form"  (ngSubmit)="onValueTest()"  novalidate>
+    <label class="settings__label">
+      <div class="settings__field-name">Почта / Телефон<span class='settings__field-name__hint' data-src="#hint-modal" data-fancybox=""
+     data-modal="true">?</span></div>
+      <input type="text" class="settings__field field login-field" placeholder="example@mail.com"  [(ngModel)]="form.login" [ngModelOptions]="{standalone: true}" (blur)="clearErrors()">
+    </label>
+    <label class="settings__label">
+      <div class="settings__field-name">пароль</div>
+      <input type="password" class="settings__field field" placeholder="* * * * * * *"  [(ngModel)]="form.password" [ngModelOptions]="{standalone: true}" (blur)="clearErrors()">
+    </label>
+    <div class="settings__buttons settings__buttons_top flex" style="margin: 40px 0 55px;">
+      <div class="settings__button">
+        <button type="submit" class="btn btn_darkgray"
+                [class.loading]="isLoading"
+                [class.disabled] = "validateErrors.length"
+                style='cursor:pointer'>
+          <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+          <span *ngIf="!isLoading">Вход</span>
+        </button>
+      </div>
+      <div class="settings__button">
+        <a type="button" class="btn btn_small"   (click)="onGosAuth()">Вход через Госуслуги</a>
+      </div>
+    </div>
+    <!-- <label class="checkbox checkbox_entrance" style="margin: 40px 0;">
+      <input type="checkbox"
+             name="type"
+             [(ngModel)]="isConfirmAuth"
+             [ngModelOptions]="{standalone: true}"
+             (click)="clearErrors()"
+             class="checkbox__input">
+      <span class="checkbox__theme"></span>
+      <span class="checkbox__caption">
+        Нажимая кнопку «Войти», Вы даете согласие на: <a href="https://client.qbfin.ru/api/docs/getOpdDocument"
+                                                         target="_blank">Обработку персональных данных</a> и <a
+        target="_blank"
+        href="https://client.qbfin.ru/api/docs/getEdoDocument">Электронный документооборот (ЭДО)</a>
+      </span>
+    </label> -->
+    <div class="settings__button settings__button_big">
+      <div class="settings__button-icons">
+        <img src="/assets/images/Cabinet-Login/pen-icon.svg" alt="">
+      </div>
+      <!-- <a routerLink="/auth/sign-up" class="btn btn_green">Зарегистрировать Кабинет клиента</a> -->
+      <a routerLink="/auth/password-recovery" class="btn btn_green">Восстановить Логин / Пароль</a>
+    </div>
+
+
+  </form>
+  </ng-container>
+  <ng-container *ngIf='smsConfirmation === true'>
+    <div class="site-content__title">Код подтверждения</div>
+
+    <div *ngIf="!smsError;else codeToEmail" class="site-content__subtitle">На Ваш телефон отправлено смс к кодом подтверждения. Необходимо ввести этот код
+      в нижестоящее поле.
+    </div>
+    <ng-template #codeToEmail>
+      <div class="site-content__subtitle">На Ваш email отправлен код подтверждения. Необходимо ввести этот код
+        в нижестоящее поле.
+      </div>
+    </ng-template>
+
+    <div class="errors" *ngIf="this.errors.length">
+      <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+    </div>
+    <form class="settings__form" [formGroup]="formConfirm" (ngSubmit)="onSubmitSms()" novalidate>
+      <label class="settings__label settings__label_register">
+        <div class="settings__field-name">Введите код подтверждения</div>
+        <input type="text" class="settings__field field field-number" mask="0 0 0 0 0 0"
+               placeholder="_ _ _ _ _ _" formControlName="code">
+      </label>
+      <label class="settings__label">
+        <button type="submit" [disabled]="validateErrors.length || isLoading" class="btn btn_darkgray">
+          <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+          <span *ngIf="!isLoading">Вход</span>
+        </button>
+      </label>
+      <div class="settings__buttons settings__buttons_top flex">
+        <div *ngIf="!smsError" class="settings__button">
+          <input type="button"
+                 [disabled]="isDisableResendSms"
+                 [class.disabled]="isDisableResendSms"
+                 class="btn btn_small"
+                 value="Выслать код повторно"
+                 (click)="onResendSms()">
+          <div *ngIf="isDisableResendSms" class="timer_cover" [innerHTML]='counter'></div>
+        </div>
+
+        <div  *ngIf="!smsError" class="settings__button">
+          <input type="button"
+          [disabled]="isDisableResendEmail"
+          [class.disabled]="isDisableResendEmail"
+          class="btn btn_small"
+          value="Выслать код на почту"
+          (click)="sendToMail()">
+   <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+        </div>
+
+        <div *ngIf="smsError" class="settings__button">
+          <input type="button"
+                 [disabled]="isDisableResendEmail"
+                 [class.disabled]="isDisableResendEmail"
+                 class="btn btn_small"
+                 value="Выслать код повторно"
+                 (click)="sendToMail()">
+          <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+        </div>
+        <div *ngIf="smsError"  class="settings__button">
+            <a class="btn btn_green" (click)="backToMain()">Oтмена</a>
+        </div>
+      </div>
+
+       <label *ngIf="!smsError" class="settings__label">
+          <a class="btn btn_green" (click)="backToMain()">Oтмена</a>
+      </label>
+    </form>
+  </ng-container>
+  <div id="hint-modal" style="display: none;">
+    <div class="modal__hint">
+      <div class="modal__content">
+        <div class="modal__desckription">
+          <div class="modal__desckription__title">Номер телефона (11 цифр):</div>
+          <div class="modal__desckription__value">7XXXXXXXXXX</div>
+          <div class="modal__desckription__title">E-mail в формате:</div>
+          <div class="modal__desckription__value">yourname@domain.ru</div>
+        </div>
+        <a class="btn btn_darkgray" data-fancybox-close>Закрыть</a>
+      </div>
+    </div>
+  </div>

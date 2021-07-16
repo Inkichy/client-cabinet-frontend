@@ -1,0 +1,26 @@
+<div *ngFor="let note of notes" class="modal__notification">
+  <div class="modal__background-opacity"></div>
+  <div class="modal__notification__content">
+    <div class="modal__notification__title">{{ note.title }}</div>
+    <div class="modal__notification__desc">
+      <p>{{ note.message }}</p>
+    </div>
+    <a *ngIf="!note.link" class="btn btn_darkgray" (click)="hide(note)">
+      Закрыть
+    </a>
+
+    <div *ngIf="note.link" class="settings__buttons flex">
+      <div class="settings__button">
+        <button routerLink="{{ note.link }}" (click)="update(note)" type="button" class="btn btn_darkgray btn_notice_white">
+          Перейти
+        </button>
+      </div>
+      <div class="settings__button">
+        <button (click)="hide(note)" type="button" class="btn  btn_darkgray">
+          Закрыть
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,60 @@
+.products__item_animate_8 img {
+  right: 0;
+  bottom: 0;
+  right: -100%;
+  bottom: -100%; }
+
+.products__item_animate_8 .products__img-1 {
+  width: 318px;
+  height: 312px;
+  z-index: 3;
+  -webkit-transform: rotate(-80deg);
+  -ms-transform: rotate(-80deg);
+  transform: rotate(-80deg); }
+
+.products__item_animate_8 .products__img-2 {
+  width: 327px;
+  height: 308px;
+  z-index: 2;
+  -webkit-transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
+  transform: rotate(60deg); }
+
+.products__item_animate_8 .products__img-3 {
+  width: 357px;
+  height: 280px;
+  z-index: 1;
+  right: 0;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg); }
+
+.products__item_animate_8:hover .products__img-1 {
+  bottom: -251px;
+  right: -130px;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: all 0.35s;
+  -o-transition: all 0.35s;
+  transition: all 0.35s; }
+
+.products__item_animate_8:hover .products__img-2 {
+  bottom: -250px;
+  right: 75px;
+  -webkit-transition: all 0.30s;
+  -o-transition: all 0.30s;
+  transition: all 0.30s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg); }
+
+.products__item_animate_8:hover .products__img-3 {
+  bottom: 0;
+  right: 0;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg); }

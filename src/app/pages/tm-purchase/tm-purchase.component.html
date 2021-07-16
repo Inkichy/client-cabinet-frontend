@@ -1,0 +1,886 @@
+<app-layout>
+  <div class="top-panel top-panel_payment top-panel_brokers flex">
+    <div class="top-panel__title">
+      <div class="top-panel__title-small"></div>
+      <strong>
+        <span *ngIf="!isChangeTariff()">Оформление покупки</span>
+        <span *ngIf="isChangeTariff()">Смена тарифа</span>
+        <span class="greey"> • Шаг 1</span></strong>
+    </div>
+    <div class="top-panel__title" *ngIf="!isChangeTariff()">
+      <div class="top-panel__title-small">{{product?.ITEM_TYPE}}</div>
+      <strong><span class="green">{{product?.name}}</span></strong>
+    </div>
+    <div class="top-panel__bottom flex" *ngIf="oldProduct">
+      <div class="top-panel__title">
+        <div class="top-panel__title-small">{{oldProduct.ITEM_TYPE}}</div>
+        <strong><span class="green">{{oldProduct.name}}</span></strong>
+      </div>
+      <div class="top-panel__icons">
+        <img src="/assets/images/brokerage-service-base-rate-tariff-change-step-1/arrow.svg" alt="">
+      </div>
+      <div class="top-panel__title" *ngIf="product">
+        <div class="top-panel__title-small">{{product.ITEM_TYPE}}</div>
+        <strong><span class="green">{{product.name}}</span></strong>
+      </div>
+    </div>
+    <div class="top-panel__images" [class.inverted_img]="product.ITEM_TYPE === 'Брокерское обслуживание'">
+      <img [src]="getImage(product, 'desktop')" class="top-panel__images-desktop" alt="">
+    </div>
+  </div>
+  <div *ngIf="!product" style="width: 100%; text-align: center;">
+    <i class="fa fa-spinner fa-spin" style="font-size: 38px;"></i>
+  </div>
+  <div *ngIf="product" class="payment">
+    <!--Введите сумму инвестирования-->
+    <div class="payment__box payment__box_bb" #sumForm *ngIf="product">
+      <div style="padding: 20px 0;" *ngIf="errorsPurchase.length > 0">
+        <span class="error" *ngFor="let error of errorsPurchase">{{error.error}}</span>
+      </div>
+      <div class="payment__deckription" *ngIf="isChangeTariff() && product.MINSUMM">
+        Уважаемый клиент, для перехода на тариф «Персональный брокер» на Вашем брокерском счете должно быть
+        <span class="green">не менее {{product.MINSUMM | number:'':'ru-RU'}} руб.</span> (либо эквивалент в $).
+      </div>
+      <div class="payment__caption" *ngIf="!isChangeTariff()">Введите сумму инвестирования</div>
+      <div class="payment__price" [class.field_error]="formSum.get('sum').errors">
+        <div class="payment__price-caption" *ngIf="!isChangeTariff()">Не менее минимальной суммы инвестирования по
+          данному продукту
+        </div>
+        <div class="payment__price-caption" *ngIf="isChangeTariff()">ОБЩАЯ СУММА СРЕДСТВ ВАШЕГО БРОКЕРСКОГО СЧЕТА</div>
+        <form class="settings__form" [formGroup]="formSum" novalidate>
+          <input type="number" [readOnly]="isChangeTariff()"
+                 formControlName="sum"
+                 class="payment__price-number"
+                 (click)="$event.target.select()">
+        </form>
+        <div class="row flex">
+          <div *ngIf="product && product.currencys.length && currency" style="width: 100%;margin-left:-10px;">
+            <a *ngFor="let cur of product.currencys;last as last"
+               (click)="setCurrency(cur)"
+               class="currency-select" [class.last]="last"
+               [class.active]="cur && currency.toUpperCase() == cur.toUpperCase()" href="#">
+              <span>{{getCurrencyTitle(cur)}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a [routerLink]="['/payment', oldProductInPortfolio.ID]" *ngIf="isChangeTariff() && formSum.get('sum').errors"
+         class="payment__price-replenish">
+        <span class="green">Внимание! На вашем счете недостаточно средств</span>
+        <small>•</small>
+        Пополнить >
+      </a>
+      <a [routerLink]="['/payment', product.ID]" *ngIf="!isChangeTariff() && formSum.get('sum').errors"
+         class="payment__price-replenish">
+        <span
+          class="green">Внимание! Минимальная сумма по данному тарифу - {{product.MINSUMM | number:'':'ru-RU' }} {{getCurrencyTitle(product.currencys[0])}}</span>
+      </a>
+    </div>
+    <!--Введите сумму инвестирования-->
+
+
+    <div class="payment__box">
+      <div class="payment__text" *ngIf="!isChangeTariff()">
+        <p>Уважаемый клиент!</p>
+        <p>Для составления для Вас договора доверительного управления / брокерского обслуживания нам понадобится Ваша конфиденциальная информация.
+          <br><strong>В дальнейшем эта информация будет доступна Вам в Личном кабинете в разделе Аккаунт и при оформлении нового продукта Вам не понадобится ее повторно заполнять.</strong>
+        </p>
+        <p><span>1)</span> Паспортные данные необходимы для стандартного заполнения договора. <span>2)</span> ИНН и СНИЛС в соответствии со статьей ХХ закона ХХХХ необходимы для предоставления Вам услуги Доверительного управления / Брокерского обслуживания. <span>3)</span> Адрес регистрации и почтовый адрес нужны для рассылки официальной корреспонденции по договору. <span>4)</span> Ваши банковские реквизиты необходимы для внесения в договор для отправки денежных средств Вам на счет. <small>Внимательно проверьте Ваши данные! Их заполнение необходимо для оформления договора.</small></p>
+      </div>
+      <div class="payment__text" *ngIf="isChangeTariff() && product">
+        <p>Уважаемый клиент!</p>
+        <p>Внимательно проверьте <strong>«Анкету клиента»</strong> и анкету определения <strong>«Инвестиционного профиля
+          клиента»</strong>.
+          Если необходимо, внесите в них изменения. На основании этих анкет компания определит стратегию
+          консультирования, которая будет
+          соответствовать Вашим потребностям в связи с переходом на новый тариф <strong>«{{product.name}}»</strong>.
+          С 01.06.2019 это требование ЦБ РФ о повышении защиты консультирования брокерскими компаниями граждан РФ.</p>
+      </div>
+    </div>
+
+    <!--Ваши контактные данные-->
+    <div class="payment__box" #form1 *ngIf="!isChangeTariff()">
+      <div class="settings__column">
+        <div class="settings__title settings__title--js"
+             [class.settings__title_error]="formContacts.invalid && formContacts.touched"
+             (click)="operationFormContacts.open = !operationFormContacts.open">
+          <span>Ваши контактные данные</span>
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+        <div class="settings__items settings__items_client settings__items--js"
+             [class.settings__items_hide]="!operationFormContacts.open">
+          <form class="settings__form" [formGroup]="formContacts"
+                (ngSubmit)="onSubmitContacts()" novalidate>
+            <div class="settings__items-row flex">
+              <div class="settings__items-coll">
+                <label class="settings__label">
+                  <div class="settings__field-name">Электронная почта</div>
+                  <input type="email" class="settings__field field"
+                         [class.field_error]="formContacts.get('email').invalid  && formContacts.get('email').touched"
+                         formControlName="email">
+                  <div class="field__error"
+                       *ngIf="formContacts.get('email').hasError('required') && formContacts.get('email').touched">
+                    Укажите email
+                  </div>
+                  <div class="field__error"
+                       *ngIf="formContacts.get('email').hasError('email') && formContacts.get('email').touched">
+                    Неверный email адрес
+                  </div>
+                </label>
+              </div>
+              <div class="settings__items-coll">
+                <label class="settings__label">
+                  <div class="settings__field-name">телефон</div>
+                  <input type="tel" class="settings__field field field-phone" prefix="+7 " mask="(000) 000 00 00"
+                         [class.field_error]="formContacts.get('phone').invalid  && formContacts.get('phone').touched"
+                         formControlName="phone">
+                </label>
+                <div class="field__error"
+                     *ngIf="formContacts.get('phone').hasError('required') && formContacts.get('phone').touched">
+                  Укажите номер телефона
+                </div>
+              </div>
+            </div>
+            <div class="settings__items-row flex">
+              <div class="settings__items-coll settings__items-coll_mr14">
+                <button type="submit" class="btn btn_darkgray" [disabled]="operationFormContacts.loading"
+                        [class.loading]="operationFormContacts.loading">
+                  <i *ngIf="operationFormContacts.loading" class="fa fa-spinner fa-spin"></i>
+                  <span *ngIf="!operationFormContacts.loading">Далее</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--Ваши контактные данные-->
+
+    <!--Ваши паспортные данные-->
+    <div class="payment__box" #form2 *ngIf="!isChangeTariff()">
+      <div class="settings__column">
+        <div class="settings__title settings__title--js"
+             [class.settings__title_error]="formPassport.invalid && formPassport.touched"
+             (click)="operationFormPassport.open = !operationFormPassport.open">
+          <span>Ваши паспортные данные</span>
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+
+        <div class="settings__items settings__items_client settings__items--js"
+             [class.settings__items_hide]="!operationFormPassport.open">
+          <form class="settings__form" [formGroup]="formPassport" (ngSubmit)="onSubmitPassport()" novalidate>
+            <div class="settings__items-row flex" *ngIf="!operationFormPassport.smsConfirmation">
+              <div class="settings__items-coll">
+                <label class="settings__label">
+                  <div class="settings__field-name">Имя</div>
+                  <input type="text" class="settings__field field"
+                         [class.field_error]="formPassport.get('name').invalid  && formPassport.get('name').touched"
+                         formControlName="name" placeholder="Кондратий">
+                  <div class="field__error"
+                       *ngIf="formPassport.get('name').hasError('required') && formPassport.get('name').touched">
+                    Обязательно к заполнению
+                  </div>
+                </label>
+                <label class="settings__label">
+                  <div class="settings__field-name">Отчество</div>
+                  <input type="text" class="settings__field field"
+                         [class.field_error]="formPassport.get('patronymic').invalid  && formPassport.get('patronymic').touched"
+                         formControlName="patronymic" placeholder="Валерьевич">
+                  <div class="field__error"
+                       *ngIf="formPassport.get('patronymic').hasError('required') && formPassport.get('patronymic').touched">
+                    Обязательно к заполнению
+                  </div>
+                </label>
+                <label class="settings__label">
+                  <div class="settings__field-name">Фамилия</div>
+                  <input type="text" class="settings__field field"
+                         [class.field_error]="formPassport.get('lastName').invalid  && formPassport.get('lastName').touched"
+                         formControlName="lastName" placeholder="Гребенщиков">
+                  <div class="field__error"
+                       *ngIf="formPassport.get('lastName').hasError('required') && formPassport.get('lastName').touched">
+                    Обязательно к заполнению
+                  </div>
+                </label>
+                <label class="settings__label">
+                  <div class="settings__field-name">Дата рождения</div>
+                  <input type="text" class="settings__field field field-data"
+                         [class.field_error]="formPassport.get('birthDate').invalid  && formPassport.get('birthDate').touched"
+                         mask="00.00.0000" formControlName="birthDate" placeholder="__.__.____">
+                  <div class="field__error"
+                       *ngIf="formPassport.get('birthDate').hasError('required') && formPassport.get('birthDate').touched">
+                    Обязательно к заполнению
+                  </div>
+                </label>
+              </div>
+              <div class="settings__items-coll">
+                <div class="settings__passport flex">
+                  <label class="settings__label settings__passport-series">
+                    <div class="settings__field-name">Серия</div>
+                    <input type="text" class="settings__field field  field-seria"
+                           [class.field_error]="formPassport.get('passportSeries').invalid  && formPassport.get('passportSeries').touched"
+                           formControlName="passportSeries" mask="00 00" placeholder="93 18">
+                    <div class="field__error"
+                         *ngIf="formPassport.get('passportSeries').hasError('required') && formPassport.get('passportSeries').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </label>
+                  <span> – </span>
+                  <label class="settings__label settings__passport-number">
+                    <div class="settings__field-name">Номер</div>
+                    <input type="text" class="settings__field field field-numer"
+                           [class.field_error]="formPassport.get('passportNumber').invalid  && formPassport.get('passportNumber').touched"
+                           formControlName="passportNumber" mask="00 00 00" placeholder="27 98 76">
+                    <div class="field__error"
+                         *ngIf="formPassport.get('passportNumber').hasError('required') && formPassport.get('passportNumber').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </label>
+                </div>
+                <label class="settings__label">
+                  <div class="settings__field-name">Кем выдан</div>
+                  <input type="text" class="settings__field field"
+                         [class.field_error]="formPassport.get('passportIssuedBy').invalid  && formPassport.get('passportIssuedBy').touched"
+                         formControlName="passportIssuedBy"
+                         placeholder="УФМС Ленинградской обл., гор. Санкт-Петербурга">
+                  <div class="field__error"
+                       *ngIf="formPassport.get('passportIssuedBy').hasError('required') && formPassport.get('passportIssuedBy').touched">
+                    Обязательно к заполнению
+                  </div>
+                </label>
+                <div class="settings__flex flex">
+                  <label class="settings__label">
+                    <div class="settings__field-name">Дата выдачи</div>
+                    <input type="text" class="settings__field field  field-data"
+                           [class.field_error]="formPassport.get('passportIssueDate').invalid  && formPassport.get('passportIssueDate').touched"
+                           formControlName="passportIssueDate" mask="00.00.0000" placeholder="23.05.1994">
+                    <div class="field__error"
+                         *ngIf="formPassport.get('passportIssueDate').hasError('required') && formPassport.get('passportIssueDate').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </label>
+                  <label class="settings__label">
+                    <div class="settings__field-name">Код&nbsp;подразделения</div>
+                    <input type="text" class="settings__field field field-code"
+                           [class.field_error]="formPassport.get('passportIssueId').invalid  && formPassport.get('passportIssueId').touched"
+                           formControlName="passportIssueId" mask="000 - 000" placeholder="123 - 456">
+                    <div class="field__error"
+                         *ngIf="formPassport.get('passportIssueId').hasError('required') && formPassport.get('passportIssueId').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </label>
+                </div>
+                <label class="settings__label">
+                  <div class="settings__field-name">Место рождения</div>
+                  <input type="text" class="settings__field field" dadata
+                         (onChange)="updateValue($event, formPassport.get('birthPlace'))"
+                         [class.field_error]="formPassport.get('birthPlace').invalid  && formPassport.get('birthPlace').touched"
+                         formControlName="birthPlace" placeholder="Санкт-Петербург">
+                  <div class="field__error"
+                       *ngIf="formPassport.get('birthPlace').hasError('required') && formPassport.get('birthPlace').touched">
+                    Обязательно к заполнению
+                  </div>
+                </label>
+                <div class="settings__label ">
+                  <div class="settings__field-name">Загрузить скан паспорта</div>
+                  <div [class.field_error]="!scansImageArray[0]" class="files settings__files">
+                    <div class="file_button">
+                        <span class="fileinput-button">
+                            <span class="btn btn_small">
+                                Загрузить файл >
+                            </span>
+                            <input id="fileupload-3" type="file" (change)="changeImage($event)"
+                                   name="files">
+                        </span>
+                    </div>
+
+                  </div>
+                  <div class="files__list files__list_v2 flex">
+                    <div class="scan" *ngFor="let scan of scansImageArray;let i=index">
+                      <a class="close" (click)="removeFile(i)">×</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pickup__info" *ngIf="operationFormPassport.smsConfirmation">
+              <div class="pickup__question-name">На Ваш телефон отправлено СМС к кодом подтверждения. Введите полученный
+                код в поле ниже.
+              </div>
+              <div class="pickup__question-setting flex">
+                <div class="pickup__question-coll">
+                  <div class="pickup__question-label">Введите код (6 цифр)</div>
+                  <input type="text" formControlName="code"
+                         mask="0 0 0 0 0 0" class="settings__field field field-number" placeholder="_ _ _ _ _ _">
+                </div>
+              </div>
+            </div>
+
+            <div class="settings__items-row flex  settings__items-coll_mr14">
+              <div class="settings__items-coll">
+                <button type="submit" class="btn btn_darkgray" [disabled]="operationFormPassport.loading"
+                        [class.loading]="operationFormPassport.loading">
+                  <i *ngIf="operationFormPassport.loading" class="fa fa-spinner fa-spin"></i>
+                  <span *ngIf="!operationFormPassport.loading">Далее</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--Ваши паспортные данные-->
+
+    <!--Прочие данные-->
+    <div class="payment__box" #form3 *ngIf="!isChangeTariff()">
+      <div class="settings__row flex">
+        <div class="settings__col">
+          <div class="settings__title settings__title_error settings__title--js"
+               [class.settings__title_error]="formAdditionalInformation.invalid && formAdditionalInformation.touched"
+               (click)="operationFormAdditional.open = !operationFormAdditional.open">
+            <span>Прочие данные</span>
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: none;
+                      stroke: #999;
+                      stroke-miterlimit: 10;
+                      stroke-width: 0.75px;
+                    }
+                  </style>
+                </defs>
+                <title>Ресурс 16</title>
+                <g id="Слой_2" data-name="Слой 2">
+                  <g id="Content">
+                    <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </div>
+          <div class="settings__items settings__items_client settings__items--js"
+               [class.settings__items_hide]="!operationFormAdditional.open">
+            <form class="settings__form" [formGroup]="formAdditionalInformation"
+                  (ngSubmit)="onSubmitAdditionalInformation()" novalidate>
+
+              <label class="settings__label">
+                <div class="settings__field-name">ИНН</div>
+                <input type="text" class="settings__field field field_error field-inn"
+                       [class.field_error]="formAdditionalInformation.get('documentInn').invalid  && formAdditionalInformation.get('documentInn').touched"
+                       formControlName="documentInn" mask="000000000000" placeholder="123456789123">
+                <div class="field__error"
+                     *ngIf="formAdditionalInformation.get('documentInn').hasError('required') && formAdditionalInformation.get('documentInn').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">СНИЛС</div>
+                <input type="text" class="settings__field field field-snils"
+                       [class.field_error]="formAdditionalInformation.get('documentSnils').invalid  && formAdditionalInformation.get('documentSnils').touched"
+                       formControlName="documentSnils" mask="000 - 000 - 000 - 00" placeholder="123 - 456 - 789 - 12">
+                <div class="field__error"
+                     *ngIf="formAdditionalInformation.get('documentSnils').hasError('required') && formAdditionalInformation.get('documentSnils').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Адрес регистрации</div>
+                <input type="text" class="settings__field field" dadata
+                       (onChange)="updateValue($event, formAdditionalInformation.get('actualAddr'))"
+                       [class.field_error]="formAdditionalInformation.get('actualAddr').invalid  && formAdditionalInformation.get('actualAddr').touched"
+                       formControlName="actualAddr" placeholder="Санкт-Петербург, ул. Рубинштейна, 13">
+
+
+                <div class="field__error"
+                     *ngIf="formAdditionalInformation.get('actualAddr').hasError('required') && formAdditionalInformation.get('actualAddr').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Почтовый адрес</div>
+                <input type="text" class="settings__field field" dadata
+                       (onChange)="updateValue($event, formAdditionalInformation.get('postAddr'))"
+                       [class.field_error]="formAdditionalInformation.get('postAddr').invalid  && formAdditionalInformation.get('postAddr').touched"
+                       formControlName="postAddr" placeholder="140145, Санкт-Петербург, ул. Рубинштейна, 13">
+                <div class="field__error"
+                     *ngIf="formAdditionalInformation.get('postAddr').hasError('required') && formAdditionalInformation.get('postAddr').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+
+
+              <div class="settings__items-row flex settings__items-coll_mr14">
+                <div class="settings__items-coll">
+                  <button type="submit" class="btn btn_darkgray" [disabled]="operationFormAdditional.loading"
+                          [class.loading]="operationFormAdditional.loading">
+                    <i *ngIf="operationFormAdditional.loading" class="fa fa-spinner fa-spin"></i>
+                    <span *ngIf="!operationFormAdditional.loading">Далее</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Прочие данные-->
+
+    <!--Ваши банковские реквизиты-->
+    <div class="payment__box" #form4 *ngIf="!isChangeTariff()">
+      <div class="settings__row flex">
+        <div class="settings__col">
+          <div class="settings__title settings__title--js" (click)="operationFormBank.open = !operationFormBank.open">
+            <span>Ваши банковские реквизиты</span>
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: none;
+                      stroke: #999;
+                      stroke-miterlimit: 10;
+                      stroke-width: 0.75px;
+                    }
+                  </style>
+                </defs>
+                <title>Ресурс 16</title>
+                <g id="Слой_2" data-name="Слой 2">
+                  <g id="Content">
+                    <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </div>
+          <div class="settings__items settings__items_client settings__items--js"
+               [class.settings__items_hide]="!operationFormBank.open">
+            <form class="settings__form" [formGroup]="formBank" novalidate (ngSubmit)="onSubmitBankData()">
+              <label class="settings__label">
+                <div class="settings__field-name">БИК</div>
+                <input type="text" class="settings__field field" dadata="bank" formControlName="bankBik"
+                       (onChange)="onSetBank($event)">
+                <div class="field__error"
+                     *ngIf="formBank.get('bankBik').hasError('required') && formBank.get('bankBik').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Наименование банка</div>
+                <input type="text" class="settings__field field" dadata="bank" formControlName="bankName"
+                       (onChange)="onSetBank($event)">
+                <div class="field__error"
+                     *ngIf="formBank.get('bankName').hasError('required') && formBank.get('bankName').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Корреспондентский счет</div>
+                <input type="text" class="settings__field field" formControlName="bankCorr">
+                <div class="field__error"
+                     *ngIf="formBank.get('bankCorr').hasError('required') && formBank.get('bankCorr').touched">
+                  Обязательно к заполнению
+                </div>
+              </label>
+              <label class="settings__label">
+                <div class="settings__field-name">Номер расчетного счета получателя</div>
+                <input type="text" class="settings__field field" formControlName="bankAccount">
+                <div class="field__error"
+                     *ngIf="formBank.get('bankAccount').invalid && formBank.get('bankAccount').touched">
+                  Обязательно к заполнению (мин. 20 цифр)
+                </div>
+              </label>
+              <div class="settings__items-row flex">
+                <div class="settings__items-coll settings__items-coll_mr14">
+                  <button type="submit" class="btn btn_darkgray" [disabled]="operationFormBank.loading"
+                          [class.loading]="operationFormBank.loading">
+                    <i *ngIf="operationFormBank.loading" class="fa fa-spinner fa-spin"></i>
+                    <span *ngIf="!operationFormBank.loading">Далее</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Ваши банковские реквизиты-->
+    <div class="payment__box" #formIISElem *ngIf="isIIS()">
+      <div class="settings__row flex">
+        <div class="settings__col">
+          <div class="settings__title settings__title--js" (click)="operationFormIIS.open = !operationFormIIS.open">
+            <span>Данные для оформления ИИС</span>
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: none;
+                      stroke: #999;
+                      stroke-miterlimit: 10;
+                      stroke-width: 0.75px;
+                    }
+                  </style>
+                </defs>
+                <title>Ресурс 16</title>
+                <g id="Слой_2" data-name="Слой 2">
+                  <g id="Content">
+                    <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </div>
+          <div class="settings__items settings__items_client settings__items--js"
+               [class.settings__items_hide]="!operationFormIIS.open">
+            <form class="settings__form" [formGroup]="formIIS" novalidate (ngSubmit)="onSubmitIIS()">
+              <div class="pickup__question flex" style="border-top: 0;padding-top: 0;">
+                <div class="pickup__info">
+                  <div class="pickup__question-name"><span class="green">1.</span> Открытие и ведение
+                    Индивидуального
+                    инвестиционного счета (ИИС)
+                  </div>
+                  <div class="checkbox-list flex">
+                    <label class="checkbox checkbox_radio disabled" (click)="disabledRadioClick($event)">
+                      <input value="false" type="radio" class="checkbox__input"
+                             [checked]="!formIIS.get('individual_investment_account_is_opened').value"
+                             formControlName="individual_investment_account_is_opened">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">Нет</span>
+                    </label>
+                    <label class="checkbox checkbox_radio disabled" (click)="disabledRadioClick($event)">
+                      <input value="true" type="radio" class="checkbox__input"
+                             [checked]="formIIS.get('individual_investment_account_is_opened').value"
+                             formControlName="individual_investment_account_is_opened">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">Да</span>
+                    </label>
+                  </div>
+                  <div class="field__error"
+                       *ngIf="formIIS.get('individual_investment_account_is_opened').hasError('required') &&
+                            formIIS.get('individual_investment_account_is_opened').touched">
+                    Обязательно к заполнению
+                  </div>
+                </div>
+              </div>
+              <div class="pickup__question flex">
+                <div class="pickup__info">
+                  <div class="pickup__question-name"><span class="green">2.</span>
+                    Тип налогового вычета при заключении Договора с открытием и ведением ИИС
+                    <span class="green">*</span></div>
+                  <div class="checkbox-list">
+                    <label class="checkbox checkbox_radio">
+                      <input type="radio" class="checkbox__input"
+                             [checked]="formIIS.get('tax_deduction_type').value === 'type_1'" [value]="'type_1'"
+                             formControlName="tax_deduction_type">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">Тип 1 - налогоплательщик сможет ежегодно получать налоговый вычет в сумме денежных средств, внесенных в налоговом периоде на индивидуальный инвестиционный счет</span>
+                    </label>
+                    <label class="checkbox checkbox_radio">
+                      <input type="radio" class="checkbox__input"
+                             [checked]="formIIS.get('tax_deduction_type').value === 'type_2'" [value]="'type_2'"
+                             formControlName="tax_deduction_type">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">Тип 2 - по окончании договора на ведение ИИС, по истечении не менее трех лет, налогоплательщик может получить вычет в сумме доходов, полученным от операций по инвестиционному счету</span>
+                    </label>
+                  </div>
+                  <div class="field__error"
+                       *ngIf="formIIS.get('tax_deduction_type').hasError('required') && formIIS.get('tax_deduction_type').touched">
+                    Обязательно к заполнению
+                  </div>
+                </div>
+              </div>
+              <div class="pickup__question flex">
+                <div class="pickup__info">
+                  <div class="pickup__question-name"><span class="green">3.</span>Подтвердите, что у Вас
+                    <span class="green">*</span></div>
+                  <div class="checkbox-list">
+                    <label class="checkbox checkbox_radio">
+                      <input type="radio" class="checkbox__input"
+                             [checked]="formIIS.get('securities_variant').value === 'cash_only'" [value]="'cash_only'"
+                             formControlName="securities_variant">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">Отсутствует ли у вас договор с профессиональным участником рынка ценных бумаг на ведение ИИС</span>
+                    </label>
+                    <label class="checkbox checkbox_radio">
+                      <input type="radio" class="checkbox__input"
+                             [checked]="formIIS.get('securities_variant').value === 'securities'" [value]="'securities'"
+                             formControlName="securities_variant">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">Заключен ли у вас договор на ведение ИИС с профессиональным участником рынка ценных бумаг</span>
+                    </label>
+                  </div>
+
+                  <div class="checkbox__other" *ngIf="formIIS.get('securities_variant').value === 'securities'">
+                    <textarea class="field" formControlName="securities_market_players_name_text"
+                              placeholder="Название участника рынка ценных бумаг."></textarea>
+                    <div class="field__error"
+                         *ngIf="formIIS.get('securities_market_players_name_text').hasError('required') &&
+                           formIIS.get('securities_market_players_name_text').touched">
+                      Обязательно к заполнению
+                    </div>
+                  </div>
+
+                  <div class="field__error"
+                       *ngIf="formIIS.get('securities_variant').hasError('required') && formIIS.get('securities_variant').touched">
+                    Обязательно к заполнению
+                  </div>
+                </div>
+              </div>
+              <div class="settings__items-row flex">
+                <div class="settings__items-coll settings__items-coll_mr14">
+                  <button type="submit" class="btn btn_darkgray" [disabled]="operationFormIIS.loading"
+                          [class.loading]="operationFormIIS.loading">Далее
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Обязательная анкета клиента-->
+    <div class="payment__box" #form5>
+      <div class="payment__body">
+        <div class="settings__title settings_title_pickup settings_title_pickup--js"
+             [class.settings__title_error]="formPersonalDataInvalid"
+             (click)="operationFormQuiz.open = !operationFormQuiz.open">
+          <div class="settings__title-first flex">
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37.44 51.37">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: none;
+                      stroke: #666;
+                      stroke-miterlimit: 10;
+                      stroke-width: 0.75px;
+                    }
+                  </style>
+                </defs>
+                <title>Ресурс 3</title>
+                <g id="Слой_2" data-name="Слой 2">
+                  <g id="Head">
+                    <g id="menu">
+                      <path class="cls-1"
+                            d="M19.82,25.91V23.77a3,3,0,0,0-1.43-2.38l-4-2.13a.93.93,0,0,1-.12-1.71l.31-.22a3.58,3.58,0,0,0,1.31-2.57V13a2.62,2.62,0,0,0-1.5-2.25l-.9-.38h-2l-.9.38A2.62,2.62,0,0,0,9.07,13v1.79a3.58,3.58,0,0,0,1.31,2.57l.31.22a.93.93,0,0,1-.12,1.71l-4,2.13a3,3,0,0,0-1.43,2.38v2.14"/>
+                      <path class="cls-1" d="M25.45.38V11a.87.87,0,0,0,.87.86H37.07"/>
+                      <polygon class="cls-1"
+                               points="37.07 50.99 0.38 50.99 0.38 0.38 25.45 0.38 37.07 11.83 37.07 50.99"/>
+                      <line class="cls-1" x1="5.2" y1="37.51" x2="32.51" y2="37.51"/>
+                      <line class="cls-1" x1="5.2" y1="32.87" x2="32.51" y2="32.87"/>
+                      <line class="cls-1" x1="5.2" y1="42.16" x2="17.73" y2="42.16"/>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </i>
+            <span>Обязательная анкета клиента</span>
+          </div>
+          <i class="settings__title-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+        <div class="pickup pickup_questionnaire payment__content active"
+             [class.payment__content_hide]="!operationFormQuiz.open">
+          <app-questionnaire
+            [touch]="touchPersonalData$.asObservable()"
+            (success)="success($event)"
+            (isValid)="personalDataValidation($event)" #form5></app-questionnaire>
+        </div>
+      </div>
+    </div>
+    <!--Обязательная анкета клиента-->
+
+    <!--Инвестиционный профиль клиента-->
+    <div class="payment__box" #form6
+         *ngIf="product && ['personal-broker', 'personal-broker-iis'].indexOf(product.CODE) > -1">
+      <div class="payment__body">
+        <div class="settings__title settings_title_pickup settings_title_pickup--js"
+             [class.settings__title_error]="formInvestmentClient.invalid && formInvestmentClient.touched"
+             (click)="operationFormInvestment.open = !operationFormInvestment.open">
+          <div class="settings__title-first flex">
+            <i>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37.44 51.37">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: none;
+                      stroke: #666;
+                      stroke-miterlimit: 10;
+                      stroke-width: 0.75px;
+                    }
+                  </style>
+                </defs>
+                <title>Ресурс 3</title>
+                <g id="Слой_2" data-name="Слой 2">
+                  <g id="Head">
+                    <g id="menu">
+                      <path class="cls-1"
+                            d="M19.82,25.91V23.77a3,3,0,0,0-1.43-2.38l-4-2.13a.93.93,0,0,1-.12-1.71l.31-.22a3.58,3.58,0,0,0,1.31-2.57V13a2.62,2.62,0,0,0-1.5-2.25l-.9-.38h-2l-.9.38A2.62,2.62,0,0,0,9.07,13v1.79a3.58,3.58,0,0,0,1.31,2.57l.31.22a.93.93,0,0,1-.12,1.71l-4,2.13a3,3,0,0,0-1.43,2.38v2.14">
+                      </path>
+                      <path class="cls-1" d="M25.45.38V11a.87.87,0,0,0,.87.86H37.07"></path>
+                      <polygon class="cls-1"
+                               points="37.07 50.99 0.38 50.99 0.38 0.38 25.45 0.38 37.07 11.83 37.07 50.99">
+                      </polygon>
+                      <line class="cls-1" x1="5.2" y1="37.51" x2="32.51" y2="37.51"></line>
+                      <line class="cls-1" x1="5.2" y1="32.87" x2="32.51" y2="32.87"></line>
+                      <line class="cls-1" x1="5.2" y1="42.16" x2="17.73" y2="42.16"></line>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </i>
+            <span>Инвестиционный профиль клиента</span>
+          </div>
+          <i class="settings__title-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+        <div class="pickup pickup_questionnaire payment__content active"
+             [class.payment__content_hide]="!operationFormInvestment.open">
+          <app-investment-profile [paymentMode]="true"></app-investment-profile>
+        </div>
+      </div>
+    </div>
+
+    <!--Инвестиционный профиль клиента-->
+
+    <div class="payment__footer" #paymentFooter *ngIf="!personalDataSmsConfirmation">
+      <div class="payment__footer-caption" *ngIf="isChangeTariff()">Внимательно проверьте заполненные анкеты!<br> Анкеты
+        необходимы для оформления договора Смены тарифа.
+      </div>
+      <div class="payment__footer-caption" *ngIf="!isChangeTariff()">Внимательно проверьте Ваши данные!<br> Их
+        заполнение необходимо для
+        оформления договора.
+      </div>
+      <div class="settings__form">
+        <label class="checkbox" *ngIf="!isChangeTariff()">
+          <input type="checkbox" value="true" class="checkbox__input" [ngModelOptions]="{standalone: true}"
+                 [(ngModel)]="isConfirmPersonalGlobal">
+          <span class="checkbox__theme"></span>
+          <span class="checkbox__caption">Даю согласие на <a href="https://client.qbfin.ru/api/docs/getOpdDocument"
+                                                             target="_blank">Обработку персональных данных</a> и
+            <a target="_blank" href="https://client.qbfin.ru/api/docs/getEdoDocument">Электронный документооборот (ЭДО)</a>
+          </span>
+        </label>
+        <div class="payment__btn">
+          <a *ngIf="!isChangeTariff()" (click)="onSubmitFormFinal('purchase')" type="button" class="btn btn_darkgray"> 
+            <!-- [routerLink]="['/tm-purchase-step-two'+ '?product=' + product.bxid]" -->
+            <i *ngIf="isLoadingPurchase" class="fa fa-spinner fa-spin"></i>
+            <span *ngIf="!isLoadingPurchase">Оформить покупку</span>
+        </a>
+          <button *ngIf="isChangeTariff()" type="button" [disabled]="isLoadingPurchase"
+                  (click)="onSubmitFormFinal('changeTariff')"
+                  class="btn btn_darkgray">
+            <i *ngIf="isLoadingPurchase" class="fa fa-spinner fa-spin"></i>
+            <span *ngIf="!isLoadingPurchase">Сменить тариф</span>
+          </button>
+          <a [routerLink]="['/main']" class="btn btn_white">Отмена</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="payment__footer" #paymentFooterSms *ngIf="personalDataSmsConfirmation">
+    <div class="pickup__info">
+      <div class="pickup__question-name">Вы внесли изменения в свои персональные данные. Введите код подтверждения,
+        отправленный вам по СМС.
+      </div>
+      <div class="pickup__question-setting flex" style="justify-content: center;">
+        <div class="pickup__question-coll">
+          <form [formGroup]="personalSmsConfirmationForm">
+            <div class="pickup__question-label">Введите код (6 цифр)</div>
+            <input type="text" formControlName="sms"
+                   mask="0 0 0 0 0 0" class="settings__field field field-number"
+                   placeholder="_ _ _ _ _ _">
+          </form>
+        </div>
+      </div>
+      <div class="payment__btn">
+        <button type="button" [disabled]="!isConfirmPersonalGlobal || isLoadingPurchase"
+                (click)="personalSMSConfirmation()" class="btn btn_darkgray">
+          <i *ngIf="isLoadingPurchase" class="fa fa-spinner fa-spin"></i>
+          <span *ngIf="!isLoadingPurchase">Подтвердить изменение персональных данных</span>
+        </button>
+
+        <a [routerLink]="['/main']" class="btn btn_white">Отмена</a>
+      </div>
+    </div>
+  </div>
+  <div id="info-modal" style="display: none;">
+    <info-modal></info-modal>
+  </div>
+</app-layout>

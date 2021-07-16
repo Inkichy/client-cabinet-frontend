@@ -1,0 +1,362 @@
+<app-layout [ngSwitch]="type" [isSiteGray]="true">
+  <app-top-panel class="top-panel flex" title="{{portfolio?.name}}" smallTitle='{{portfolio?.ITEM_TYPE}}'>
+  </app-top-panel>
+
+  <div class="product-anons-v2 product-anons-v2_top flex">
+    <div class="product-anons-v2__characteristics flex">
+
+      <div class="product-anons-v2__top">
+        <div class="product-anons-v2__currency">
+          <div class="product-anons-v2__caption" *ngSwitchCase="'Брокерское обслуживание'">валюта</div>
+          <div class="product-anons-v2__currency-value flex" *ngSwitchCase="'Брокерское обслуживание'">
+            <div class="product-anons-v2__currency-items" *ngFor="let item of currencies">{{item.name}}</div>
+          </div>
+          <div class="product-anons-v2__currency-value flex" *ngSwitchCase="'Доверительное управление'">
+            <div class="product-anons-v2__currency-items">{{item.product.targetYield}}%</div>
+          </div>
+        </div>
+        <div class="product-anons-v2__small" *ngSwitchCase="'Доверительное управление'">целевая доходность</div>
+        <ng-container *ngIf="portfolio">
+
+          <div class="product-anons-v2__img product-anons-v2__img_desktop product-anons-v2__img_right broker_top_block"
+            *ngSwitchCase="'Брокерское обслуживание'">
+            <img [src]="getImage(portfolio)">
+          </div>
+
+          <div class="product-anons-v2__img product-anons-v2__img_desktop product-anons-v2__img_right"
+            *ngSwitchCase="'Доверительное управление'">
+            <img [src]="getImage(portfolio)">
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="products-block product-anons-v2 products-block_gray flex pd" *ngIf="item">
+
+    <div *ngIf="item && getBalance(item) <= 0" class="product-anons-v2__characteristics pd__block pd__block_border">
+      <div class="pd__block-content">
+          <div class="pd__block-title">Продукт будет подключен после внесения оплаты</div>
+          <div class="pd__block-list">
+              <a href="#" class="product-anons-v2__link">Подписанные документы &gt;</a>
+          </div>
+          <div class="pd__block-list">
+              <a [routerLink]="['/payment', item.id]"  class="product-anons-v2__link">Посмотреть реквизиты &gt;</a>
+          </div>
+      </div>
+    </div>
+
+    <div *ngIf="item && getBalance(item) > 0" class="product-anons-v2__characteristics pd__block">
+      <div class="pd__desc">
+        <div class="pd__desc-text" [innerHTML]="portfolio?.previewText"></div>
+      </div>
+      <div class="pd__description flex" *ngIf="getBalance(item) > 0">
+        <div class="pd__description-items pd__description-items_bo">
+          <span>Баланс</span>
+          <div *ngFor="let item of currencies">
+            <strong>{{item.value | number:'1.2-2':'ru-RU'}}&nbsp;<p>{{item.name}}</p></strong>
+          </div>
+        </div>
+        <div class="pd__description-items pd__description-items_bo">
+          <span>Доходность с начала инвестирования</span>
+          <strong>{{item.currentYield | number:'1.2-2'}}%</strong>
+        </div>
+      </div>
+      <div class="pd__block-content" *ngIf="!getBalance(item)">
+        <div class="pd__block-title">Продукт будет подключен после внесения оплаты</div>
+        <!-- <div class="pd__block-list">
+          <a [routerLink]="['signed-contracts']" class="product-anons-v2__link">Подписанные документы &gt;</a>
+        </div> -->
+        <div class="pd__block-list">
+        </div>
+      </div>
+      <a [routerLink]="['/payment', item.id]" class="du-list__btn btn btn_darkgray">Пополнить</a>
+      <a *ngIf="type === 'Брокерское обслуживание' && user.client.isKval !== '' && item.generalAgreement === true"
+         [routerLink]="['/online-request', item.id]"  class="du-list__btn btn btn_darkgray">Подать
+         поручение</a> 
+      <!--todo: убрать если баланс 0 -->
+    </div>
+
+
+
+
+    <div class="product-anons-v2__characteristics pd__block">
+      <div class="pd__block-list">
+        <div *ngIf='item?.agreementNumber' class="pd__block-items flex">
+          <span>Номер договора</span>
+          <strong>{{item?.agreementNumber}} от {{item?.d_date}}</strong>
+        </div>
+        <div *ngIf='item?.date' class="pd__block-items flex">
+          <span>Дата открытия счета</span>
+          <strong>{{item?.date}}</strong>
+        </div>
+        <div *ngIf="currencies" class="pd__block-items flex">
+          <span *ngSwitchCase="'Доверительное управление'">Валюта стратегии</span>
+          <span *ngSwitchCase="'Брокерское обслуживание'">Валюта</span>
+          <strong>
+            <p *ngFor="let item of currencies">{{item.name}}</p>
+          </strong>
+        </div>
+        <div class="pd__block-items flex" *ngSwitchCase="'Доверительное управление'">
+          <span>Целевая доходность</span>
+          <strong>
+            <p>{{item.product.targetYield}}%</p>
+          </strong>
+        </div>
+        <div class="pd__block-items flex" *ngSwitchCase="'Доверительное управление'">
+          <span>Вознаграждение управляющего</span>
+          <strong>{{item.product.success_fee}}% от прибыли; {{item.product.management_fee}}% за управление</strong>
+        </div>
+        <div class="pd__block-items pd__block-items_tariffs flex" *ngSwitchCase="'Брокерское обслуживание'">
+          <span>Наши тарифы</span>
+          <a href="https://qbfin.ru/upload/iblock/f1e/Brokerskiy-reglament-2020.01.30.pdf" target="_blank"  class="product-anons-v2__tariffs-btn" data-src="#info-modal" data-fancybox=""
+            data-modal="true">
+            <img src="/assets/images/brokerage-service-base-rate/PDF-icon.svg" alt="">
+            <span>Посмотреть<br>тарифы</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="products-block ycf ycf_top">
+    <div *ngIf="getBalance(item) > 0" class="ycf__body flex">
+      <div class="ycf__coll-pd">
+        <div (click)="structureOpen = !structureOpen" [class.active]="structureOpen"
+          class="ycf__coll-title settings__title--js">
+          <span>Структура и стоимость портфеля, руб.</span>
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27" />
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+        <div class="ycf__date-actual-data flex-actual-data" [class.settings__items_hide]="!structureOpen">
+          <span>Данные актуальны на:</span>
+          <strong>{{item.dateEmitents}}</strong>
+        </div>
+        <app-portfolio-structure-and-value *ngIf="structureGraph.length && item" [rates]="item.rates"
+          [data]="structureGraph" [date]="dateLastUpdate" [type]="item.product.ITEM_TYPE" [class.settings__items_hide]="!structureOpen"
+          class="ycf__content settings__items--js active">
+        </app-portfolio-structure-and-value>
+      </div>
+      <div class="ycf__coll-pd">
+        <div [class.active]="emitentsOpen" (click)="emitentsOpen = !emitentsOpen"
+          class="ycf__coll-title settings__title--js  active">
+          <span>Список эмитентов</span>
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27" />
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+        <div [class.settings__items_hide]="!emitentsOpen" class="ycf__content settings__items--js active">
+          <div class="ycf__date ycf__date_items flex">
+            <span>Данные актуальны на:</span>
+            <strong>{{item.dateEmitents}}</strong>
+          </div>
+          <div class="ycf__box" *ngFor="let group of structureTable">
+            <div class="ycf__box-caption" *ngIf="structureTable.length > 1">
+              <span>Валюта:&nbsp;</span>
+              <strong>{{group.groupName}}</strong>
+            </div>
+            <div class="ycf__list">
+              <div class="ycf__items flex" *ngFor="let item of group.items">
+                <div class="ycf__items-block flex">
+                  <div class="ycf__items-value">{{getPercent(+group.sum, +item.rur_rate)}}%</div>
+
+                  <div class="ycf__items-color" [style.background-color]="item.color"></div>
+                  <div class="ycf__items-name">{{item.i_name}}</div>
+                </div>
+                <div class="ycf__items-price" [ngSwitch]="group.groupName">{{item.rur_rate | number:'1.2-2':'ru-RU'}}
+                  <span *ngSwitchCase="'RUR'"><span class="rur">₽</span></span>
+                  <span *ngSwitchCase="'USD'">$</span>
+                  <span *ngSwitchCase="'EUR'">EUR</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="getBalance(item) > 0" class="ycf__body">
+      <div class="ycf__coll-big" *ngSwitchCase="'Брокерское обслуживание'">
+        <div [class.active]="isOpen1" class="ycf__coll-title ycf__coll-title_visible" (click)="isOpen1 = !isOpen1">
+          <span>Структура эмитентов по валютам</span>
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27" />
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+        <app-structure-of-issuers-by-currency *ngIf="isOpen1" [data]="structureGraph" [date]="item.dateEmitents"
+          [class.ycf__content_hide]="!isOpen1" class="ycf__content ycf__content_visible active">
+        </app-structure-of-issuers-by-currency>
+      </div>
+      <div class="ycf__coll-big">
+        <div [class.active]="isOpen2" class="ycf__coll-title ycf__coll-title_visible active"
+          (click)="isOpen2 = !isOpen2">
+          <span>График баланса за период, сумма</span>
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27" />
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+        <app-balance-sheet-for-the-period-amount *ngIf="isOpen2" [loading]="graphLoading" [data]="graphData"
+          [defaultStart]="startGraph" [defaultEnd]="endGraph" [isGraphDataSuccess]="isGraphDataSuccess"
+          (changeDate)="onLoadGraph($event.start, $event.end)"
+          class="ycf__content ycf__content_visible ycf__content_hide active">
+        </app-balance-sheet-for-the-period-amount>
+      </div>
+      <div class="ycf__coll-big">
+        <div [class.active]="isOpen3" class="ycf__coll-title ycf__coll-title_visible active" (click)="isOpen3 = !isOpen3">
+          <span>График доходности за период, %</span>
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: #999;
+                    stroke-miterlimit: 10;
+                    stroke-width: 0.75px;
+                  }
+                </style>
+              </defs>
+              <title>Ресурс 16</title>
+              <g id="Слой_2" data-name="Слой 2">
+                <g id="Content">
+                  <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27" />
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+        <app-profitability-chart-for-the-period *ngIf="isOpen3" [loading]="graphYieldLoading" [data]="yieldData"
+          [defaultStart]="startYield" [defaultEnd]="endYield" [isYieldDataSuccess]="isYieldDataSuccess"
+          (changeDate)="onLoadYield($event.start, $event.end)"
+          class="ycf__content ycf__content_visible ycf__content_hide active">
+        </app-profitability-chart-for-the-period>
+      </div>
+    </div>
+    <div *ngIf="item && getBalance(item) > 0" class="pd__body flex">
+      <app-product-menu [type]="item.product.ITEM_TYPE" [id]="item.id"
+        class="pd__column flex"></app-product-menu>
+      <div class="pd__coll">
+        <app-bottom-portfolio-btns></app-bottom-portfolio-btns>
+      </div>
+    </div>
+    <div *ngIf="item && getBalance(item) <= 0" class="pd__body flex no-product">
+      <div class="pd__coll">
+        <app-bottom-portfolio-btns></app-bottom-portfolio-btns>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngSwitchCase="'Брокерское обслуживание'">
+    <app-product-slider *ngIf="getBalance(item) > 0"
+      class="products-block products-block_pb products-block_gray products-block_pt">
+    </app-product-slider>
+  </ng-container>
+  <ng-container *ngSwitchCase="'Доверительное управление'">
+    <app-footer-slick *ngIf="getBalance(item) > 0"></app-footer-slick>
+  </ng-container>
+
+  <div id="info-modal" style="display: none;">
+    <div class="info-modal" *ngIf="tariffs">
+      <div class="info-modal__top" style="background-color: #94c4db;">
+        <div class="info-modal__subtitle">{{item.product.ITEM_TYPE}}</div>
+        <div class="info-modal__title">{{item.product.name}}</div>
+      </div>
+      <div class="info-modal__body">
+        <div class="info-modal__content">
+          <div class="info-modal__caption">{{tariffs.head}}</div>
+          <div class="info-modal__desc" [innerHTML]="tariffs.description"></div>
+          <div class="info-modal__table">
+            <div class="info-modal__td" *ngFor="let table of tariffs.tables">
+              <div class="info-modal__table-title" style="color: #94c4db;">
+                {{table.tableTitles}}
+              </div>
+              <div class="info-modal__box">
+                <div class="info-modal__items flex" *ngFor="let row of table.table_row">
+                  <div class="info-modal__coll">
+                    <strong>{{row[0]}}</strong>
+                  </div>
+                  <div class="info-modal__coll">
+                    <small>{{row[1]}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="invest-modal__button">
+        <a href="javascript:void(0)" onclick="$.fancybox.close()" class="btn btn_small btn_gray">Закрыть</a>
+      </div>
+    </div>
+  </div>
+</app-layout>
+
+<!-- end info-modal -->

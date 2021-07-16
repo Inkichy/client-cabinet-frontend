@@ -1,0 +1,116 @@
+<app-layout [isSiteGray]="true">
+  <app-top-panel class="top-panel flex" title="Подобрать продукты<br> индивидуально" smallTitle="Продукты">
+  </app-top-panel>
+  <div *ngIf="newFormatQuestion[0]" class="products-block products-block_pt products-block_pb_not products-block_gray">
+    <div class="bg-man hide_planshet hide_mobile"></div>
+    <div class="products-block__content">
+      <div class="pickup">
+        <div class="pickup__top flex">
+          <div class="pickup__icon">
+            <img src="assets/images/define-product/icon1.svg" alt="">
+          </div>
+          <div class="pickup__caption">
+            <div class="pickup__title">Какой продукт Вам подходит?</div>
+            <div class="pickup__subtitle">Ответьте на несколько вопросов, и мы подберем продукт специально
+              для
+              Вас.</div>
+          </div>
+        </div>
+
+        <style media="screen">
+          .pickup__question {
+            border-top: 0px solid #dddddd;
+            padding-top: 0;
+          }
+
+          .pickup__question.flex {
+            border-top: 1px solid #dddddd !important;
+            border-bottom: 1px solid #dddddd !important;
+            padding-top: 50px !important;
+            padding-bottom: 55px;
+            margin-bottom: 50px;
+          }
+        </style>
+        <div class="pickup__questions">
+          <div class="pickup__question pickup__question_hide">
+            <div class="pickup__question flex">
+              <div class="pickup__number">
+                <span>{{questionStepNumber}}</span>
+              </div>
+              <div class="pickup__info">
+                <!--  *ngFor="let q of questions.questions" -->
+                <div *ngIf="isGet">
+                  <form [formGroup]="questionForm">
+                    <div [class.margin-top]="i!==0" *ngFor="let question of newFormatQuestion;let i=index" action="">
+                      <div class="pickup__question-name">{{question.title}}
+                      </div>
+                      <div class="checkbox-list ">
+                        <label *ngFor="let variant of question.answers" class="checkbox">
+                          <input [formControlName]="question.key" [value]="variant.key" type="radio"
+                            [name]="question.key" class="checkbox__input">
+                          <span class="checkbox__theme"></span>
+                          <span class="checkbox__caption">
+                            {{variant.title}}
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="pickup__btn">
+              <a (click)="nextQuestion()" [class.disabled]="isLoading" class="payment__block-btn btn btn_darkgray">
+                <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+                <span *ngIf="!isLoading">Далее</span>
+              </a>
+              <a *ngIf="questionStepNumber>1" (click)="previousQuestion()" class="payment__block-cancel flex">
+                <i>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21.51">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #00a19b;
+                          stroke-miterlimit: 10;
+                        }
+
+                        .cls-2 {
+                          fill: #00a19b;
+                        }
+                      </style>
+                    </defs>
+                    <title>Ресурс 4</title>
+                    <g id="Слой_2" data-name="Слой 2">
+                      <g id="Content">
+                        <path class="cls-1" d="M18.11,4.52A10,10,0,1,1,7,1.63" />
+                        <polygon class="cls-2" points="10.5 1.01 6.02 3.98 6.78 1.76 5.22 0 10.5 1.01" />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+                <span>Назад</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="convenientProduct.length > 0" [class.pt-0]="newFormatQuestion.length === 0"
+    class="products-block products-block_pt products-block_pb_not define-product__offers define-product__offers_hide">
+    <div margin-bottom-20 class="products-block__content">
+      <div class="top-panel flex">
+        <div class="top-panel__title">
+          <strong>Вам подойдут</strong>
+          <div #productResults class="top-panel__title-line"></div>
+        </div>
+      </div>
+      <div class="du-list flex product_select">
+        <app-product-card *ngFor="let item of convenientProduct" [item]="item" class="du-list__item">
+        </app-product-card>
+      </div>
+    </div>
+  </div>
+  <app-invest-modal></app-invest-modal>
+</app-layout>

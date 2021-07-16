@@ -1,0 +1,173 @@
+<app-layout [isSiteGray]="true">
+    <app-top-panel class="top-panel flex" title="{{portfolio?.name}}" smallTitle='{{portfolio?.ITEM_TYPE}}'></app-top-panel>
+    <div class="product-anons-v2 product-anons-v2_top flex">
+        <div class="product-anons-v2__characteristics flex">
+            <div class="product-anons-v2__top">
+                <div class="product-anons-v2__currency">
+                    <div class="product-anons-v2__caption">валюта</div>
+                    <div class="product-anons-v2__currency-value flex">
+                        <div class="product-anons-v2__currency-items" *ngFor="let item of currencies">{{item.name}}</div>
+                    </div>
+                    <ng-container *ngIf="portfolio">
+                        <div class="product-anons-v2__img product-anons-v2__img_desktop product-anons-v2__img_right broker_top_block">
+                            <img [src]="getImage(portfolio)">
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="products-block product-anons-v2 products-block_gray flex pd" *ngIf="item">
+      <div class="product-anons-v2__characteristics pd__block">
+        <div class="pd__desc">
+          <div class="pd__desc-text" [innerHTML]="portfolio?.previewText"></div>
+        </div>
+        <div class="pd__description flex" *ngIf="getBalance(item) > 0">
+          <div class="pd__description-items pd__description-items_bo">
+            <span>Баланс</span>
+            <div *ngFor="let item of currencies">
+              <strong>{{item.value | number:'1.2-2':'ru-RU'}}&nbsp;<p>{{item.name}}</p></strong>
+            </div>
+          </div>
+          <div class="pd__description-items pd__description-items_bo">
+            <span>Доходность с начала инвестирования</span>
+            <strong>{{item.currentYield | number:'1.2-2'}}%</strong>
+          </div>
+        </div>
+        <div class="pd__block-content" *ngIf="!getBalance(item)">
+          <div class="pd__block-title">Продукт будет подключен после внесения оплаты</div>
+          <div class="pd__block-list">
+          </div>
+        </div>
+        <a [routerLink]="['/payment', item.id]" class="du-list__btn btn btn_darkgray">Пополнить</a>
+      </div>
+      <div class="product-anons-v2__characteristics pd__block">
+        <div class="pd__block-list">
+          <div *ngIf='item?.agreementNumber' class="pd__block-items flex">
+            <span>Номер договора</span>
+            <strong>{{item?.agreementNumber}} от {{item?.d_date}}</strong>
+          </div>
+          <div *ngIf='item?.date' class="pd__block-items flex">
+            <span>Дата открытия счета</span>
+            <strong>{{item?.date}}</strong>
+          </div>
+          <div *ngIf="currencies" class="pd__block-items flex">
+            <span>Валюта</span>
+            <strong>
+              <p *ngFor="let item of currencies">{{item.name}}</p>
+            </strong>
+          </div>
+          <div class="pd__block-items pd__block-items_tariffs flex">
+            <span>Наши тарифы</span>
+            <a href="https://qbfin.ru/upload/iblock/f1e/Brokerskiy-reglament-2020.01.30.pdf" target="_blank"  class="product-anons-v2__tariffs-btn"
+            data-src="#info-modal"
+            data-fancybox=""
+            data-modal="true">
+              <img src="/assets/images/brokerage-service-base-rate/PDF-icon.svg" alt="">
+              <span>Посмотреть<br>тарифы</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="products-block products-block_pt">
+        <div class="products-block quik">
+            <div class="quik__row flex">
+                <div class="quik__coll">
+                    <div class="quik__caption">Торгуйте на бирже самостоятельно</div>
+                    <div class="quik__text">
+                        <p>Клиент имеет возможность самостоятельно совершать торговые операции с ценными бумагами с помощью специального
+                             программного обеспечения.</p>
+                        <p>Компания КьюБиЭф предоставляет своим клиентам возможность совершения таких операций с помощью известной
+                             программы QUIK.</p>
+                        <p>Скачать саму программу и инструкцию по ее установке можно на данной странице.</p>
+                    </div>
+                </div>
+                <div class="quik__coll">
+                    <div class="quik__img quik__img_desktop">
+                        <img src="assets\images\your-case-brokerage-service-base-rate-QUIK\ipad-v1.png" alt="">
+                    </div>
+                    <div class="quik__img quik__img_mobile">
+                        <img src="assets\images\your-case-brokerage-service-base-rate-QUIK\ipad-mobile-v1.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="products-block function__body flex">
+            <div class="function__coll function__coll_items">
+                <div class="function__content">
+                    <div class="function__items">
+                        <div class="function__items-caption">Программа для торговли QUIK</div>
+                    </div>
+                    <a href="https://qbfin.ru/distr/quik_distr.zip" class="function__btn btn btn_darkgray shift">Скачать</a>
+                </div>
+            </div>
+            <div class="function__coll function__coll_items">
+                <div class="function__content">
+                    <div class="function__items">
+                        <div class="function__items-caption">Инструкция по установке дистрибутива QUIK</div>
+                    </div>
+                    <a href="assets\files\QUIK-instructions-v3-2.pdf" target="_blank" class="function__btn btn btn_gray">
+                        Скачать инструкцию</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pd__body flex">
+            <app-product-menu *ngIf="item" [type]="item.product.ITEM_TYPE"  [id]="item.ID" class="pd__column flex"></app-product-menu>
+            <div class="pd__coll" *ngIf="item">
+              <a [routerLink]="['/portfolio', item.ID]" class="btn btn_gray">
+                <span>< На страницу продукта</span>
+              </a>
+              <a [routerLink]="'/portfolio'" class="btn btn_darkgray">
+                <span>Ваш портфель</span>
+              </a>
+            </div>
+        </div>
+    </div>
+
+    <app-product-slider class="products-block products-block_pb products-block_gray products-block_pt">
+    </app-product-slider>
+
+   <div id="info-modal" style="display: none;">
+      <div class="info-modal" *ngIf="item">
+        <div class="info-modal__top" [ngStyle]="{'background-color': item.product.color}">
+          <div class="info-modal__subtitle">Брокерское обслуживание</div>
+          <div class="info-modal__title">{{item.product.name}}</div>
+        </div>
+        <div class="info-modal__body">
+          <div class="info-modal__content">
+            <div class="info-modal__caption">{{item.product.TARIFS.head}}</div>
+            <div class="info-modal__desc" [innerHTML]="item.product.TARIFS.description">
+            </div>
+            <div class="info-modal__table">
+              <div class="info-modal__td" *ngFor="let table of item.product.TARIFS.tables">
+                <div class="info-modal__table-title" [ngStyle]="{'color': item.product.color}">
+                  {{table.tableTitles}}
+                </div>
+                <div class="info-modal__box">
+                  <div class="info-modal__items flex" *ngFor="let row of table.table_row">
+                    <div class="info-modal__coll">
+                      <strong>{{row[0]}}</strong>
+                    </div>
+                    <div class="info-modal__coll">
+                      <small>{{row[1]}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="invest-modal__button">
+          <a href="javascript:void(0)" onclick="$.fancybox.close()" class="btn btn_small btn_gray">Закрыть</a>
+        </div>
+      </div>
+    </div>
+    <!--end info-modal -->
+</app-layout>

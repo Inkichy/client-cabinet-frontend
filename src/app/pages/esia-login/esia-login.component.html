@@ -1,0 +1,7 @@
+<div class="errors-sign-in" *ngIf="this.errors.length">
+  <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+</div>
+
+<ng-template [ngIf]="isLoadPreloader">
+  <app-preloader></app-preloader>
+</ng-template>

@@ -1,0 +1,241 @@
+<app-layout>
+
+  <app-top-panel class="top-panel flex" [title]="product?.name" [smallTitle]="product?.ITEM_TYPE"></app-top-panel>
+
+  <div *ngIf="product" class="product-anons-v2 product-anons-v2_ms product-anons-v2_zs flex">
+
+    <div class="product-anons-v2__characteristics flex">
+
+      <div class="product-anons-v2__top">
+        <div class="product-anons-v2__big" *ngIf="product.name !== 'Еврооблигации' && product.name !=='Мой сейф +'">{{product.name}}</div>
+        <div class="product-anons-v2__big" *ngIf="product.name === 'Еврооблигации'">Евро<br>облигации</div>
+        <div class="product-anons-v2__big" *ngIf="product.name === 'Мой сейф +'">Мой<br>сейф +</div>
+        <div class="product-anons-v2__img product-anons-v2__img_desktop">
+          <img [src]="getImage(product, 'desktop')" alt="">
+        </div>
+      </div>
+      <div class="product-anons-v2__items flex">
+        <div class="product-anons-v2__characteristic product-anons-v2__characteristic_green">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{product.targetYield}}%</div>
+          <div class="product-anons-v2__title">целевая <span class="planshet-br"></span> доходность</div>
+        </div>
+        <div
+          class="product-anons-v2__characteristic product-anons-v2__characteristic_green product-anons-v2__characteristic_planshet_big">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{product.MINSUMM*1 | number:'':'ru-RU'}}
+            <span *ngIf="product.currencys[0] == 'RUR'"><span class="rur">₽</span></span>
+            <span *ngIf="product.currencys[0] == 'USD'">$</span></div>
+          <div class="product-anons-v2__title">минимальная сумма<br> инвестирования</div>
+        </div>
+        <div class="product-anons-v2__characteristic">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{product.INVESTPLAN}}</div>
+          <div class="product-anons-v2__title">инвестиционный горизонт</div>
+        </div>
+        <div class="product-anons-v2__characteristic">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{product.success_fee}}%</div>
+          <div class="product-anons-v2__title">Комиссия за успех</div>
+        </div>
+        <div class="product-anons-v2__characteristic">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value" *ngFor="let cur of product.currencys">{{cur | uppercase}}</div>
+          <div class="product-anons-v2__title">Валюта стратегии</div>
+        </div>
+        <div class="product-anons-v2__characteristic">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{product.management_fee}}%</div>
+          <div class="product-anons-v2__title">Комиссия за управление</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-anons-v2__calc">
+      <div class="product-anons-v2__calc-title settings__title--js">
+        <span>Ваш инвестиционный калькулятор</span>
+        <i>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: none;
+                  stroke: #999;
+                  stroke-miterlimit: 10;
+                  stroke-width: 0.75px;
+                }
+              </style>
+            </defs>
+            <title>Ресурс 16</title>
+            <g id="Слой_2" data-name="Слой 2">
+              <g id="Content">
+                <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+              </g>
+            </g>
+          </svg>
+        </i>
+      </div>
+      <div class="calc product-anons-v2__calc-content settings__items--js active" data-persent="10">
+        <div class="product-anons-v2__calc-subtitle"> Установите сумму + срок инвестирования и получите общий итог
+          (*возможный доход)</div>
+        <div class="product-anons-v2__calc-items">
+          <div class="product-anons-v2__calc-top flex">
+            <div class="product-anons-v2__calc-caption">Сумма инвестиций</div>
+            <div class="product-anons-v2__calc-price">
+              <input id="slider-step-value-money" type="text" class="product-anons-v2__input-invest">
+              <span *ngIf="product.currencys[0] == 'RUR'">&nbsp;<span class="rur">₽</span></span>
+              <span *ngIf="product.currencys[0] == 'USD'">&nbsp;$</span>
+            </div>
+          </div>
+          <div class="product-anons-v2__calc-bottom">
+            <div class="product-anons-v2__calc-income" id="slider-non-linear-money">
+              <div class="noUi-handle-lower"></div>
+            </div>
+            <div class="product-anons-v2__calc-from">0</div>
+          </div>
+        </div>
+        <div class="product-anons-v2__calc-items">
+          <div class="product-anons-v2__calc-top flex">
+            <div class="product-anons-v2__calc-caption">Срок инвестирования</div>
+            <div class="product-anons-v2__calc-price">
+              <input id="slider-step-value" type="text" class="product-anons-v2__input-invest">
+            </div>
+          </div>
+          <div class="product-anons-v2__calc-bottom">
+            <div class="product-anons-v2__calc-income" id="slider-non-linear">
+              <div class="noUi-handle-lower"></div>
+            </div>
+            <div class="product-anons-v2__calc-from flex">
+              <span>1</span>
+              <span>9</span>
+            </div>
+          </div>
+        </div>
+        <div class="product-anons-v2__calc-box flex">
+          <div class="product-anons-v2__calc-coll">
+            <div class="product-anons-v2__calc-desc">Общий доход*</div>
+            <div class="product-anons-v2__calc-total-summ">
+              <div class="item__digit"><span id="total_summ"></span>
+                <span *ngIf="product.currencys[0] == 'RUB'"><span class="rur">₽</span></span>
+                <span *ngIf="product.currencys[0] == 'USD'">$</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-anons-v2__calc-coll">
+            <div class="product-anons-v2__calc-desc">Доход в месяц*</div>
+            <div class="product-anons-v2__calc-mont-summ">
+              <div class="item__digit"><span id="month_summ"></span>
+                <span *ngIf="product.currencys[0] == 'RUB'"><span class="rur">₽</span></span>
+                <span *ngIf="product.currencys[0] == 'USD'">$</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-anons-v2__calc-subtitle product-anons-v2__calc-subtitle--mt ">Калькулятор рассчитывается по формуле: <span
+            class="user__total">Доход =
+            (Сумма*((1+Процент/100)<sup>Срок</sup>)) - Сумма</span></div>
+      </div>
+    </div>
+
+    <div class="product-anons-v2__description product-anons-v2__description_big">
+      <p [innerHTML]="product.content + '<br><br>'"></p>
+      <p *ngIf="product.FOR_WHOM"><strong>Для кого</strong></p>
+      <p *ngIf="product.FOR_WHOM" [innerHTML]="product.FOR_WHOM.TEXT"></p>
+      <a href="{{product.link}}" target="_blank" class="product-anons-v2__link">Подробнее о продукте на сайте ></a>
+      <div class="product-buttons">
+        <div class="product-buttons__btn">
+          <a (click)='sendPurchaseRequest(product.ID)' class="btn btn_darkgray">Инвестировать</a>
+          <!-- [routerLink]="['/tm-purchase', product.ID]" -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--- product-anons-v2 END --->
+
+  <!--  && !iisInstalled" -->
+  <div *ngIf="!!childProduct" class="product-anons-v2 flex">
+
+    <div class="product-anons-v2__characteristics flex">
+
+      <div class="product-anons-v2__top">
+        <div class="product-anons-v2__big child_product_name">{{childProduct.name}}</div>
+        <!--div class="product-anons-v2__small">целевая доходность</div-->
+        <div class="product-anons-v2__img product-anons-v2__img_desktop">
+          <img [src]="getImage(childProduct, 'desktop')" alt="">
+        </div>
+      </div>
+      <div class="product-anons-v2__items flex">
+        <div class="product-anons-v2__characteristic product-anons-v2__characteristic_green">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{childProduct.targetYield}}%</div>
+          <div class="product-anons-v2__title">целевая <span class="planshet-br"></span> доходность</div>
+        </div>
+        <div
+          class="product-anons-v2__characteristic product-anons-v2__characteristic_green product-anons-v2__characteristic_planshet_big">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{childProduct.MINSUMM*1 | number:'':'ru-RU'}}
+            <span *ngIf="childProduct.currencys[0] == 'RUR'"><strong><span class="rur">₽</span></strong></span>
+            <span *ngIf="childProduct.currencys[0] == 'USD'">$</span></div>
+          <div class="product-anons-v2__title">минимальная сумма<br> инвестирования</div>
+        </div>
+        <div class="product-anons-v2__characteristic">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{childProduct.INVESTPLAN}}</div>
+          <div class="product-anons-v2__title">инвестиционный горизонт</div>
+        </div>
+        <div class="product-anons-v2__characteristic">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{childProduct.success_fee}}%</div>
+          <div class="product-anons-v2__title">Комиссия за успех</div>
+        </div>
+        <div class="product-anons-v2__characteristic">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value" *ngFor="let cur of product.currencys">{{cur | uppercase}}</div>
+          <div class="product-anons-v2__title">Валюта стратегии</div>
+        </div>
+        <div class="product-anons-v2__characteristic">
+          <div class="product-anons-v2__line"></div>
+          <div class="product-anons-v2__value">{{childProduct.management_fee}}%</div>
+          <div class="product-anons-v2__title">Комиссия за управление</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-anons-v2__description">
+      <p><strong>«{{childProduct.name}}»</strong></p>
+      <p>Стратегия «{{product.name}}» также доступна к реализации в рамках Индивидуального Инвестиционного Счета
+        (ИИС).</p>
+      <p>Индивидуальный инвестиционный счет позволяет Вам увеличить доходность вложений за счет получения налоговых
+        вычетов от государства.</p>
+
+      <p>{{childProduct.content}}</p>
+      <a [routerLink]="['/what-is-iis']" class="product-anons-v2__link">Подробнее об ИИС ></a>
+
+      <div class="product-buttons">
+        <div class="product-buttons__btn">
+          <a (click)="sendPurchaseRequest(childProduct.ID)" class="btn btn_darkgray">Инвестировать</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--- product-anons-v2 END --->
+
+  <div class="products-block__buttons flex">
+    <div class="products-block__btn">
+      <a [routerLink]="'/trust-management'" class="btn btn_with_img flex">
+        <div>
+          <img src="/assets/images/main-page/icon-1.svg" alt="">
+        </div>
+        <span>Все предложения Доверительного управления</span>
+      </a>
+    </div>
+    <div class="products-block__btn">
+      <a [routerLink]="'/select-product'" class="btn btn_with_img flex">
+        <div>
+          <img src="/assets/images/main-page/icon-2.svg" alt="">
+        </div>
+        <span>Подобрать продукт индивидуально</span>
+      </a>
+    </div>
+  </div>
+</app-layout>

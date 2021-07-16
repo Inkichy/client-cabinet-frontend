@@ -1,0 +1,26 @@
+<div class="ycf__display-period">
+  <div class="ycf__display-period-title">Выберите период отображения:</div>
+  <div class="ycf__display-period-date flex">
+    <div class="ycf__display-period-row flex">
+      <div class="ycf__display-period-caption">C:</div>
+      <app-datepicker (onChangeDate)="onChangeDateStart($event)" [date]="start ? start : defaultStart"
+        placeholder="18.04.19">
+      </app-datepicker>
+    </div>
+    <div class="ycf__display-period-row flex">
+      <div class="ycf__display-period-caption">До:</div>
+      <app-datepicker (onChangeDate)="onChangeDateEnd($event)" [date]="end ? end : defaultEnd" placeholder="18.04.19">
+      </app-datepicker>
+    </div>
+      <div class="products-block-errors chart__block-errors" *ngIf="errorMessages.length">
+        <div class="errors__item" *ngFor="let error of errorMessages">{{error}}</div>
+      </div>
+  </div>
+</div>
+
+<div class="ycf__graph-status" *ngIf="!isGraphDataSuccess && !loading">График баланса пока что недоступен</div>
+
+<div class="ycf__linear">
+  <h1 *ngIf="!errorMessages.length && loading" class="ycf__graph-status"><i class="fa fa-spin fa-spinner"></i> </h1>
+    <canvas [class.hidden]="loading" id="linearTwo" class="chartjs-render-monitor"></canvas>
+</div>

@@ -1,0 +1,145 @@
+<div class="products-block products-block_pb products-block_gray products-block_pt">
+    <div class="du-list offer-bo flex">
+        <div class="offer-bo__left">
+            <div class="main__title">Станьте совладельцем ведущих компаний</div>
+            <div class="offer-bo__top">
+                <div class="offer-bo__tab active" [class.active]="tab === 1" (click)="tab = 1">Акции</div>
+                <div class="offer-bo__tab" [class.active]="tab === 2" (click)="tab = 2">Облигации</div>
+            </div>
+        </div>
+        <div class="offer-bo__right">
+            <div class="offer-bo__body" [class.active]="tab === 1">
+                <div class="offer-bo__slick" slick [items]="allStock" data-slides="2">
+                    <div class="offer-bo__slide" *ngFor="let item of allStock">
+                        <div class="offer-bo__name">{{item.name}}</div>
+                        <div class="offer-bo__img">
+                            <img [src]="getImage(item)" alt="{{item.name}}">
+                        </div>
+                        <div class="offer-bo__row flex">
+                            <div class="offer-bo__coll">
+                                <div class="offer-bo__value">{{item.GROW_RATE}}%</div>
+                                <div class="offer-bo__desc">потенциал роста</div>
+                            </div>
+                            <!-- <div class="offer-bo__column">
+                              <div class="offer-bo__caption">{{item.RATING}}</div>
+                              <div class="offer-bo__desc">рейтинг</div>
+                            </div> -->
+                        </div>
+                        <a data-fancybox data-type="iframe"
+                           [href]="'/api/cabinet/pdfProductAnalytic/' + item.ANALITICS_FILE"
+                           class="offer-bo__link remove-fancybox-mobile" (click)="ifIEOpenNewTab($event)">Подробнее</a>
+
+                                   <!-- <a class="offer-bo__link"
+                                     data-modal="true">Какая угодно кнопка</a> -->
+                                    <!-- [routerLink]="['/online-request']" -->
+                    </div>
+                </div>
+                <div class="bo-body__arrow bo-body__arrow_left" slickPrev>
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+                            <defs>
+                                <style>.cls-1 {
+                                    fill: none;
+                                    stroke: #999;
+                                    stroke-miterlimit: 10;
+                                    stroke-width: 0.75px;
+                                }</style>
+                            </defs>
+                            <title>Ресурс 16</title>
+                            <g id="Слой_2" data-name="Слой 2">
+                                <g id="Content">
+                                    <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                                </g>
+                            </g>
+                        </svg>
+                    </i>
+                </div>
+                <div class="bo-body__arrow bo-body__arrow_right" slickNext>
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+                            <defs>
+                                <style>.cls-1 {
+                                    fill: none;
+                                    stroke: #999;
+                                    stroke-miterlimit: 10;
+                                    stroke-width: 0.75px;
+                                }</style>
+                            </defs>
+                            <title>Ресурс 16</title>
+                            <g id="Слой_2" data-name="Слой 2">
+                                <g id="Content">
+                                    <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                                </g>
+                            </g>
+                        </svg>
+                    </i>
+                </div>
+            </div>
+            <div class="offer-bo__body" [class.active]="tab === 2">
+                <div class="offer-bo__slick" slick [items]="allBond" data-slides="2">
+                    <div class="offer-bo__slide" *ngFor="let item of allBond">
+                        <div class="offer-bo__name">{{item.name}}</div>
+                        <div class="offer-bo__img">
+                            <img [src]="getImage(item)" alt="{{item.name}}">
+                        </div>
+                        <div class="offer-bo__row flex">
+                            <div class="offer-bo__coll">
+                                <div class="offer-bo__value">{{item.GROW_RATE}}%</div>
+                                <div class="offer-bo__desc">доходность к погашению</div>
+                            </div>
+                            <!-- <div class="offer-bo__column">
+                              <div class="offer-bo__caption">{{item.RATING}}</div>
+                              <div class="offer-bo__desc">рейтинг</div>
+                            </div> -->
+                        </div>
+                        <a data-fancybox data-type="iframe"
+                           [href]="'/api/cabinet/pdfProductAnalytic/' + item.ANALITICS_FILE"
+                           class="offer-bo__link remove-fancybox-mobile" (click)="ifIEOpenNewTab($event)">Подробнее</a>
+                        <!-- <a class="offer-bo__link" data-modal="true">Какая угодно кнопка</a> -->
+                        <!-- [routerLink]="['/online-request']" -->
+                    </div>
+                </div>
+                <div class="bo-body__arrow bo-body__arrow_left" slickPrev>
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+                            <defs>
+                                <style>.cls-1 {
+                                    fill: none;
+                                    stroke: #999;
+                                    stroke-miterlimit: 10;
+                                    stroke-width: 0.75px;
+                                }</style>
+                            </defs>
+                            <title>Ресурс 16</title>
+                            <g id="Слой_2" data-name="Слой 2">
+                                <g id="Content">
+                                    <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                                </g>
+                            </g>
+                        </svg>
+                    </i>
+                </div>
+                <div class="bo-body__arrow bo-body__arrow_right" slickNext>
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+                            <defs>
+                                <style>.cls-1 {
+                                    fill: none;
+                                    stroke: #999;
+                                    stroke-miterlimit: 10;
+                                    stroke-width: 0.75px;
+                                }</style>
+                            </defs>
+                            <title>Ресурс 16</title>
+                            <g id="Слой_2" data-name="Слой 2">
+                                <g id="Content">
+                                    <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"></polyline>
+                                </g>
+                            </g>
+                        </svg>
+                    </i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

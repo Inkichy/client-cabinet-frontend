@@ -1,0 +1,87 @@
+<div class="site">
+  <!-- <app-header-mobile class="header-mobile"></app-header-mobile> -->
+    <div class="site-content flex flex_wrap flex_column">
+      <app-header-auth class="header-items"></app-header-auth>
+      <div class="content-wrapper">
+        <div class="info-modal info-modal_profile">
+          <app-preloader *ngIf="!agreementText"></app-preloader>
+          <div *ngIf="!isConfirmation && agreementText">
+            <div class="info-modal__title">Уважаемый клиент!</div>
+              <p class="info-modal__subtitle" [innerHTML]="agreementText"></p>
+                <div class="settings__buttons settings__buttons_top flex">
+                  <button [disabled]="isConfirmLoading"
+                  [class.loading]="isConfirmLoading" class="settings__button btn" (click)="confirmAgrement()">
+                    <span *ngIf="!isConfirmLoading">Согласен</span>
+                    <i *ngIf="isConfirmLoading" class="fa fa-spinner fa-spin"></i>
+                  </button>
+                  <button [disabled]="isCancelLoading"
+                  [class.loading]="isCancelLoading"  class="settings__button btn btn_white"(click)="cancelAgrement()" >
+                    <span *ngIf="!isCancelLoading">Не согласен</span>
+                    <i *ngIf="isCancelLoading" class="fa fa-spinner fa-spin"></i>
+                  </button>
+              </div>
+          </div>
+            <form *ngIf="isConfirmation" class="settings__form" [formGroup]="formConfirm" (ngSubmit)="onSubmitSms()" novalidate>
+              <label class="settings__label settings__label_register">
+                <div class="settings__field-name">Введите код подтверждения</div>
+                <div *ngIf="!smsError;else codeToEmail" class="site-content__subtitle">На Ваш телефон отправлено смс к кодом подтверждения. Необходимо ввести этот код
+                  в нижестоящее поле.
+                </div>
+                <ng-template #codeToEmail>
+                  <div class="site-content__subtitle">На Ваш email отправлен код подтверждения. Необходимо ввести этот код
+                    в нижестоящее поле.
+                  </div>
+                </ng-template>
+
+                <input type="text" class="settings__field field field-number" mask="0 0 0 0 0 0" placeholder="_ _ _ _ _ _" formControlName="code">
+              </label>
+              <label class="settings__label">
+                <button type="submit" [disabled]="formConfirm.invalid || isConfirmLoading" class="btn btn_darkgray btn_save">
+                  <span *ngIf="!isConfirmLoading">Сохранить</span>
+                  <i *ngIf="isConfirmLoading" class="fa fa-spinner fa-spin"></i>
+                </button>
+              </label>
+              <div class="settings__buttons settings__buttons_top flex">
+                <div *ngIf="!smsError" class="settings__button">
+
+                  <input
+                         type="button"
+                         [disabled]="isDisableResendSms"
+                           [class.disabled]="isDisableResendSms"
+                          class="btn btn_small"
+                          value="Выслать код повторно"
+                          (click)="onResendSms()">
+                  <div *ngIf="isDisableResendSms" class="timer_cover" [innerHTML]='counter'></div>
+                </div>
+                <div  *ngIf="!smsError" class="settings__button">
+                  <input type="button"
+                  [disabled]="isDisableResendEmail"
+                  [class.disabled]="isDisableResendEmail"
+                  class="btn btn_small"
+                  value="Выслать код на почту"
+                  (click)="sendToMail()">
+                <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+                </div>
+                <div *ngIf="smsError" class="settings__button">
+                  <input type="button"
+                         [disabled]="isDisableResendEmail"
+                         [class.disabled]="isDisableResendEmail"
+                         class="btn btn_small"
+                         value="Выслать код повторно"
+                         (click)="sendToMail()">
+                  <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+                </div>
+
+                <div *ngIf="smsError"  class="settings__button">
+                  <a class="btn btn_green btn_save" (click)="cancel()">Отмена</a>
+                </div>
+              </div>
+              <label *ngIf="!smsError" class="settings__label">
+                  <a class="btn btn_green btn_save" (click)="cancel()">Отмена</a>
+              </label>
+            </form>
+          </div>
+      </div>
+        <app-footer-auth class="footer-items"></app-footer-auth>
+      </div>
+  </div>

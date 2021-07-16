@@ -1,0 +1,92 @@
+<app-layout [isSiteGray]="true">
+    <app-top-panel class="top-panel flex" [title]="item?.product?.name" smallTitle="Ваш портфель">
+    </app-top-panel>
+    <app-top-panel-image
+            [ngClass]="item.product.ITEM_TYPE === 'Брокерское обслуживание' ? 'deposit_and_withdrawl-top_panel' : '' "
+            *ngIf="item" [product]="item.product"></app-top-panel-image>
+    <app-invest-modal></app-invest-modal>
+    <div class="products-block">
+        <div class="ycf__body">
+            <div class="ycf__coll-big">
+                <div class="main__title main__title_min">Данные по вводам и выводам средств</div>
+                <div class="ycf__content">
+                    <div class="ycf__display-period ycf__display-period_items">
+                        <div class="ycf__display-period-title">Выберите временной период:</div>
+                        <div class="ycf__display-period-date flex">
+                            <div class="ycf__display-period-row flex">
+                                <div class="ycf__display-period-caption">C:</div>
+                                <app-datepicker (onChangeDate)="onChangeDateStart($event)"
+                                                [date]="start ? start : defaultStart"
+                                                [placeholder]="'18.04.2019'">
+                                </app-datepicker>
+                            </div>
+                            <div class="ycf__display-period-row flex">
+                                <div class="ycf__display-period-caption">До:</div>
+                                <app-datepicker (onChangeDate)="onChangeDateEnd($event)" [date]="end ? end : defaultEnd"
+                                                [placeholder]="'19.04.2019'">
+                                </app-datepicker>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="products-block-errors" *ngIf="errorMessages.length">
+                        <div class="errors__item" *ngFor="let error of errorMessages">{{error}}</div>
+                    </div>
+                    <div class="ycf__preloader_wrapper" *ngIf="!errorMessages.length && !lastOperaions"><i
+                            class="fa fa-spinner fa-spin fa-3x"></i></div>
+                    <p class="ycf__preloader_wrapper" *ngIf="!errorMessages.length && lastOperaions.length === 0"> У Вас
+                        пока нет отчетов</p>
+                    <div *ngIf="!errorMessages.length && lastOperaions.length > 0" class="ycf__finance">
+                        <div  *ngIf="!errorMessages.length && withdraw.method === 'cancel'" class="ycf__finance-coll flex">
+                            <div class="ycf__finance-date">{{withdraw?.date}}</div>
+                            <div class="ycf__finance-box">
+                                <div class="ycf__finance-caption">
+                                    <span>{{withdraw?.type}}: <span class="ycf__finance-price">
+                                        {{withdraw?.cash | number:'1.2-2':'ru-RU'}}&nbsp;{{withdraw?.currency}}
+                                        </span>
+                                    </span>
+                                </div>
+                                
+                                <div class="ycf__finance-desc"><a [routerLink]="['/portfolio',id,'withdraw-request']" class="cancel__button">Отменить</a></div>
+                            </div>
+                        </div>
+                        <div *ngFor="let operation of lastOperaions" class="ycf__finance-coll flex">
+                            <div class="ycf__finance-date">{{operation?.date}}</div>
+                            <div class="ycf__finance-box">
+                                <div class="ycf__finance-caption">
+                                    <span>{{operation?.type}}: <span class="ycf__finance-price">
+                                        {{operation?.cash | number:'1.2-2':'ru-RU'}}&nbsp;{{operation?.currency}}
+                                        </span>
+                                    </span>
+                                </div>
+                                <div *ngIf="operation?.to" ngFor="" class="ycf__finance-desc">Перевод денежных средств
+                                    из договора
+                                    <strong>{{item.agreementNumber}} от {{item.d_date}}</strong> в договор <a
+                                            [routerLink]="'/portfolio/'+ operation?.id">{{operation?.agreementNumber}}
+                                        от
+                                        {{operation?.d_date}}</a></div>
+                                <!--  <div *ngIf="operation?.name === 'Ввод ДС'" class="ycf__finance-desc">Ввод денежных средств на счет {{operation?.date}}</div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pd__body flex" padding-bottom-60>
+        <app-product-menu *ngIf="item" [type]="item.product.ITEM_TYPE" [id]="id"
+                          class="pd__column flex"></app-product-menu>
+        <div class="pd__coll">
+            <app-bottom-portfolio-btns></app-bottom-portfolio-btns>
+        </div>
+    </div>
+
+    <div *ngIf="item.product.ITEM_TYPE === 'Брокерское обслуживание'; then broker else trust"></div>
+    <ng-template #broker>
+        <app-product-slider class="products-block products-block_pb products-block_gray products-block_pt">
+        </app-product-slider>
+    </ng-template>
+    <ng-template #trust>
+        <app-footer-slick></app-footer-slick>
+    </ng-template>
+</app-layout>

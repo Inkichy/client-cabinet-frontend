@@ -1,0 +1,49 @@
+<app-layout>
+    <app-top-panel *ngIf="item" class="top-panel flex" title="{{item.product.name}}" smallTitle="Ваш портфель">
+    </app-top-panel>
+    <app-top-panel-image
+            [ngClass]="item.product.ITEM_TYPE === 'Брокерское обслуживание' ? 'deposit_and_withdrawl-top_panel' : '' "
+            *ngIf="item" [product]="item.product"></app-top-panel-image>
+    <app-invest-modal></app-invest-modal>
+
+    <div class="products-block">
+        <div class="ycf__body">
+            <div class="ycf__coll-big">
+                <div class="main__title main__title_min">Список подписанных документов с клиентом</div>
+                <div class="main-breadcrumbs flex">
+                    <div class="main-breadcrumbs__block flex" >
+                        <div class="main-breadcrumbs__items">Анкета Клиента</div>
+                        <a routerLink="/account-customer-questionnaire" class="main-breadcrumbs__link">Редактировать ></a>
+                    </div>
+                    <div class="main-breadcrumbs__block flex" *ngIf="item.product.ITEM_TYPE == 'Брокерское обслуживание'">
+                        <div class="main-breadcrumbs__items">Профиль инвестора</div>
+                        <a [routerLink]="'/investment-profile'" class="main-breadcrumbs__link">Редактировать &gt;</a>
+                    </div>
+                </div>
+
+                <div class="ycf__content">
+                    <div class="ycf__finance">
+                        <div *ngFor="let contract of signedDocuments" class="ycf__finance-coll flex">
+                            <div class="ycf__finance-date">{{contract.date}}</div>
+                            <div class="ycf__finance-box">
+                                <div class="ycf__finance-caption">
+                                    <span>{{contract.description}}</span>
+                                </div>
+                                <a [href]="contract.file_url" class="ycf__finance-link">Посмотреть PDF ></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pd__body flex" padding-bottom-60>
+        <app-product-menu *ngIf="item" [type]="item.product.ITEM_TYPE" [id]="id" class="pd__column flex"></app-product-menu>
+        <div class="pd__coll">
+        <app-bottom-portfolio-btns></app-bottom-portfolio-btns>
+        </div>
+    </div>
+    <app-product-slider class="products-block products-block_pb products-block_gray products-block_pt">
+    </app-product-slider>
+</app-layout>

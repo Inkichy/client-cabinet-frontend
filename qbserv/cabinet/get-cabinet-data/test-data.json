@@ -1,0 +1,2522 @@
+{
+  "meta": {
+    "dateLastUpdate": "20.09.2019"
+  },
+  "client": {
+    "id": "6697",
+    "email": "test@yandex.ru",
+    "additionalEmail": null,
+    "employeeId": null,
+    "name": "Дмитрий",
+    "lastName": "Пархачов",
+    "patronymic": "Владимирович",
+    "phone": "79162891074",
+    "birthDate": "07.02.1990",
+    "birthPlace": "Калининград",
+    "quiz": {
+      "activity": "",
+      "activity_another": "",
+      "cash_only": "",
+      "character_category": "Нет",
+      "character_category_char_international_companaies": "",
+      "character_category_char_international_companaies_employer": "",
+      "character_category_char_international_companaies_employers_address": "",
+      "character_category_char_international_companaies_position": "",
+      "character_category_char_state_position": "",
+      "character_category_char_state_position_employer": "",
+      "character_category_char_state_position_employers_address": "",
+      "character_category_char_state_position_position": "",
+      "character_category_public_char": "",
+      "character_category_public_char_employer": "",
+      "character_category_public_char_employers_address": "",
+      "character_category_public_char_position": "",
+      "character_category_relative_char": "",
+      "character_category_relative_char_degree_of_relationship": "",
+      "character_category_relative_char_employer": "",
+      "character_category_relative_char_employers_address": "",
+      "character_category_relative_char_position": "",
+      "court_proceedings_player": "",
+      "finState": "не стабильное",
+      "individual_investment_account_is_opened": "Нет",
+      "money_origin_text": "",
+      "overdue_credits": "",
+      "recomendations": "",
+      "recomendations_text": "",
+      "securities": "",
+      "securities_market_players_name": "",
+      "state_reward": "",
+      "state_reward_text": "",
+      "tax_country_russia": null,
+      "tax_deduction_type": "",
+      "tax_foreign_country_1": "",
+      "tax_foreign_country_1_TIN": "",
+      "tax_foreign_country_2": "",
+      "tax_foreign_country_2_TIN": "",
+      "tax_resident": null,
+      "tax_resident_TIN": null,
+      "tax_resident_country": null,
+      "tax_resident_foreign_country_agreement_agree": "",
+      "tax_resident_foreign_country_agreement_disagree": "",
+      "usa_citizenship": "",
+      "usa_citizenship_green_card": "",
+      "usa_citizenship_refused": "",
+      "usa_citizenship_refused_citizenship_lost": "",
+      "usa_citizenship_refused_citizenship_not_receiving_after_birth": "",
+      "usa_citizenship_refused_citizenship_renounced": "",
+      "usa_citizenship_residence_permit": "",
+      "usa_not_birthplace": "1",
+      "w_9_form": "",
+      "was_punished": ""
+    },
+    "documentInn": "123123123123",
+    "documentSnils": "1231231235",
+    "passport": {
+      "passportSeries": "4002",
+      "passportNumber": "356361",
+      "passportIssuedBy": "Отделением УФМС России по гор  Москве по району Останкинский, код подр: 770-084",
+      "passportIssueDate": "15.03.2012",
+      "passportIssueId": "770-084",
+      "passportScan": [
+        12,
+        13
+      ]
+    },
+    "requisites": {
+      "bankAccount": "",
+      "bankName": "",
+      "bankCorr": "",
+      "bankBik": ""
+    },
+    "actualAddr": {
+      "post_index": "",
+      "country": "",
+      "area": "",
+      "district": "",
+      "city": "",
+      "street": "",
+      "house": "",
+      "housing": "",
+      "building": "",
+      "flat_number": ""
+    },
+    "postAddr": {
+      "post_index": "",
+      "country": "",
+      "area": "",
+      "district": "",
+      "city": "",
+      "street": "",
+      "house": "",
+      "housing": "",
+      "building": "",
+      "flat_number": ""
+    },
+    "quiz_recomendation": "",
+    "allowed_buying": false,
+    "isset": {
+      "email": {
+        "status": "confirmed",
+        "isset": true
+      },
+      "phone": {
+        "status": "confirmed",
+        "isset": true
+      },
+      "personalDataAgreeting": {
+        "status": "confirmed",
+        "isset": true
+      },
+      "edo": {
+        "status": "confirmed",
+        "isset": true
+      },
+      "password": {
+        "status": "confirmed",
+        "isset": true
+      },
+      "quiz": {
+        "status": "confirmed",
+        "isset": true
+      },
+      "actualAddr": {
+        "status": "empty",
+        "isset": false,
+        "errorMsg": ""
+      },
+      "postAddr": {
+        "status": "empty",
+        "isset": false,
+        "errorMsg": ""
+      },
+      "passport": {
+        "gosuslugi": {
+          "isset": true,
+          "status": "confirmed"
+        }
+      }
+    }
+  },
+  "sections": [],
+  "strategys": [
+    {
+      "CODE": "",
+      "~CODE": "",
+      "IBLOCK_ID": "45",
+      "~IBLOCK_ID": "45",
+      "~NAME": "Умеренный",
+      "PREVIEW_PICTURE": "",
+      "~PREVIEW_PICTURE": "",
+      "DETAIL_PICTURE": "",
+      "~DETAIL_PICTURE": "",
+      "~PREVIEW_TEXT": "Для инвесторов, желающих найти “золотую середину” в финансовых продуктах: расширенный набор инструментов, доходность выше депозита и гибкие стратегии управления.Профиль: Активный",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "SORT": "100",
+      "~SORT": "100",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "content": "",
+      "id": "910",
+      "bxid": "910",
+      "name": "Умеренный",
+      "previewText": "Для инвесторов, желающих найти “золотую середину” в финансовых продуктах: расширенный набор инструментов, доходность выше депозита и гибкие стратегии управления.<br />Профиль: Активный<br />"
+    },
+    {
+      "CODE": "",
+      "~CODE": "",
+      "IBLOCK_ID": "45",
+      "~IBLOCK_ID": "45",
+      "~NAME": "Сбалансированный",
+      "PREVIEW_PICTURE": "",
+      "~PREVIEW_PICTURE": "",
+      "DETAIL_PICTURE": "",
+      "~DETAIL_PICTURE": "",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": false,
+      "~ACTIVE": "N",
+      "SORT": "200",
+      "~SORT": "200",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "content": "",
+      "id": "911",
+      "bxid": "911",
+      "name": "Сбалансированный",
+      "previewText": ""
+    },
+    {
+      "CODE": "",
+      "~CODE": "",
+      "IBLOCK_ID": "45",
+      "~IBLOCK_ID": "45",
+      "~NAME": "Консервативный",
+      "PREVIEW_PICTURE": "",
+      "~PREVIEW_PICTURE": "",
+      "DETAIL_PICTURE": "",
+      "~DETAIL_PICTURE": "",
+      "~PREVIEW_TEXT": "Для консервативных инвесторов, которые ценят надежность, минимальные риски и ориентированы на долгосрочные инвестиции.",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "SORT": "300",
+      "~SORT": "300",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "content": "",
+      "id": "912",
+      "bxid": "912",
+      "name": "Консервативный",
+      "previewText": "Для консервативных инвесторов, которые ценят надежность, минимальные риски и ориентированы на долгосрочные инвестиции."
+    },
+    {
+      "CODE": "",
+      "~CODE": "",
+      "IBLOCK_ID": "45",
+      "~IBLOCK_ID": "45",
+      "~NAME": "Активный",
+      "PREVIEW_PICTURE": "",
+      "~PREVIEW_PICTURE": "",
+      "DETAIL_PICTURE": "",
+      "~DETAIL_PICTURE": "",
+      "~PREVIEW_TEXT": "Для инвесторов, которые ожидают повышенную доходность, понимают риски фондового рынка и готовы рассматривать широкий набор финансовых инструментов.",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "SORT": "500",
+      "~SORT": "500",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "content": "",
+      "id": "913",
+      "bxid": "913",
+      "name": "Активный",
+      "previewText": "Для инвесторов, которые ожидают повышенную доходность, понимают риски фондового рынка и готовы рассматривать широкий набор финансовых инструментов."
+    }
+  ],
+  "portfolios": [
+    {
+      "CODE": "obligatsii-federalnogo-zayma",
+      "~CODE": "obligatsii-federalnogo-zayma",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Облигации федерального займа",
+      "PREVIEW_PICTURE": "2686",
+      "~PREVIEW_PICTURE": "2686",
+      "DETAIL_PICTURE": "",
+      "~DETAIL_PICTURE": "",
+      "~PREVIEW_TEXT": "Облигации федерального займа (ОФЗ) – рублевые облигации, выпускаемые Министерством финансов Российской Федерации. На фоне вероятного ввода санкций на российский государственный долг со стороны Конгресса США доходность индекса российских облигаций федерального займа достигла максимума с конца 2016 года в 8,9% годовых, что открывает привлекательную точку входа для инвестора со средним риск- профилем. В связи с этим мы рекомендуем «покупать» ОФЗ, используя краткосрочные и среднесрочные стратегии.",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "",
+      "targetYield": "",
+      "link": "",
+      "new": true,
+      "currencys": ["rur"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Облигации",
+      "RATING": "BUY",
+      "PARENT_ID": "",
+      "GROW_RATE": "8.9",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "",
+      "bxid": "20787",
+      "name": "Облигации федерального займа",
+      "previewText": "Облигации федерального займа &#40;ОФЗ&#41; – рублевые облигации, выпускаемые Министерством финансов Российской Федерации. На фоне вероятного ввода санкций на российский государственный долг со стороны Конгресса США доходность индекса российских облигаций федерального займа достигла максимума с конца 2016 года в 8,9&#37; годовых, что открывает привлекательную точку входа для инвестора со средним риск- профилем. В связи с этим мы рекомендуем «покупать» ОФЗ, используя краткосрочные и среднесрочные стратегии."
+    },
+    {
+      "CODE": "pao-lukoyl",
+      "~CODE": "pao-lukoyl",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "ПАО 'Лукойл'",
+      "PREVIEW_PICTURE": "2685",
+      "~PREVIEW_PICTURE": "2685",
+      "DETAIL_PICTURE": "",
+      "~DETAIL_PICTURE": "",
+      "~PREVIEW_TEXT": "ПАО «ЛУКОЙЛ» – одна из крупнейших публичных вертикально интегрированных нефтегазовых компаний в России и мире. На долю корпорации приходится 15% добычи нефти и 15% нефтепереработки в РФ. В связи с возможным погашением выкупленных акций компании в рамках процедуры buyback, а также проводимой в интересах акционеров дивидендной политикой аналитики QBF установили целевую цену на акции ПАО «ЛУКОЙЛ» на декабрь 2019 года в 5800 руб. и присвоили им инвестиционный рейтинг BUY.",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "",
+      "targetYield": "",
+      "link": "",
+      "new": true,
+      "currencys": ["rur"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Акции",
+      "RATING": "BUY",
+      "PARENT_ID": "",
+      "GROW_RATE": "11.6",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "",
+      "bxid": "20786",
+      "name": "ПАО 'Лукойл'",
+      "previewText": "ПАО «ЛУКОЙЛ» – одна из крупнейших публичных вертикально интегрированных нефтегазовых компаний в России и мире. На долю корпорации приходится 15&#37; добычи нефти и 15&#37; нефтепереработки в РФ. В связи с возможным погашением выкупленных акций компании в рамках процедуры buyback, а также проводимой в интересах акционеров дивидендной политикой аналитики QBF установили целевую цену на акции ПАО «ЛУКОЙЛ» на декабрь 2019 года в 5800 руб. и присвоили им инвестиционный рейтинг BUY."
+    },
+    {
+      "CODE": "pao-lukoyl",
+      "~CODE": "pao-lukoyl",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "ПАО 'Лукойл'",
+      "PREVIEW_PICTURE": "2685",
+      "~PREVIEW_PICTURE": "2685",
+      "DETAIL_PICTURE": "",
+      "~DETAIL_PICTURE": "",
+      "~PREVIEW_TEXT": "ПАО «ЛУКОЙЛ» – одна из крупнейших публичных вертикально интегрированных нефтегазовых компаний в России и мире. На долю корпорации приходится 15% добычи нефти и 15% нефтепереработки в РФ. В связи с возможным погашением выкупленных акций компании в рамках процедуры buyback, а также проводимой в интересах акционеров дивидендной политикой аналитики QBF установили целевую цену на акции ПАО «ЛУКОЙЛ» на декабрь 2019 года в 5800 руб. и присвоили им инвестиционный рейтинг BUY.",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "",
+      "targetYield": "",
+      "link": "",
+      "new": true,
+      "currencys": ["rur"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Акции",
+      "RATING": "BUY",
+      "PARENT_ID": "",
+      "GROW_RATE": "11.6",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "",
+      "bxid": "20786",
+      "name": "ПАО 'Лукойл'",
+      "previewText": "ПАО «ЛУКОЙЛ» – одна из крупнейших публичных вертикально интегрированных нефтегазовых компаний в России и мире. На долю корпорации приходится 15&#37; добычи нефти и 15&#37; нефтепереработки в РФ. В связи с возможным погашением выкупленных акций компании в рамках процедуры buyback, а также проводимой в интересах акционеров дивидендной политикой аналитики QBF установили целевую цену на акции ПАО «ЛУКОЙЛ» на декабрь 2019 года в 5800 руб. и присвоили им инвестиционный рейтинг BUY."
+    },
+    {
+      "CODE": "pao-lukoyl",
+      "~CODE": "pao-lukoyl",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "ПАО 'Лукойл'",
+      "PREVIEW_PICTURE": "2685",
+      "~PREVIEW_PICTURE": "2685",
+      "DETAIL_PICTURE": "",
+      "~DETAIL_PICTURE": "",
+      "~PREVIEW_TEXT": "ПАО «ЛУКОЙЛ» – одна из крупнейших публичных вертикально интегрированных нефтегазовых компаний в России и мире. На долю корпорации приходится 15% добычи нефти и 15% нефтепереработки в РФ. В связи с возможным погашением выкупленных акций компании в рамках процедуры buyback, а также проводимой в интересах акционеров дивидендной политикой аналитики QBF установили целевую цену на акции ПАО «ЛУКОЙЛ» на декабрь 2019 года в 5800 руб. и присвоили им инвестиционный рейтинг BUY.",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "",
+      "targetYield": "",
+      "link": "",
+      "new": true,
+      "currencys": ["rur"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Акции",
+      "RATING": "BUY",
+      "PARENT_ID": "",
+      "GROW_RATE": "11.6",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "",
+      "bxid": "20786",
+      "name": "ПАО 'Лукойл'",
+      "previewText": "ПАО «ЛУКОЙЛ» – одна из крупнейших публичных вертикально интегрированных нефтегазовых компаний в России и мире. На долю корпорации приходится 15&#37; добычи нефти и 15&#37; нефтепереработки в РФ. В связи с возможным погашением выкупленных акций компании в рамках процедуры buyback, а также проводимой в интересах акционеров дивидендной политикой аналитики QBF установили целевую цену на акции ПАО «ЛУКОЙЛ» на декабрь 2019 года в 5800 руб. и присвоили им инвестиционный рейтинг BUY."
+    },
+    {
+      "CODE": "pao-lukoyl",
+      "~CODE": "pao-lukoyl",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "ПАО 'Лукойл'",
+      "PREVIEW_PICTURE": "2685",
+      "~PREVIEW_PICTURE": "2685",
+      "DETAIL_PICTURE": "",
+      "~DETAIL_PICTURE": "",
+      "~PREVIEW_TEXT": "ПАО «ЛУКОЙЛ» – одна из крупнейших публичных вертикально интегрированных нефтегазовых компаний в России и мире. На долю корпорации приходится 15% добычи нефти и 15% нефтепереработки в РФ. В связи с возможным погашением выкупленных акций компании в рамках процедуры buyback, а также проводимой в интересах акционеров дивидендной политикой аналитики QBF установили целевую цену на акции ПАО «ЛУКОЙЛ» на декабрь 2019 года в 5800 руб. и присвоили им инвестиционный рейтинг BUY.",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "",
+      "targetYield": "",
+      "link": "",
+      "new": true,
+      "currencys": ["rur"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Акции",
+      "RATING": "BUY",
+      "PARENT_ID": "",
+      "GROW_RATE": "11.6",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "",
+      "bxid": "20786",
+      "name": "ПАО 'Лукойл'",
+      "previewText": "ПАО «ЛУКОЙЛ» – одна из крупнейших публичных вертикально интегрированных нефтегазовых компаний в России и мире. На долю корпорации приходится 15&#37; добычи нефти и 15&#37; нефтепереработки в РФ. В связи с возможным погашением выкупленных акций компании в рамках процедуры buyback, а также проводимой в интересах акционеров дивидендной политикой аналитики QBF установили целевую цену на акции ПАО «ЛУКОЙЛ» на декабрь 2019 года в 5800 руб. и присвоили им инвестиционный рейтинг BUY."
+    },
+    {
+      "CODE": "brokerskiy-schet",
+      "~CODE": "brokerskiy-schet",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Брокерский счет",
+      "PREVIEW_PICTURE": "1095",
+      "~PREVIEW_PICTURE": "1095",
+      "DETAIL_PICTURE": "1096",
+      "~DETAIL_PICTURE": "1096",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "912",
+      "targetYield": "0",
+      "link": "",
+      "new": false,
+      "currencys": ["usd"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Доверительное управление",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": [
+        {
+          "tables": [
+            {
+              "table_row": [
+                [
+                  "йцу",
+                  "йцу"
+                ]
+              ],
+              "tableTitles": "йцу"
+            },
+            {
+              "table_row": [
+                [
+                  "цйу",
+                  "уцй"
+                ]
+              ],
+              "tableTitles": "уцй"
+            }
+          ],
+          "head": "123",
+          "description": "321321цйу"
+        }
+      ],
+      "id": "0",
+      "bxid": "19013",
+      "name": "Брокерский счет",
+      "previewText": ""
+    },
+    {
+      "CODE": "brokerskiy-schet",
+      "~CODE": "brokerskiy-schet",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Брокерский счет",
+      "PREVIEW_PICTURE": "765",
+      "~PREVIEW_PICTURE": "765",
+      "DETAIL_PICTURE": "766",
+      "~DETAIL_PICTURE": "766",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "912",
+      "targetYield": "",
+      "link": "",
+      "new": false,
+      "currencys": ["usd"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "0",
+      "bxid": "929",
+      "name": "Брокерский счет",
+      "previewText": ""
+    },
+    {
+      "CODE": "investschet-do-vostrebovaniya",
+      "~CODE": "investschet-do-vostrebovaniya",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Инвестсчет до востребования",
+      "PREVIEW_PICTURE": "763",
+      "~PREVIEW_PICTURE": "763",
+      "DETAIL_PICTURE": "764",
+      "~DETAIL_PICTURE": "764",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "912",
+      "targetYield": "7-8",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#240",
+      "RISK_LEVEL": "Низкий",
+      "content": "«Инвестиционный счет 'До Востребования'» - консервативная стратегия ООО ИК «КьюБиЭф». Целью стратегии является получение максимального уровня надежности вложений и ежедневное начисление дохода в результате сделок, исполнение которых обеспечивается Национальным Клиринговым Центром (Входит в Группу «Московская биржа»). Данная стратегия соответствует группе стратегий «FIX», которые основаны на консервативном инвестиционном профиле и предполагают получение стабильного фиксированного дохода при относительно низком уровне риска и сохранении высокой ликвидности.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "27945",
+      "bxid": "928",
+      "name": "Инвестсчет до востребования",
+      "previewText": ""
+    },
+    {
+      "CODE": "garantiya-gosudarstva",
+      "~CODE": "garantiya-gosudarstva",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Гарантия государства",
+      "PREVIEW_PICTURE": "2672",
+      "~PREVIEW_PICTURE": "2672",
+      "DETAIL_PICTURE": "762",
+      "~DETAIL_PICTURE": "762",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "912",
+      "targetYield": "8-9",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#502",
+      "RISK_LEVEL": "Низкий",
+      "content": "«Гарантия государства» — консервативная стратегия доверительного управления ООО ИК «КьюБиЭф», в основе которой высокая степень защиты капитала и получение купонного целевого дохода за счет инвестиций в облигации федерального займа (ОФЗ). Данная стратегия соответствует группе стратегий «FIX», которые основаны на консервативном инвестиционном профиле и предполагают получение стабильного фиксированного дохода при относительно низком уровне риска и сохранении высокой ликвидности.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "57709",
+      "bxid": "927",
+      "name": "Гарантия государства",
+      "previewText": ""
+    },
+    {
+      "CODE": "zolotoe-sechenie-iis",
+      "~CODE": "zolotoe-sechenie-iis",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Золотое сечение ИИС",
+      "PREVIEW_PICTURE": "2667",
+      "~PREVIEW_PICTURE": "2667",
+      "DETAIL_PICTURE": "760",
+      "~DETAIL_PICTURE": "760",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "910",
+      "targetYield": "15-20",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#AA0",
+      "RISK_LEVEL": "Умеренный",
+      "content": "«Золотое сечение» — умеренная стратегия Доверительного управления ООО ИК «КьюБиЭф». Основа стратегии - акции крупнейших российских компаний, что позволяет инвестору потенциально получать прибыль за счет роста отечественного корпоративного сектора.  Данная стратегия соответствует группе стратегий «BALANCE», которые основаны на сбалансированном инвестиционном профиле и ориентированы на достижение целевой доходности при условии защиты инвестиций за счет структуры портфеля.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Доверительное управление",
+      "RATING": "",
+      "PARENT_ID": "917",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "119544",
+      "bxid": "926",
+      "name": "Золотое сечение ИИС",
+      "previewText": ""
+    },
+    {
+      "CODE": "do-vostrebovaniya-iis",
+      "~CODE": "do-vostrebovaniya-iis",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "До востребования ИИС",
+      "PREVIEW_PICTURE": "2673",
+      "~PREVIEW_PICTURE": "2673",
+      "DETAIL_PICTURE": "758",
+      "~DETAIL_PICTURE": "758",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "912",
+      "targetYield": "7-8",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#250",
+      "RISK_LEVEL": "Низкий",
+      "content": "«Инвестиционный счет 'До Востребования'» - консервативная стратегия ООО ИК «КьюБиЭф». Целью стратегии является получение максимального уровня надежности вложений и ежедневное начисление дохода в результате сделок, исполнение которых обеспечивается Национальным Клиринговым Центром (Входит в Группу «Московская биржа»). Данная стратегия соответствует группе стратегий «FIX», которые основаны на консервативном инвестиционном профиле и предполагают получение стабильного фиксированного дохода при относительно низком уровне риска и сохранении высокой ликвидности.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "119545",
+      "bxid": "925",
+      "name": "До востребования ИИС",
+      "previewText": ""
+    },
+    {
+      "CODE": "moy-seyf-iis",
+      "~CODE": "moy-seyf-iis",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Мой сейф ИИС",
+      "PREVIEW_PICTURE": "2670",
+      "~PREVIEW_PICTURE": "2670",
+      "DETAIL_PICTURE": "756",
+      "~DETAIL_PICTURE": "756",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "911",
+      "targetYield": "9-10",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#888",
+      "RISK_LEVEL": "Умеренный",
+      "content": "«Мой сейф» - сбалансированная стратегия доверительного управления ООО ИК «КьюБиЭф». Стратегия основана на инвестировании в самые надежные облигации крупнейших российских компаний. Данная стратегия соответствует группе стратегий «FIX», которые основаны на консервативном инвестиционном профиле и предполагают получение стабильного фиксированного дохода при относительно низком уровне риска и сохранении высокой ликвидности.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Доверительное управление",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "119546",
+      "bxid": "924",
+      "name": "Мой сейф ИИС",
+      "previewText": ""
+    },
+    {
+      "CODE": "garantii-gosudarstva-iis",
+      "~CODE": "garantii-gosudarstva-iis",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Гарантии государства ИИС",
+      "PREVIEW_PICTURE": "2671",
+      "~PREVIEW_PICTURE": "2671",
+      "DETAIL_PICTURE": "754",
+      "~DETAIL_PICTURE": "754",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "912",
+      "targetYield": "8-9",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#502",
+      "RISK_LEVEL": "Низкий",
+      "content": "«Гарантия государства» — консервативная стратегия доверительного управления ООО ИК «КьюБиЭф», в основе которой высокая степень защиты капитала и получение купонного целевого дохода за счет инвестиций в облигации федерального займа (ОФЗ). Данная стратегия соответствует группе стратегий «FIX», которые основаны на консервативном инвестиционном профиле и предполагают получение стабильного фиксированного дохода при относительно низком уровне риска и сохранении высокой ликвидности.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "119547",
+      "bxid": "923",
+      "name": "Гарантии государства ИИС",
+      "previewText": ""
+    },
+    {
+      "CODE": "individualnaya-sbalansirovannyy-profil",
+      "~CODE": "individualnaya-sbalansirovannyy-profil",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Индивидуальная сбалансированный профиль",
+      "PREVIEW_PICTURE": "751",
+      "~PREVIEW_PICTURE": "751",
+      "DETAIL_PICTURE": "752",
+      "~DETAIL_PICTURE": "752",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "911",
+      "targetYield": "",
+      "link": "",
+      "new": false,
+      "currencys": ["usd"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "119629",
+      "bxid": "922",
+      "name": "Индивидуальная сбалансированный профиль",
+      "previewText": ""
+    },
+    {
+      "CODE": "individualnaya-agressivnyy-profil",
+      "~CODE": "individualnaya-agressivnyy-profil",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Индивидуальная агрессивный профиль",
+      "PREVIEW_PICTURE": "749",
+      "~PREVIEW_PICTURE": "749",
+      "DETAIL_PICTURE": "750",
+      "~DETAIL_PICTURE": "750",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "913",
+      "targetYield": "22",
+      "link": "",
+      "new": false,
+      "currencys": ["usd"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "119630",
+      "bxid": "921",
+      "name": "Индивидуальная агрессивный профиль",
+      "previewText": ""
+    },
+    {
+      "CODE": "individualnaya-umerennyy-profil",
+      "~CODE": "individualnaya-umerennyy-profil",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Индивидуальная умеренный профиль",
+      "PREVIEW_PICTURE": "747",
+      "~PREVIEW_PICTURE": "747",
+      "DETAIL_PICTURE": "748",
+      "~DETAIL_PICTURE": "748",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "911",
+      "targetYield": "10-40",
+      "link": "",
+      "new": false,
+      "currencys": ["usd"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "119631",
+      "bxid": "920",
+      "name": "Индивидуальная умеренный профиль",
+      "previewText": ""
+    },
+    {
+      "CODE": "individualnaya-konservativnyy-profil",
+      "~CODE": "individualnaya-konservativnyy-profil",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Индивидуальная консервативный профиль",
+      "PREVIEW_PICTURE": "745",
+      "~PREVIEW_PICTURE": "745",
+      "DETAIL_PICTURE": "746",
+      "~DETAIL_PICTURE": "746",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "912",
+      "targetYield": "0",
+      "link": "",
+      "new": false,
+      "currencys": ["usd"],
+      "color": "",
+      "RISK_LEVEL": "",
+      "content": "",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "121387",
+      "bxid": "919",
+      "name": "Индивидуальная консервативный профиль",
+      "previewText": ""
+    },
+    {
+      "CODE": "dvizhenie-vverkh",
+      "~CODE": "dvizhenie-vverkh",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Движение вверх",
+      "PREVIEW_PICTURE": "2664",
+      "~PREVIEW_PICTURE": "2664",
+      "DETAIL_PICTURE": "744",
+      "~DETAIL_PICTURE": "744",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "913",
+      "targetYield": "20-25",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#025",
+      "RISK_LEVEL": "Высокий",
+      "content": "«Движение вверх» — высокодоходная стратегия с активным инвестиционным профилем, в составе которой инвестиции производятся в акции российских компаний с высокой дивидендной доходностью, имеющие дополнительный потенциал роста.  Данная стратегия соответствует группе стратегий «PLUS», которые основаны на активном инвестиционном профиле и нацелены на достижение максимальной доходности с поддержанием высокой ликвидности портфеля. Управление активами производится исходя из значительной толерантности инвестора к риску.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Доверительное управление",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "122480",
+      "bxid": "918",
+      "name": "Движение вверх",
+      "previewText": ""
+    },
+    {
+      "CODE": "zolotoe-sechenie-",
+      "~CODE": "zolotoe-sechenie-",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Золотое сечение +",
+      "PREVIEW_PICTURE": "2668",
+      "~PREVIEW_PICTURE": "2668",
+      "DETAIL_PICTURE": "742",
+      "~DETAIL_PICTURE": "742",
+      "~PREVIEW_TEXT": "Повседневная практика показывает, что консультация с широким активом требуют от нас анализа направлений прогрессивного развития. Повседневная практика показывает, что постоянное информационно-пропагандистское обеспечение нашей деятельности играет важную роль в формировании модели развития.",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "910",
+      "targetYield": "15-20",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#DD2",
+      "RISK_LEVEL": "Умеренный",
+      "content": "«Золотое сечение» — умеренная стратегия Доверительного управления ООО ИК «КьюБиЭф». Основа стратегии - акции крупнейших российских компаний, что позволяет инвестору потенциально получать прибыль за счет роста отечественного корпоративного сектора.  Данная стратегия соответствует группе стратегий «BALANCE», которые основаны на сбалансированном инвестиционном профиле и ориентированы на достижение целевой доходности при условии защиты инвестиций за счет структуры портфеля.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "1 год",
+      "ITEM_TYPE": "Доверительное управление",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "12.67",
+      "management_fee": 2,
+      "success_fee": 12,
+      "TARIFS": "",
+      "id": "122542",
+      "bxid": "917",
+      "name": "Золотое сечение +",
+      "previewText": "Повседневная практика показывает, что консультация с широким активом требуют от нас анализа направлений прогрессивного развития. Повседневная практика показывает, что постоянное информационно-пропагандистское обеспечение нашей деятельности играет важную роль в формировании модели развития."
+    },
+    {
+      "CODE": "moy-seyf-",
+      "~CODE": "moy-seyf-",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Мой сейф +",
+      "PREVIEW_PICTURE": "2669",
+      "~PREVIEW_PICTURE": "2669",
+      "DETAIL_PICTURE": "740",
+      "~DETAIL_PICTURE": "740",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "911",
+      "targetYield": "9-10",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#888",
+      "RISK_LEVEL": "Умеренный",
+      "content": "«Мой сейф» - сбалансированная стратегия доверительного управления ООО ИК «КьюБиЭф». Стратегия основана на инвестировании в самые надежные облигации крупнейших российских компаний. Данная стратегия соответствует группе стратегий «FIX», которые основаны на консервативном инвестиционном профиле и предполагают получение стабильного фиксированного дохода при относительно низком уровне риска и сохранении высокой ликвидности.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "122543",
+      "bxid": "916",
+      "name": "Мой сейф +",
+      "previewText": ""
+    },
+    {
+      "CODE": "base",
+      "~CODE": "base",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Базовый тариф",
+      "PREVIEW_PICTURE": "2669",
+      "~PREVIEW_PICTURE": "2669",
+      "DETAIL_PICTURE": "740",
+      "~DETAIL_PICTURE": "740",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "",
+      "targetYield": "9-10",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#8EE",
+      "RISK_LEVEL": "",
+      "content": "«Базовый тариф» - сбалансированная стратегия доверительного управления ООО ИК «КьюБиЭф». Стратегия основана на инвестировании в самые надежные облигации крупнейших российских компаний. Данная стратегия соответствует группе стратегий «FIX», которые основаны на консервативном инвестиционном профиле и предполагают получение стабильного фиксированного дохода при относительно низком уровне риска и сохранении высокой ликвидности.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Брокерское обслуживание",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": {
+        "head": "Наши тарифы",
+        "description": "Начисление комиссии: расчет ежедневный, но списание ежемесячно, в конце месяца.\n\n",
+        "tables": [
+          {
+            "head": "Фондовый / Валютный рынок (оборот в день фыв афывафыафывыв ы)",
+            "rows": [
+              {
+                "key": "До 5 000 000",
+                "value": "0,03%"
+              },
+              {
+                "key": "От 2 000 000 до 15 000 000",
+                "value": "0,02%"
+              },
+              {
+                "key": "Свыше 15 000 000",
+                "value": "0,015%"
+              }
+            ]
+          },
+          {
+            "head": "Срочный рынок (кол-во контрактов в день)",
+            "rows": [
+              {
+                "key": "До 5 000 000",
+                "value": "0,03%"
+              },
+              {
+                "key": "От 2 000 000 до 15 000 000",
+                "value": "0,02%"
+              },
+              {
+                "key": "Свыше 15 000 000",
+                "value": "0,015%"
+              }
+            ]
+          }
+        ]
+      },
+      "id": "1225431",
+      "bxid": "916",
+      "name": "Базовый тариф",
+      "previewText": "«Базовый тариф» - сбалансированная стратегия доверительного управления ",
+      "management_fee": 1,
+      "success_fee": 20
+    },
+    {
+      "CODE": "base",
+      "~CODE": "base",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Базовый тариф ИИС",
+      "PREVIEW_PICTURE": "2669",
+      "~PREVIEW_PICTURE": "2669",
+      "DETAIL_PICTURE": "740",
+      "~DETAIL_PICTURE": "740",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "",
+      "targetYield": "9-10",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#8EE",
+      "RISK_LEVEL": "",
+      "content": "«Базовый тариф ИИС» - сбалансированная стратегия доверительного управления ООО ИК «КьюБиЭф». Стратегия основана на инвестировании в самые надежные облигации крупнейших российских компаний. Данная стратегия соответствует группе стратегий «FIX», которые основаны на консервативном инвестиционном профиле и предполагают получение стабильного фиксированного дохода при относительно низком уровне риска и сохранении высокой ликвидности.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Брокерское обслуживание",
+      "RATING": "",
+      "PARENT_ID": "916",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": {
+        "head": "Наши тарифы",
+        "description": "Начисление комиссии: расчет ежедневный, но списание ежемесячно, в конце месяца.\n\n",
+        "tables": [
+          {
+            "head": "Фондовый / Валютный рынок (оборот в день фыв афывафыафывыв ы)",
+            "rows": [
+              {
+                "key": "До 5 000 000",
+                "value": "0,03%"
+              },
+              {
+                "key": "От 2 000 000 до 15 000 000",
+                "value": "0,02%"
+              },
+              {
+                "key": "Свыше 15 000 000",
+                "value": "0,015%"
+              }
+            ]
+          },
+          {
+            "head": "Срочный рынок (кол-во контрактов в день)",
+            "rows": [
+              {
+                "key": "До 5 000 000",
+                "value": "0,03%"
+              },
+              {
+                "key": "От 2 000 000 до 15 000 000",
+                "value": "0,02%"
+              },
+              {
+                "key": "Свыше 15 000 000",
+                "value": "0,015%"
+              }
+            ]
+          }
+        ]
+      },
+      "id": "12254321",
+      "bxid": "9126",
+      "name": "Базовый тариф ИИС",
+      "previewText": "«Базовый тариф ИИС» - сбалансированная стратегия доверительного управления ",
+      "management_fee": 1,
+      "success_fee": 20
+    },
+    {
+      "CODE": "personal-broker",
+      "~CODE": "personal-broker",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Персональный брокер",
+      "PREVIEW_PICTURE": "2669",
+      "~PREVIEW_PICTURE": "2669",
+      "DETAIL_PICTURE": "740",
+      "~DETAIL_PICTURE": "740",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "",
+      "targetYield": "9-10",
+      "link": "",
+      "new": false,
+      "currencys": ["rur", "usd"],
+      "color": "#999",
+      "RISK_LEVEL": "",
+      "content": "«Персональный брокер» - сбалансированная стратегия доверительного управления ООО ИК «КьюБиЭф». Стратегия основана на инвестировании в самые надежные облигации крупнейших российских компаний. Данная стратегия соответствует группе стратегий «FIX», которые основаны на консервативном инвестиционном профиле и предполагают получение стабильного фиксированного дохода при относительно низком уровне риска и сохранении высокой ликвидности.",
+      "ADDSUMM": "",
+      "MINSUMM": "500000",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "Брокерское обслуживание",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "1225432",
+      "bxid": "9162",
+      "name": "Персональный брокер",
+      "previewText": "«Персональный брокер» - сбалансированная стратегия доверительного управления ООО ИК «КьюБиЭф»."
+    },
+    {
+      "CODE": "dvizhenie-vverkh-iis",
+      "~CODE": "dvizhenie-vverkh-iis",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Движение вверх ИИС",
+      "PREVIEW_PICTURE": "2665",
+      "~PREVIEW_PICTURE": "2665",
+      "DETAIL_PICTURE": "738",
+      "~DETAIL_PICTURE": "738",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "913",
+      "targetYield": "20-25",
+      "link": "",
+      "new": false,
+      "currencys": ["rur"],
+      "color": "#024",
+      "RISK_LEVEL": "Высокий",
+      "content": "«Движение вверх» — высокодоходная стратегия с активным инвестиционным профилем, в составе которой инвестиции производятся в акции российских компаний с высокой дивидендной доходностью, имеющие дополнительный потенциал роста.  Данная стратегия соответствует группе стратегий «PLUS», которые основаны на активном инвестиционном профиле и нацелены на достижение максимальной доходности с поддержанием высокой ликвидности портфеля. Управление активами производится исходя из значительной толерантности инвестора к риску.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "122586",
+      "bxid": "915",
+      "name": "Движение вверх ИИС",
+      "previewText": ""
+    },
+    {
+      "CODE": "globalnye-rynki",
+      "~CODE": "globalnye-rynki",
+      "IBLOCK_ID": "47",
+      "~IBLOCK_ID": "47",
+      "~NAME": "Глобальные рынки",
+      "ICON": "2662",
+      "PREVIEW_PICTURE": "2666",
+      "~PREVIEW_PICTURE": "2666",
+      "DETAIL_PICTURE": "736",
+      "~DETAIL_PICTURE": "736",
+      "~PREVIEW_TEXT": "",
+      "ACTIVE": true,
+      "~ACTIVE": "Y",
+      "PREVIEW_TEXT_TYPE": "text",
+      "~PREVIEW_TEXT_TYPE": "text",
+      "strategyId": "913",
+      "targetYield": "10-15",
+      "link": "",
+      "new": true,
+      "currencys": ["usd"],
+      "color": "#DDD",
+      "RISK_LEVEL": "Высокий",
+      "content": "Высокодоходная стратегия «Глобальные рынки» позволяет получать прибыль от роста акций мировых корпораций с наименьшей долговой нагрузкой и прозрачной дивидендной политикой без выхода за пределы российской юрисдикции. Данная стратегия соответствует группе стратегий «Balance», которые основаны на сбалансированном инвестиционном профиле и ориентированы на достижение целевой доходности при условии защиты инвестиций за счет структуры портфеля.",
+      "ADDSUMM": "",
+      "MINSUMM": "",
+      "INVESTPLAN": "",
+      "ITEM_TYPE": "",
+      "RATING": "",
+      "PARENT_ID": "",
+      "GROW_RATE": "",
+      "CALC_YIELD": "",
+      "TARIFS": "",
+      "id": "5442113",
+      "bxid": "914",
+      "name": "Глобальные рынки",
+      "previewText": ""
+    }
+  ],
+  "userPortfolios": [
+    {
+      "id": "18925",
+      "date": "08.06.2019",
+      "agreementNumber": "XY784524354",
+      "CONTR": "73408",
+      "portfolioId": "122542",
+      "freeMoney": 0,
+      "structure": [
+        {
+          "i_name": "ПАО 'Газпром'",
+          "rur_rate": "6905.1",
+          "pictures": "16713",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО АНК 'Башнефть'",
+          "rur_rate": "32310",
+          "pictures": "18088",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО 'МТС'",
+          "rur_rate": "7933.5",
+          "pictures": "16841",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО Сбербанк",
+          "rur_rate": "64796.8",
+          "pictures": "16717",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ОАО 'ТГК-1'",
+          "rur_rate": "32802",
+          "pictures": "17143",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО АФК 'Система'",
+          "rur_rate": "45286.8",
+          "pictures": "17077",
+          "value": "RUR"
+        },
+        {
+          "i_name": "United Company RUSAL PLC",
+          "rur_rate": "22890.25",
+          "pictures": "18302",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО Московская Биржа",
+          "rur_rate": "6408.5",
+          "pictures": "8106",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО 'Детский мир'",
+          "rur_rate": "34920.6",
+          "pictures": "17582",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО «Интер РАО»",
+          "rur_rate": "4553",
+          "pictures": "17904",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО «НК «Роснефть»",
+          "rur_rate": "60432.7",
+          "pictures": "17124",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО «НК «Роснефть»",
+          "rur_rate": "2030.69",
+          "pictures": "17124",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО АФК 'Система'",
+          "rur_rate": "60121",
+          "pictures": "17077",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО АФК 'Система'",
+          "rur_rate": "2272.68",
+          "pictures": "17077",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО «ФСК ЕЭС»",
+          "rur_rate": "240586.74",
+          "pictures": "17908",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО Московская Биржа",
+          "rur_rate": "1.99",
+          "pictures": "8106",
+          "value": "RUR"
+        },
+        {
+          "i_name": "Другое",
+          "rur_rate": 507.75
+        }
+      ],
+      "amount": {
+        "RUR": "1249520.97"
+      },
+      "graph": [
+        [
+          "1557187200000",
+          "567632"
+        ],
+        [
+          "1557273600000",
+          "569609"
+        ],
+        [
+          "1557360000000",
+          "567417"
+        ],
+        [
+          "1557446400000",
+          "567445"
+        ],
+        [
+          "1557532800000",
+          "564068"
+        ],
+        [
+          "1557619200000",
+          "564095"
+        ],
+        [
+          "1557705600000",
+          "564122"
+        ],
+        [
+          "1557792000000",
+          "561285"
+        ],
+        [
+          "1557878400000",
+          "561911"
+        ],
+        [
+          "1557964800000",
+          "561470"
+        ],
+        [
+          "1558051200000",
+          "565514"
+        ],
+        [
+          "1558137600000",
+          "562440"
+        ],
+        [
+          "1558224000000",
+          "562467"
+        ],
+        [
+          "1558310400000",
+          "562495"
+        ],
+        [
+          "1558396800000",
+          "562607"
+        ],
+        [
+          "1558483200000",
+          "563870"
+        ],
+        [
+          "1558569600000",
+          "570336"
+        ],
+        [
+          "1558656000000",
+          "570494"
+        ],
+        [
+          "1558742400000",
+          "569589"
+        ],
+        [
+          "1558828800000",
+          "569616"
+        ],
+        [
+          "1558915200000",
+          "569643"
+        ],
+        [
+          "1559001600000",
+          "568597"
+        ],
+        [
+          "1559088000000",
+          "571372"
+        ],
+        [
+          "1559174400000",
+          "571849"
+        ],
+        [
+          "1559260800000",
+          "573989"
+        ],
+        [
+          "1559347200000",
+          "574170"
+        ],
+        [
+          "1559433600000",
+          "574197"
+        ],
+        [
+          "1559520000000",
+          "574224"
+        ],
+        [
+          "1559606400000",
+          "578991"
+        ],
+        [
+          "1559692800000",
+          "581019"
+        ],
+        [
+          "1559779200000",
+          "581416"
+        ],
+        [
+          "1559865600000",
+          "584838"
+        ],
+        [
+          "1559952000000",
+          "587506"
+        ],
+        [
+          "1562112000000",
+          "613942"
+        ],
+        [
+          "1562198400000",
+          "617273"
+        ],
+        [
+          "1562284800000",
+          "620418"
+        ],
+        [
+          "1562371200000",
+          "621648"
+        ],
+        [
+          "1562457600000",
+          "621688"
+        ],
+        [
+          "1562544000000",
+          "622294"
+        ],
+        [
+          "1562630400000",
+          "624763"
+        ],
+        [
+          "1562716800000",
+          "625794"
+        ],
+        [
+          "1562803200000",
+          "626906"
+        ],
+        [
+          "1562889600000",
+          "626041"
+        ],
+        [
+          "1562976000000",
+          "626104"
+        ],
+        [
+          "1563062400000",
+          "626168"
+        ],
+        [
+          "1563148800000",
+          "622974"
+        ],
+        [
+          "1563235200000",
+          "623302"
+        ],
+        [
+          "1563321600000",
+          "622198"
+        ],
+        [
+          "1563408000000",
+          "617627"
+        ],
+        [
+          "1563580800000",
+          "621680"
+        ],
+        [
+          "1563667200000",
+          "621759"
+        ],
+        [
+          "1563753600000",
+          "624320"
+        ],
+        [
+          "1563840000000",
+          "624061"
+        ],
+        [
+          "1563926400000",
+          "624226"
+        ],
+        [
+          "1564012800000",
+          "624150"
+        ],
+        [
+          "1564099200000",
+          "623615"
+        ]
+      ],
+      "yield": {
+        "2019-07-03": "0.06",
+        "2019-07-04": "-0.25",
+        "2019-07-05": "0.2",
+        "2019-07-06": "0.01",
+        "2019-07-07": "0.01",
+        "2019-07-08": "0.23",
+        "2019-07-09": "0.01",
+        "2019-07-10": "0",
+        "2019-07-11": "-0.07",
+        "2019-07-12": "0.01",
+        "2019-07-13": "0.01",
+        "2019-07-14": "0.01",
+        "2019-07-15": "0",
+        "2019-07-16": "0.1",
+        "2019-07-17": "-0.15",
+        "2019-07-18": "0.67",
+        "2019-07-20": "0.01",
+        "2019-07-21": "0.01",
+        "2019-07-22": "0.01",
+        "2019-07-23": "0.03",
+        "2019-07-24": "0.03",
+        "2019-07-25": "0",
+        "2019-07-26": "0.07"
+      },
+      "active": 1
+    },
+    {
+      "id": "18924",
+      "date": "08.06.2019",
+      "CONTR": "73407",
+      "agreementNumber": "asfasfasfasd",
+      "portfolioId": "119546",
+      "structure": [
+        {
+          "i_name": "ПАО 'ТрансФин-М'",
+          "rur_rate": "43000",
+          "pictures": "17455",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО 'ТрансФин-М'",
+          "rur_rate": "1138.21",
+          "pictures": "17455",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО 'ГТЛК'",
+          "rur_rate": "43270.5",
+          "pictures": "18601",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО 'ГТЛК'",
+          "rur_rate": "916.89",
+          "pictures": "18601",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ООО 'КТЖ Финанс' ",
+          "rur_rate": "29295.8",
+          "pictures": "4340897",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ООО 'КТЖ Финанс' ",
+          "rur_rate": "312.91",
+          "pictures": "4340897",
+          "value": "RUR"
+        },
+        {
+          "i_name": "АО 'ФПК'",
+          "rur_rate": "35118",
+          "pictures": "4402044",
+          "value": "RUR"
+        },
+        {
+          "i_name": "АО 'ФПК'",
+          "rur_rate": "1008.36",
+          "pictures": "4402044",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ОАО 'Центральная ППК'",
+          "rur_rate": "41044",
+          "pictures": "5803794",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ОАО 'Центральная ППК'",
+          "rur_rate": "1846",
+          "pictures": "5803794",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО АФК 'Система'",
+          "rur_rate": "65216",
+          "pictures": "17077",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО АФК 'Система'",
+          "rur_rate": "2465.28",
+          "pictures": "17077",
+          "value": "RUR"
+        },
+        {
+          "i_name": "АО «Тинькофф Банк»",
+          "rur_rate": "42672",
+          "pictures": "17627",
+          "value": "RUR"
+        },
+        {
+          "i_name": "АО «Тинькофф Банк»",
+          "rur_rate": "1213.38",
+          "pictures": "17627",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ООО 'О’КЕЙ'",
+          "rur_rate": "24417.6",
+          "pictures": "18589",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ООО 'О’КЕЙ'",
+          "rur_rate": "42.96",
+          "pictures": "18589",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ООО 'Городской супермаркет'",
+          "rur_rate": "43025.8",
+          "pictures": "10415478",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ООО 'Городской супермаркет'",
+          "rur_rate": "313.47",
+          "pictures": "10415478",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ООО «Ритейл Бел Финанс»",
+          "rur_rate": "51895",
+          "pictures": "10463656",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ООО «Ритейл Бел Финанс»",
+          "rur_rate": "255",
+          "pictures": "10463656",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ОАО 'РЖД'",
+          "rur_rate": "12616.42",
+          "pictures": "17247",
+          "value": "RUR"
+        },
+        {
+          "i_name": "Другое",
+          "rur_rate": 33.87
+        }
+      ],
+      "amount": {
+        "RUR": "0",
+        "USD": "0"
+      },
+      "graph": [
+        [
+          "1557187200000",
+          "425829"
+        ],
+        [
+          "1557273600000",
+          "425993"
+        ],
+        [
+          "1557360000000",
+          "426391"
+        ],
+        [
+          "1557446400000",
+          "426495"
+        ],
+        [
+          "1557532800000",
+          "426668"
+        ],
+        [
+          "1557619200000",
+          "426773"
+        ],
+        [
+          "1557705600000",
+          "426878"
+        ],
+        [
+          "1557792000000",
+          "426715"
+        ],
+        [
+          "1557878400000",
+          "427159"
+        ],
+        [
+          "1557964800000",
+          "427222"
+        ],
+        [
+          "1558051200000",
+          "427584"
+        ],
+        [
+          "1558137600000",
+          "427579"
+        ],
+        [
+          "1558224000000",
+          "427683"
+        ],
+        [
+          "1558310400000",
+          "427788"
+        ],
+        [
+          "1558396800000",
+          "427618"
+        ],
+        [
+          "1558483200000",
+          "428236"
+        ],
+        [
+          "1558569600000",
+          "428478"
+        ],
+        [
+          "1558656000000",
+          "428633"
+        ],
+        [
+          "1558742400000",
+          "428947"
+        ],
+        [
+          "1558828800000",
+          "429055"
+        ],
+        [
+          "1558915200000",
+          "429163"
+        ],
+        [
+          "1559001600000",
+          "429283"
+        ],
+        [
+          "1559088000000",
+          "429147"
+        ],
+        [
+          "1559174400000",
+          "429230"
+        ],
+        [
+          "1559260800000",
+          "429459"
+        ],
+        [
+          "1559347200000",
+          "429215"
+        ],
+        [
+          "1559433600000",
+          "429322"
+        ],
+        [
+          "1559520000000",
+          "429430"
+        ],
+        [
+          "1559606400000",
+          "429752"
+        ],
+        [
+          "1559692800000",
+          "430016"
+        ],
+        [
+          "1559779200000",
+          "430449"
+        ],
+        [
+          "1559865600000",
+          "430410"
+        ],
+        [
+          "1559952000000",
+          "431012"
+        ],
+        [
+          "1562112000000",
+          "436139"
+        ],
+        [
+          "1562198400000",
+          "435801"
+        ],
+        [
+          "1562284800000",
+          "436076"
+        ],
+        [
+          "1562371200000",
+          "436181"
+        ],
+        [
+          "1562457600000",
+          "436287"
+        ],
+        [
+          "1562544000000",
+          "436606"
+        ],
+        [
+          "1562630400000",
+          "436574"
+        ],
+        [
+          "1562716800000",
+          "437016"
+        ],
+        [
+          "1562803200000",
+          "437980"
+        ],
+        [
+          "1562889600000",
+          "438388"
+        ],
+        [
+          "1562976000000",
+          "438498"
+        ],
+        [
+          "1563062400000",
+          "438609"
+        ],
+        [
+          "1563148800000",
+          "438758"
+        ],
+        [
+          "1563235200000",
+          "438732"
+        ],
+        [
+          "1563321600000",
+          "438916"
+        ],
+        [
+          "1563408000000",
+          "438965"
+        ],
+        [
+          "1563580800000",
+          "439415"
+        ],
+        [
+          "1563667200000",
+          "439527"
+        ],
+        [
+          "1563753600000",
+          "439865"
+        ],
+        [
+          "1563840000000",
+          "439716"
+        ],
+        [
+          "1563926400000",
+          "440058"
+        ],
+        [
+          "1564012800000",
+          "440413"
+        ],
+        [
+          "1564099200000",
+          "440653"
+        ]
+      ],
+      "yield": {
+        "2019-07-03": "0.02",
+        "2019-07-04": "0.02",
+        "2019-07-05": "0.02",
+        "2019-07-06": "0.02",
+        "2019-07-07": "0.02",
+        "2019-07-08": "0.02",
+        "2019-07-09": "0.02",
+        "2019-07-10": "0.02",
+        "2019-07-11": "0.03",
+        "2019-07-12": "0.03",
+        "2019-07-13": "0.03",
+        "2019-07-14": "0.03",
+        "2019-07-15": "0.03",
+        "2019-07-16": "0.03",
+        "2019-07-17": "0.03",
+        "2019-07-18": "0.03",
+        "2019-07-20": "0.03",
+        "2019-07-21": "0.03",
+        "2019-07-22": "0.03",
+        "2019-07-23": "0.03",
+        "2019-07-24": "0.03",
+        "2019-07-25": "0.03",
+        "2019-07-26": "0.03"
+      },
+      "active": 1
+    },
+    {
+      "id": "189253",
+      "date": "08.06.2019",
+      "agreementNumber": "XY7845243543",
+      "CONTR": "73408",
+      "portfolioId": "1225431",
+      "freeMoney": 20,
+      "structure": [
+        {
+          "i_name": "ПАО АНК 'Башнефть' USD",
+          "rur_rate": "32310",
+          "pictures": "18088",
+          "value": "USD"
+        },
+        {
+          "i_name": "ПАО 'МТС'",
+          "rur_rate": "7933.5",
+          "pictures": "16841",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО Сбербанк",
+          "rur_rate": "64796.8",
+          "pictures": "16717",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ОАО 'ТГК-1'",
+          "rur_rate": "32802",
+          "pictures": "17143",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО АФК 'Система'",
+          "rur_rate": "45286.8",
+          "pictures": "17077",
+          "value": "RUR"
+        },
+        {
+          "i_name": "United Company RUSAL PLC",
+          "rur_rate": "22890.25",
+          "pictures": "18302",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО Московская Биржа",
+          "rur_rate": "6408.5",
+          "pictures": "8106",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО 'Детский мир'",
+          "rur_rate": "34920.6",
+          "pictures": "17582",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО «Интер РАО»",
+          "rur_rate": "4553",
+          "pictures": "17904",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО «НК «Роснефть»",
+          "rur_rate": "60432.7",
+          "pictures": "17124",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО «НК «Роснефть»",
+          "rur_rate": "2030.69",
+          "pictures": "17124",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО АФК 'Система'",
+          "rur_rate": "60121",
+          "pictures": "17077",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО АФК 'Система'",
+          "rur_rate": "2272.68",
+          "pictures": "17077",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО «ФСК ЕЭС»",
+          "rur_rate": "240586.74",
+          "pictures": "17908",
+          "value": "RUR"
+        },
+        {
+          "i_name": "ПАО Московская Биржа",
+          "rur_rate": "1.99",
+          "pictures": "8106",
+          "value": "RUR"
+        },
+        {
+          "i_name": "Другое",
+          "rur_rate": 507.75
+        }
+      ],
+      "amount": {
+        "RUR": "620603.97",
+        "USD": "32310"
+      },
+      "graph": [
+        [
+          "1557187200000",
+          "567632"
+        ],
+        [
+          "1557273600000",
+          "569609"
+        ],
+        [
+          "1557360000000",
+          "567417"
+        ],
+        [
+          "1557446400000",
+          "567445"
+        ],
+        [
+          "1557532800000",
+          "564068"
+        ],
+        [
+          "1557619200000",
+          "564095"
+        ],
+        [
+          "1557705600000",
+          "564122"
+        ],
+        [
+          "1557792000000",
+          "561285"
+        ],
+        [
+          "1557878400000",
+          "561911"
+        ],
+        [
+          "1557964800000",
+          "561470"
+        ],
+        [
+          "1558051200000",
+          "565514"
+        ],
+        [
+          "1558137600000",
+          "562440"
+        ],
+        [
+          "1558224000000",
+          "562467"
+        ],
+        [
+          "1558310400000",
+          "562495"
+        ],
+        [
+          "1558396800000",
+          "562607"
+        ],
+        [
+          "1558483200000",
+          "563870"
+        ],
+        [
+          "1558569600000",
+          "570336"
+        ],
+        [
+          "1558656000000",
+          "570494"
+        ],
+        [
+          "1558742400000",
+          "569589"
+        ],
+        [
+          "1558828800000",
+          "569616"
+        ],
+        [
+          "1558915200000",
+          "569643"
+        ],
+        [
+          "1559001600000",
+          "568597"
+        ],
+        [
+          "1559088000000",
+          "571372"
+        ],
+        [
+          "1559174400000",
+          "571849"
+        ],
+        [
+          "1559260800000",
+          "573989"
+        ],
+        [
+          "1559347200000",
+          "574170"
+        ],
+        [
+          "1559433600000",
+          "574197"
+        ],
+        [
+          "1559520000000",
+          "574224"
+        ],
+        [
+          "1559606400000",
+          "578991"
+        ],
+        [
+          "1559692800000",
+          "581019"
+        ],
+        [
+          "1559779200000",
+          "581416"
+        ],
+        [
+          "1559865600000",
+          "584838"
+        ],
+        [
+          "1559952000000",
+          "587506"
+        ],
+        [
+          "1562112000000",
+          "613942"
+        ],
+        [
+          "1562198400000",
+          "617273"
+        ],
+        [
+          "1562284800000",
+          "620418"
+        ],
+        [
+          "1562371200000",
+          "621648"
+        ],
+        [
+          "1562457600000",
+          "621688"
+        ],
+        [
+          "1562544000000",
+          "622294"
+        ],
+        [
+          "1562630400000",
+          "624763"
+        ],
+        [
+          "1562716800000",
+          "625794"
+        ],
+        [
+          "1562803200000",
+          "626906"
+        ],
+        [
+          "1562889600000",
+          "626041"
+        ],
+        [
+          "1562976000000",
+          "626104"
+        ],
+        [
+          "1563062400000",
+          "626168"
+        ],
+        [
+          "1563148800000",
+          "622974"
+        ],
+        [
+          "1563235200000",
+          "623302"
+        ],
+        [
+          "1563321600000",
+          "622198"
+        ],
+        [
+          "1563408000000",
+          "617627"
+        ],
+        [
+          "1563580800000",
+          "621680"
+        ],
+        [
+          "1563667200000",
+          "621759"
+        ],
+        [
+          "1563753600000",
+          "624320"
+        ],
+        [
+          "1563840000000",
+          "624061"
+        ],
+        [
+          "1563926400000",
+          "624226"
+        ],
+        [
+          "1564012800000",
+          "624150"
+        ],
+        [
+          "1564099200000",
+          "623615"
+        ]
+      ],
+      "yield": {
+        "2019-07-03": "0.06",
+        "2019-07-04": "-0.25",
+        "2019-07-05": "0.2",
+        "2019-07-06": "0.01",
+        "2019-07-07": "0.01",
+        "2019-07-08": "0.23",
+        "2019-07-09": "0.01",
+        "2019-07-10": "0",
+        "2019-07-11": "-0.07",
+        "2019-07-12": "0.01",
+        "2019-07-13": "0.01",
+        "2019-07-14": "0.01",
+        "2019-07-15": "0",
+        "2019-07-16": "0.1",
+        "2019-07-17": "-0.15",
+        "2019-07-18": "0.67",
+        "2019-07-20": "0.01",
+        "2019-07-21": "0.01",
+        "2019-07-22": "0.01",
+        "2019-07-23": "0.03",
+        "2019-07-24": "0.03",
+        "2019-07-25": "0",
+        "2019-07-26": "0.07"
+      },
+      "active": 1
+    }
+  ],
+  "financialAdvisor": "",
+  "currencys": [],
+  "rates": {
+    "USD": 65.4,
+    "EUR": 69.9
+  },
+  "config": {
+    "emails": {
+      "it": "maksim.boldyrev@qbf.world",
+      "reports": "midoffice@qbfin.ru",
+      "backoffice": "backoffice@qbf.world"
+    },
+    "phones": {
+      "it": "+7(495) 111-11-11"
+    },
+    "global": {
+      "registration": true,
+      "noticesInterval": 20000
+    }
+  },
+  "requisites": [
+    {
+      "ACTIVE": "Y",
+      "BANK_ACCOUNT": "407 01 810 70 1400 00 0057",
+      "BANK_NAME": "АО «Альфа-Банк», г. Москва",
+      "BIK": "044525593",
+      "CODE": "alphas",
+      "CURRENCY": "RUR",
+      "DETAIL_PICTURE": "3",
+      "ITEM_TYPE": "Доверительное управление",
+      "IBLOCK_ID": "70",
+      "ID": "20867",
+      "K_ACCOUNT": "30101810200000000593",
+      "NAME": "Альфа банк",
+      "PREVIEW_PICTURE": "70",
+      "PREVIEW_TEXT": "",
+      "PREVIEW_TEXT_TYPE": "text",
+      "RECEIVER": "ООО ИК «КьюБиЭф»",
+      "RECEIVER_INN": "7733673955",
+      "content": "",
+      "~ACTIVE": "Y",
+      "~CODE": "alpha",
+      "~DETAIL_PICTURE": "",
+      "~IBLOCK_ID": "70",
+      "~ID": "20867",
+      "~NAME": "Альфа банк",
+      "~PREVIEW_PICTURE": "",
+      "~PREVIEW_TEXT": "",
+      "~PREVIEW_TEXT_TYPE": "text"
+    },
+    {
+      "ACTIVE": "Y",
+      "BANK_ACCOUNT": "407 01 810 70 1400 00 0057",
+      "BANK_NAME": "АО «Альфа-Банк», г. Москва",
+      "BIK": "044525593",
+      "CODE": "alphaf",
+      "CURRENCY": "RUR",
+      "DETAIL_PICTURE": "3",
+      "ITEM_TYPE": "Брокерское обслуживание",
+      "IBLOCK_ID": "70",
+      "ID": "208673",
+      "K_ACCOUNT": "30101810200000000593",
+      "NAME": "Сбербанк",
+      "PREVIEW_PICTURE": "70",
+      "PREVIEW_TEXT": "",
+      "PREVIEW_TEXT_TYPE": "text",
+      "RECEIVER": "ООО ИК «КьюБиЭф»",
+      "RECEIVER_INN": "7733673955",
+      "content": "",
+      "~ACTIVE": "Y",
+      "~CODE": "alpha",
+      "~DETAIL_PICTURE": "",
+      "~IBLOCK_ID": "70",
+      "~ID": "20867",
+      "~NAME": "Сбербанк",
+      "~PREVIEW_PICTURE": "",
+      "~PREVIEW_TEXT": "",
+      "~PREVIEW_TEXT_TYPE": "text"
+    },
+    {
+      "ACTIVE": "Y",
+      "BANK_ACCOUNT": "407 01 810 70 1400 00 0057",
+      "BANK_NAME": "АО «Альфа-Банк», г. Москва",
+      "BIK": "044525593",
+      "CODE": "alpha_usd",
+      "CURRENCY": "USD",
+      "DETAIL_PICTURE": "3",
+      "IBLOCK_ID": "70",
+      "ID": "20867",
+      "K_ACCOUNT": "30101810200000000593",
+      "NAME": "Альфа банк USD",
+      "PREVIEW_PICTURE": "70",
+      "PREVIEW_TEXT": "",
+      "PREVIEW_TEXT_TYPE": "text",
+      "RECEIVER": "ООО ИК «КьюБиЭф»",
+      "RECEIVER_INN": "7733673955",
+      "content": "",
+      "~ACTIVE": "Y",
+      "~CODE": "alpha",
+      "~DETAIL_PICTURE": "",
+      "~IBLOCK_ID": "70",
+      "~ID": "208672",
+      "~NAME": "Альфа банк USD",
+      "~PREVIEW_PICTURE": "",
+      "~PREVIEW_TEXT": "",
+      "~PREVIEW_TEXT_TYPE": "text"
+    }
+  ],
+  "orderList": "[]"
+}

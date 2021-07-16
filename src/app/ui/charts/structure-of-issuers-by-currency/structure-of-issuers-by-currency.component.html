@@ -1,0 +1,16 @@
+<div class="ycf__content-row flex flex-start-aligned">
+  <div class="ycf__content-coll" *ngFor="let chart of charts">
+    <div class="ycf__date flex">
+      <span>Данные актуальны на:</span>
+      <strong>{{chart.date}}</strong>
+    </div>
+    <div class="ycf__chart-big">
+      <canvas chart
+              [colors]="chart.colors"
+              [values]="chart.values"
+              [labels]="chart.labels">
+      </canvas>
+      <div class="ycf__chart-price">{{chart.sum | number:'1.2-2':'ru-RU'}}<br> {{chart.name}}</div>
+    </div>
+  </div>
+</div>

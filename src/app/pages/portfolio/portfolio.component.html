@@ -1,0 +1,142 @@
+<app-layout [isSiteGray]="true">
+    <div class="top-panel top-panel_items flex">
+        <div class="top-panel__box flex">
+            <div class="top-panel__title">
+                <strong>Ваш портфель</strong>
+                <div class="top-panel__title-small">Общая стоимость портфеля</div>
+                <!-- <div class="top-panel__title-small">по курсу ЦБ на <span class="user__total user__total-no-padding">{{dateLastUpdate}}</span>
+                </div> -->
+            </div>
+            <div class="top-panel__price">
+                <span>{{ balance | number:'1.2-2':'ru-RU' }}<span class="rur">&nbsp;₽</span></span>
+            </div>
+        </div>
+        <div class="top-panel__links flex">
+            <a [routerLink]="'/select-product'" class="top-panel__link">
+                <img src="/assets/images/main/header-icon-1.svg" class="top-panel__img" alt="">
+                <div class="top-panel__caption">Подобрать<br> продукты</div>
+            </a>
+            <a [routerLink]="'/what-is-iis'" class="top-panel__link">
+                <img src="/assets/images/main/header-icon-2.svg" class="top-panel__img" alt="">
+                <div class="top-panel__caption">Что такое<br> ИИС</div>
+            </a>
+            <a [routerLink]="'/catalog'" class="top-panel__link">
+                <img src="/assets/images/main/header-icon-3.svg" class="top-panel__img" alt="">
+                <div class="top-panel__caption">Каталог<br> продуктов</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="products-block ycf ycf_pb">
+        <div class="products-block__empty-portfolio" *ngIf="emptyPortfolio; else notEmpty">Вы можете воспользоваться
+            <a [routerLink]="'/select-product'">сервисом по подбору подходящего продукта</a> или перейти в
+            <a [routerLink]="'/catalog'">каталог всех продуктов</a> и посмотреть их самостоятельно. Также мы
+            рекомендуем изучить раздел <a [routerLink]="'/main'">"Продукты сезона"</a>, где находятся
+            самые актуальные инвестиционные идеи.
+        </div>
+        <ng-template #notEmpty>
+            <div class="ycf__body flex">
+                <div class="ycf__coll">
+                    <div class="ycf__coll-title settings__title_mobile--js">
+                        <span>Подключенные продукты</span>
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+                                <defs>
+                                    <style>
+                                        .cls-1 {
+                                            fill: none;
+                                            stroke: #999;
+                                            stroke-miterlimit: 10;
+                                            stroke-width: 0.75px;
+                                        }
+                                    </style>
+                                </defs>
+                                <title>Ресурс 16</title>
+                                <g id="Слой_2" data-name="Слой 2">
+                                    <g id="Content">
+                                        <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"/>
+                                    </g>
+                                </g>
+                            </svg>
+                        </i>
+                    </div>
+                    <div class="ycf__content settings__items--js  active"> <!-- *ngIf="this.rates"> -->
+                        <div *ngFor="let item of items" style="margin-top: 40px">
+                            <div class="ycf__products ycf__products_gr">
+                                <a [routerLink]="['/portfolio', item.id]" class="ycf__products-img"
+                                    [ngStyle]="{background:item.product.color}">
+                                    <img [src]="getIcon(item.product)" alt="">
+                                </a>
+                                <div class="ycf__products-content">
+                                    <a [routerLink]="['/portfolio', item.id]"
+                                        class="ycf__products-name">{{ item.product.name }}</a>
+                                    <div class="ycf__products-desc">{{ item.product.ITEM_TYPE }}</div>
+                                    <div class="ycf__products-balance flex">
+                                        <div class="ycf__products-balance-desc flex">
+                                            <span>Баланс на {{ item.dateEmitents }} :</span>
+                                            <div *ngIf="item.product.currencys.includes('USD')">
+                                                <span>По курсу ЦБ</span>
+                                            </div>
+                                        </div>
+                                            <a [routerLink]="['/portfolio', item.id]"
+                                            class="ycf__products-balance-link"><strong>{{ ( currencySetup(item) || 0 ) |
+                                                number:'1.2-2':'ru-RU' }} <span class="rur">&nbsp;₽</span></strong></a>
+                                    </div>
+                                </div>
+                                <div class="ycf__products-link">
+                                    <a [routerLink]="['/portfolio', item.id]">Перейти<br> на страницу</a>
+                                    <a [routerLink]="['/payment', item.id]">Пополнить</a>
+                                </div>
+
+                            </div>
+                            <a *ngIf="item && currencySetup(item) <= 0" [routerLink]="['/payment', item.id]"
+                                class="ycf__link">
+                                <span>Необходимо внести денежные средства ></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ycf__coll" *ngIf="balance > 0">
+                    <div class="ycf__coll-title settings__title_mobile--js">
+                        <span>Доли продуктов в портфеле в %</span>
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.09 29.13">
+                                <defs>
+                                    <style>
+                                        .cls-1 {
+                                            fill: none;
+                                            stroke: #999;
+                                            stroke-miterlimit: 10;
+                                            stroke-width: 0.75px;
+                                        }
+                                    </style>
+                                </defs>
+                                <title>Ресурс 16</title>
+                                <g id="Слой_2" data-name="Слой 2">
+                                    <g id="Content">
+                                        <polyline class="cls-1" points="14.83 28.86 0.53 14.56 14.83 0.27"/>
+                                    </g>
+                                </g>
+                            </svg>
+                        </i>
+                    </div>
+                    <div class="ycf__content settings__items--js active">
+                        <div class="ycf__chart">
+                            <canvas id="pieChart"></canvas>
+                            <div class="ycf__chart-price"><span [innerHTML]="(balance | shortnumber)"></span><br> руб.
+                            </div>
+                        </div>
+                        <div class="ycf__row flex">
+                            <div class="ycf__column" *ngFor="let item of items">
+                                <div class="ycf__column-caption color-{{ item.color }}">{{ item.product.name }}</div>
+                                <div class="ycf__column-value">{{ item.share | number:'1.2-2' }}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+    <!--- product-anons-v2 END --->
+    <app-footer-slick></app-footer-slick>
+</app-layout>

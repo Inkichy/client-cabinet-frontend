@@ -1,0 +1,241 @@
+<app-layout [isSiteGray]="true">
+  <app-top-panel class="top-panel flex" title="{{product.name}}" smallTitle='{{product.ITEM_TYPE}}'></app-top-panel>
+  <div class="product-anons-v2 product-anons-v2_tarif flex">
+
+    <div class="product-anons-v2__body" *ngIf="product">
+      <div class="errors" *ngIf="errors.length">
+        <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+      </div>
+
+      <div class="product-anons-v2__link" *ngIf="productInstalled">Продукт подключен</div>
+
+      <div class="product-anons-v2__characteristics flex">
+        <div class="product-anons-v2__top product-anons-v2__top_new inverted_img_block"
+          [ngStyle]="{'background-color': product.color}">
+          <div class="product-anons-v2__img product-anons-v2__img_desktop inverted_img">
+            <img [src]="getImage(product, 'desktop')" alt="">
+          </div>
+          <div class="product-anons-v2__block">
+            <div class="product-anons__name">{{product.name}}</div>
+            <div class="poduct-anons-v2__info oduct-anons-v2__info_new flex">
+              <div class="product-anons-v2__info-item">
+                <div class="product-anons-v2__info-value">{{product.MINSUMM * 1 | number:'':'ru-RU'}}
+                </div>
+                <div class="product-anons-v2__info-name">минимальная<br> сумма, руб.*</div>
+              </div>
+              <div class="product-anons__currency">
+                <div class="product-anons__currency-items flex">
+                  <strong><strong><span class="rur">₽</span></strong></strong>
+                  <span>RUR</span>
+                </div>
+                <div class="product-anons__currency-items flex">
+                  <strong>$</strong>
+                  <span>USD</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-anons-v2__tariffs flex" *ngIf="product.TARIFS.head">
+          <div class="product-anons-v2__tariffs-title">Наши тарифы</div>
+          <div class="product-anons-v2__tariffs-link">
+            <a href="https://qbfin.ru/upload/iblock/f1e/Brokerskiy-reglament-2020.01.30.pdf" target="_blank" class="product-anons-v2__tariffs-btn"
+              [ngStyle]="{'background-color': product.color}"
+              data-src="#info-modal-bd"
+              data-fancybox=""
+              data-modal="true">
+              <img src="/assets/images/brokerage-service-base-rate/PDF-icon.svg" alt="">
+              <span>Посмотреть<br>тарифы</span>
+            </a>
+          </div>
+        </div>
+        <div class="bo-list__node">Либо эквивалент в долларах</div>
+        <div class="product-description" [innerHTML]="product.content"></div>
+
+        <div class="product-buttons">
+          <div class="product-buttons__btn">
+            <a (click)="sendPurchaseRequest(+product.ID)" class="btn btn_darkgray">Подключить</a>
+            <!-- [routerLink]="['/tm-purchase', product.id]" -->
+          </div>
+        </div>
+      </div>
+
+      <div class="product-anons-v2__characteristics product-anons-v2__characteristics-noborder flex">
+        <div class="product-anons-v2__top product-anons-v2__top_new inverted_img_block"
+          [ngStyle]="{'background-color': childProduct.color}">
+          <div class="product-anons-v2__img product-anons-v2__img_desktop inverted_img">
+            <img [src]="getImage(childProduct, 'desktop')" alt="">
+          </div>
+          <div class="product-anons-v2__block">
+            <div class="product-anons__name">{{childProduct.name}}</div>
+            <div class="poduct-anons-v2__info oduct-anons-v2__info_new flex">
+              <div class="product-anons-v2__info-item">
+                <div class="product-anons-v2__info-value">{{childProduct.MINSUMM}}</div>
+                <div class="product-anons-v2__info-name">минимальная<br> сумма, руб.*</div>
+              </div>
+              <div class="product-anons__currency">
+                <div class="product-anons__currency-items flex">
+                  <strong><span class="rur">₽</span></strong>
+                  <span>RUR</span>
+                </div>
+                <div class="product-anons__currency-items flex">
+                  <strong>$</strong>
+                  <span>USD</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-anons-v2__tariffs flex" *ngIf="childProduct.TARIFS.head">
+          <div class="product-anons-v2__tariffs-title">Наши тарифы</div>
+          <div class="product-anons-v2__tariffs-link">
+            <a target="_blank" href="https://qbfin.ru/upload/iblock/f1e/Brokerskiy-reglament-2020.01.30.pdf"
+              class="product-anons-v2__tariffs-btn" [ngStyle]="{'background-color': childProduct.color}"
+              data-src="#info-modal-bd-child" data-fancybox="" data-modal="true">
+              <img src="/assets/images/brokerage-service-base-rate/PDF-icon.svg" alt="">
+              <span>Посмотреть<br>тарифы</span>
+            </a>
+          </div>
+        </div>
+        <div class="bo-list__node">Либо эквивалент в долларах</div>
+        <div class="product-description" [innerHTML]="childProduct.content"></div>
+        <div class="product-description__disabled"></div>
+        <a class="iis-link" routerLink="/what-is-iis">Что такое ИИС? Посмотреть &gt;</a>
+        <div class="product-buttons">
+          <div class="product-buttons__btn">
+            <a (click)="sendPurchaseChildProductRequest(childProduct.ID)" class="btn btn_darkgray">Подключить</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product-anons-v2__description product-anons-v2__description_new">
+      <div class="we-present">
+        <div class="we-present__contanier we-present__contanier_new flex">
+          <div class="we-present__title we-present__title_new">
+            Мы<br> предоставляем
+          </div>
+          <div class="we-present__items flex">
+            <div class="we-present__item we-present__item-new flex">
+              <div class="we-present__icon flex">
+                <img src="/assets/images/brokerage-service/icon-1.svg" alt="">
+              </div>
+              <div class="we-present__text">
+                Доступ на российские<br> биржи
+              </div>
+            </div>
+            <div class="we-present__item we-present__item-new flex">
+              <div class="we-present__icon flex">
+                <img src="/assets/images/brokerage-service/icon-2.svg" alt="">
+              </div>
+              <div class="we-present__text">
+                Технологии<br> интернет-трейдинга
+              </div>
+            </div>
+            <div class="we-present__item we-present__item-new flex">
+              <div class="we-present__icon flex">
+                <img src="/assets/images/brokerage-service/icon-3.svg" alt="">
+              </div>
+              <div class="we-present__text">Профессиональное<br> сопровождение</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-anons-v2__description-article">
+        <p><strong>Преимущества брокерского обслуживания для клиентов</strong></p>
+        <ul>
+          <li>Индивидуальный инвестиционный портфель с полным контролем его структуры и состояния сделок.</li>
+          <li>Самостоятельное принятие решений о моменте покупки/продажи ценных бумаг.</li>
+          <li>Аналитическое и консультационное сопровождение клиентов на каждом этапе работы.</li>
+          <li>Отсутствие ограничений по сроку инвестирования.</li>
+          <li>Возможность совершать операции с ценными бумагами на различных торговых системах.</li>
+          <li>Максимальная ликвидность в любой момент времени.</li>
+          <li>Возможность работы с производными финансовыми инструментами (фьючерсы опционы).</li>
+        </ul>
+      </div>
+      <div class="products-block__btn">
+        <a [routerLink]="'/broker-service'" class="btn btn_with_img flex">
+          <div>
+            <img src="/assets/images/main-page/icon-1.svg" alt="">
+          </div>
+          <span>Посмотреть все инвестиционные обзоры</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <app-product-slider class="products-block products-block_pb products-block_gray products-block_pt">
+  </app-product-slider>
+
+
+  <div id="info-modal-bd" style="display: none;">
+    <div class="info-modal" *ngIf="product">
+      <div class="info-modal__top" [ngStyle]="{'background-color': product.color}">
+        <div class="info-modal__subtitle">Брокерское обслуживание</div>
+        <div class="info-modal__title">{{product.name}}</div>
+      </div>
+      <div class="info-modal__body">
+        <div class="info-modal__content">
+          <div class="info-modal__caption">{{product.TARIFS.head}}</div>
+          <div class="info-modal__desc" [innerHTML]="product.TARIFS.description">
+          </div>
+          <div class="info-modal__table">
+            <div class="info-modal__td" *ngFor="let table of product.TARIFS.tables">
+              <div class="info-modal__table-title" [ngStyle]="{'color': product.color}">
+                {{table.tableTitles}}
+              </div>
+              <div class="info-modal__box">
+                <div class="info-modal__items flex" *ngFor="let row of table.table_row">
+                  <div class="info-modal__coll">
+                    <strong>{{row[0]}}</strong>
+                  </div>
+                  <div class="info-modal__coll">
+                    <small>{{row[1]}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="invest-modal__button">
+        <a href="javascript:void(0)" onclick="$.fancybox.close()" class="btn btn_small btn_gray">Закрыть</a>
+      </div>
+    </div>
+  </div><!-- end info-modal-bd -->
+  <div id="info-modal-bd-child" style="display: none;">
+    <div class="info-modal" *ngIf="childProduct">
+      <div class="info-modal__top" [ngStyle]="{'background-color': childProduct.color}">
+        <div class="info-modal__subtitle">Брокерское обслуживание</div>
+        <div class="info-modal__title">{{childProduct.name}}</div>
+      </div>
+      <div class="info-modal__body">
+        <div class="info-modal__content">
+          <div class="info-modal__caption">{{childProduct.TARIFS.head}}</div>
+          <div class="info-modal__desc" [innerHTML]="childProduct.TARIFS.description">
+          </div>
+          <div class="info-modal__table">
+            <div class="info-modal__td" *ngFor="let table of childProduct.TARIFS.tables">
+              <div class="info-modal__table-title" [ngStyle]="{'color': childProduct.color}">
+                {{table.tableTitles}}
+              </div>
+              <div class="info-modal__box">
+                <div class="info-modal__items flex" *ngFor="let row of table.table_row">
+                  <div class="info-modal__coll">
+                    <strong>{{row[0]}}</strong>
+                  </div>
+                  <div class="info-modal__coll">
+                    <small>{{row[1]}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="invest-modal__button">
+        <a href="javascript:void(0)" onclick="$.fancybox.close()" class="btn btn_small btn_gray">Закрыть</a>
+      </div>
+    </div>
+  </div><!-- end info-modal-bd -->
+</app-layout>

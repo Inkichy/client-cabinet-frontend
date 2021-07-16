@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": {
+      "host": "client.qbfin.ru",
+      "protocol": "https:",
+      "port": "443"
+    },
+    "secure": false,
+    "changeOrigin": true
+  }
+}

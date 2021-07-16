@@ -1,0 +1,22 @@
+<div class="site flex flex_wrap site_gray" [class.site_gray]="isSiteGray">
+  <app-header-mobile class="header-mobile"></app-header-mobile>
+  <app-sidebar class="sidebar"></app-sidebar>
+  <div class="content">
+    <div [ngStyle]="setWrapperStyle()" class="wrapper">
+      <div [ngStyle]="setHeaderStyle()">
+        <app-header class="user user_fixed flex"></app-header>
+      </div>
+      <ng-content></ng-content>
+    </div>
+
+    <div class="menu-bottom">
+      <div class="menu-bottom__wrapper">
+        <app-menu [recursive]='false'></app-menu>
+      </div>
+    </div>
+    <app-footer class="footer"></app-footer>
+  </div>
+</div>
+<div class="scroll-top">
+  <a><img src="/assets/images/main/scroll-top.png" alt=""></a>
+</div>

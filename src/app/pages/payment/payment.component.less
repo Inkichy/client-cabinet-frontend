@@ -1,0 +1,76 @@
+.currency-select {
+  text-decoration: none;
+
+  &:after {
+    content: '•';
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  &.active {
+    font-weight: bold;
+    cursor: default;
+    span {
+      color:#00a19b;
+      border-bottom: none;
+    }
+  }
+
+  &.last {
+    margin-right: 0;
+    &:after {
+      content: none;
+    }
+  }
+
+  span {
+    border-bottom: 1px dashed #0f0f11;
+    color: #0f0f11;
+  }
+}
+.payment-wrapper .faq__content:not(.active) {
+  padding: 0;
+}
+.requister__form-product-data {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.padding-x-big {
+  padding: 20px 0;
+  @media(min-width: 500px) {
+    padding-left: 40px;padding-right: 40px;
+  }
+}
+
+.requister__form__content {
+  .column-sum {
+    width: 70%;
+    @media(max-width: 500px) {
+      width: 100%;
+      display: inline-flex;
+    }
+  }
+  .column-btn {
+    width: 30%;
+    @media(max-width: 500px) {
+      width: 100%;
+      display: inline-flex;
+    }
+  }
+}
+.payment-step3__coll-bottom .payment-step3__button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column;
+}
+
+.payment-step3__coll .btn.btn_darkgray {
+  position: static;
+  margin: 5px;
+}
+.payment-step3__coll {
+
+}

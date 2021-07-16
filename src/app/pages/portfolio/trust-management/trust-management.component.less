@@ -1,0 +1,51 @@
+.no-product {
+  justify-content: flex-end;
+}
+.flex-actual-data {
+    justify-content: flex-start;
+    display: flex;
+  }
+  .ycf__date-actual-data {
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 16px;
+    margin: 23px 0px 0px 35px;
+    color: #666666;
+    font-weight: 300;
+  }
+  .ycf__date-actual-data strong{
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0px 0px 0px 10px;
+    color: #000;
+  }
+  @media (max-width: 767px) {
+    .ycf__date-actual-data {
+      margin: 25px 0px 30px 0px;
+      font-size: 14px;
+    }
+    .ycf__date-actual-data strong{
+      font-size: 14px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1100px) {
+    .ycf__date-actual-data {
+      margin: 25px 0px 30px 0px;
+    }
+  }
+  @media (max-width: 1100px) {
+    .ycf__date-actual-data.settings__items_hide {
+      height: 0;
+      overflow: hidden;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin: 0;
+      transition: all 0.5s !important;
+    }
+  }
+  @media all and (-ms-high-contrast: none),
+  (-ms-high-contrast: active) {
+      .ycf__coll-title::before {
+        display: none;
+      }
+  }

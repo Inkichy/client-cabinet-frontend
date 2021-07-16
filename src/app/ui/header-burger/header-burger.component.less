@@ -1,0 +1,91 @@
+@media (max-width: 1100px) {
+    .header-mobile-burger {
+        display: block;
+        width: 80px;
+        height: 80px;
+        position: relative;
+    }
+    .header-mobile-burger span,
+    .header-mobile-burger span::before,
+    .header-mobile-burger span::after {
+        position: absolute;
+        top: 50%;
+        margin-top: -3px;
+        left: 50%;
+        margin-left: -22.5px;
+        width: 45px;
+        height: 3px;
+        background-color: #fff;
+        transition: 0.2s ease-in;
+    }
+    .header-mobile-burger span::before,
+    .header-mobile-burger span::after {
+        content: '';
+        display: block;
+        transition: 0.2s ease-in;
+    }
+    .header-mobile-burger span::before {
+        transform: translateY(-12px);
+    }
+    .header-mobile-burger span::after {
+        transform: translateY(14px);
+    }
+    .header-mobile-burger_active span {
+        height: 0;
+        margin-top: -2px;
+    }
+    .header-mobile-burger_active span:before {
+        transform: rotate(-135deg);
+        transform-origin: center;
+    }
+    .header-mobile-burger_active span:after {
+        transform: rotate(135deg);
+        transform-origin: center;
+    }
+}
+
+@media (max-width: 760px) {
+    .header-mobile-burger {
+        display: block;
+        width: 80px;
+        height: 80px;
+        position: relative;
+    }
+    .header-mobile-burger span,
+    .header-mobile-burger span::before,
+    .header-mobile-burger span::after {
+        position: absolute;
+        top: 50%;
+        margin-top: -2px;
+        left: 50%;
+        margin-left: -15px;
+        width: 30px;
+        height: 3px;
+        background-color: #fff;
+        transition: 0.2s ease-in;
+    }
+    .header-mobile-burger span::before,
+    .header-mobile-burger span::after {
+        content: '';
+        display: block;
+        transition: 0.2s ease-in;
+    }
+    .header-mobile-burger span::before {
+        transform: translateY(-12px);
+    }
+    .header-mobile-burger span::after {
+        transform: translateY(12px);
+    }
+    .header-mobile-burger_active span {
+        height: 0;
+        margin-top: -1px;
+    }
+    .header-mobile-burger_active span:before {
+        transform: rotate(-135deg);
+        transform-origin: center;
+    }
+    .header-mobile-burger_active span:after {
+        transform: rotate(135deg);
+        transform-origin: center;
+    }
+}

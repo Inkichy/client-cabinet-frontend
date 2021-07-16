@@ -1,0 +1,16 @@
+<app-layout [isSiteGray]="true">
+  <div *ngIf="!loaded" style="width: 100%; text-align: center;">
+    <i class="fa fa-spinner fa-spin" style="font-size: 38px;"></i>
+  </div>
+  <app-top-panel *ngIf="loaded" class="top-panel flex" title="Продукты сезона"></app-top-panel>
+  <div *ngIf="loaded" class="products-block flex">
+    <app-products-block *ngIf="newStrategy" [value]="newStrategy" class="products-block__colunm"></app-products-block>
+    <app-products-block2 *ngIf="NewStockAndBond" [NewStockAndBond]="NewStockAndBond"
+      [productInstalled]="productInstalled" class="products-block__colunm">
+    </app-products-block2>
+  </div>
+    <div *ngIf="loaded" class="products-block products-block_gray products-block_pt">
+      <app-analytics class="analytics flex"></app-analytics>
+    </div>
+    <app-invest-modal></app-invest-modal>
+</app-layout>

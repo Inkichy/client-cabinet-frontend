@@ -1,0 +1,25 @@
+<app-layout>
+  <app-top-panel class="top-panel flex" title="Доверительное управление" smallTitle='Продукты'></app-top-panel>
+  <app-trust-management-filter *ngIf="strategies.length" [items]="strategies" class="filter"></app-trust-management-filter>
+
+  <div class="products-block products-block_pt main-du-list products-block_pb_not">
+    <div class="du-list flex"  *ngFor="let group of items">
+      <app-product-card *ngFor="let item of group"
+                        [item]="item"
+                        class="du-list__item">
+      </app-product-card>
+    </div>
+    <div class="du-list flex">
+      <div class="du-list__bottom flex">
+        <div class="du-list__bottom-img">
+          <img src="/assets/images/Cabinet-Login/Slide-1-desktop-planshet.png" alt="">
+        </div>
+        <div class="du-list__description"><strong>Доверительное управление активами</strong> — услуга, которая в
+          одинаковой мере востребована как у начинающих, так и у опытных инвесторов. Целевая доходность по стратегиям и
+          результаты управления варьируются, подбор конкретного портфеля основывается на риск-профиле клиента. Стратегии
+          управления активами подобраны под различный клиентский профиль и задачи.
+        </div>
+      </div>
+    </div>
+  </div>
+</app-layout>

@@ -1,0 +1,174 @@
+<ng-container *ngIf='step === 1'>
+  <div class="site-content__title">Регистрация Личного кабинета</div>
+
+  <div class="errors" *ngIf="errors.length">
+    <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+  </div>
+
+  <form class="settings__form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <label class="settings__label">
+      <div class="settings__field-name">Фамилия</div>
+      <input type="text" class="settings__field field" placeholder="Гребенщиков" formControlName="lastName">
+      <div class="field__error" *ngIf="form.get('lastName').hasError('required') && form.get('lastName').touched">Поле
+        не может быть пустым
+      </div>
+    </label>
+    <label class="settings__label">
+      <div class="settings__field-name">Имя</div>
+      <input type="text" class="settings__field field" placeholder="Кондратий" formControlName="name">
+      <div class="field__error" *ngIf="form.get('name').hasError('required') && form.get('name').touched">Поле не может
+        быть пустым
+      </div>
+    </label>
+    <label class="settings__label">
+      <div class="settings__field-name">Отчество</div>
+      <input type="text" class="settings__field field" placeholder="Валерьевич" formControlName="patronymic">
+      <div class="field__error" *ngIf="form.get('patronymic').hasError('required') && form.get('patronymic').touched">
+        Поле не может быть пустым
+      </div>
+    </label>
+    <label class="settings__label">
+      <div class="settings__field-name">Электронная почта</div>
+      <input type="text" class="settings__field field" placeholder="grebenschikov@gmail.com" formControlName="email">
+      <div class="field__error" *ngIf="form.get('email').hasError('required') && form.get('email').touched">Поле не
+        может быть пустым
+      </div>
+      <div class="field__error" *ngIf="form.get('email').hasError('email') && form.get('email').touched">Введите
+        правильный email адрес
+      </div>
+    </label>
+    <label class="settings__label">
+      <div class="settings__field-name">Телефон</div>
+      <input type="text" class="settings__field field" prefix="+7 " mask="(000) 000 00 00" placeholder="+7 (911) 876–54–32" formControlName="phone">
+      <div class="field__error" *ngIf="form.get('phone').hasError('required') && form.get('phone').touched">Поле не
+        может быть пустым
+      </div>
+    </label>
+    <label class="settings__label settings__label_top">
+      <div class="settings__field-name">Создайте пароль</div>
+      <input type="password" class="settings__field field" placeholder="* * * * * * *" formControlName="password">
+      <div class="error_flex">
+        <div class="field__error_new" *ngIf="form.get('password').hasError('required') && form.get('password').touched">Поле
+          не может быть пустым
+        </div>
+        <div class="field__error_new" *ngIf="form.get('password').hasError('minlength') && form.get('password').touched">Длина пароля не менее 8 символов
+        </div>
+        <div class="field__error_new" *ngIf="form.get('password').hasError('hasNumber') && form.get('password').touched">Отсутствует цифра
+        </div>
+        <div class="field__error_new" *ngIf="form.get('password').hasError('hasCapitalCase') && form.get('password').touched">Отсутствует буква в верхнем регистре
+        </div>
+        <div class="field__error_new" *ngIf="form.get('password').hasError('hasSmallCase') && form.get('password').touched">Отсутствует буква в нижнем регистре
+        </div>
+        <div class="field__error_new" *ngIf="form.get('password').hasError('hasSpecialCharacters') && form.get('password').touched">Отсутствует специальный символ &#91;&#93;&#33;&#64;&#35;&#36;&#37;&#94;&#38;&#42;&#40;&#41;&#95;&#43;&#45;&#61;&#123;&#125;&#59;&#39;&#58;&#34;&#124;&#44;&#46;&#60;&#62;
+        </div>
+      </div>
+    </label>
+    <label class="settings__label">
+      <div class="settings__field-name">повторите пароль</div>
+      <input type="password" class="settings__field field" placeholder="* * * * * * *" formControlName="repeatPassword">
+      <div class="field__error"
+           *ngIf="form.get('repeatPassword').hasError('required') && form.get('repeatPassword').touched">Поле не может
+        быть пустым
+      </div>
+      <div class="field__error"
+           *ngIf="form.get('repeatPassword').hasError('matchPassword') && form.get('repeatPassword').touched">Пароли
+        должны совпадать
+      </div>
+    </label>
+    <label class="checkbox checkbox_entrance">
+      <input type="checkbox" name="type" class="checkbox__input" formControlName="agree">
+      <span class="checkbox__theme"></span>
+      <span class="checkbox__caption">
+        Даю согласие на: <a href="https://client.qbfin.ru/api/docs/getOpdDocument" target="_blank">Обработку персональных
+          данных</a> и <a target="_blank" href="https://client.qbfin.ru/api/docs/getEdoDocument">Электронный документооборот
+          (ЭДО)</a>
+      </span>
+    </label>
+    <div class="settings__buttons settings__buttons_top flex">
+      <div class="settings__button">
+          <button type="submit"
+                  [disabled]="isLoading || !form.get('agree').value"
+                  [class.loading]="isLoading"
+                class="btn btn_darkgray">
+            <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+            <span *ngIf="!isLoading">Зарегистрироваться</span>
+        </button>
+      </div>
+      <div class="settings__button">
+        <a routerLink="/auth/sign-in" class="btn btn_small">Отмена</a>
+      </div>
+    </div>
+  </form>
+</ng-container>
+
+<ng-container *ngIf='step === 2'>
+  <div class="site-content__title">Код подтверждения</div>
+
+  <div *ngIf="!smsError;else codeToEmail" class="site-content__subtitle">На Ваш телефон отправлено смс к кодом подтверждения. Необходимо ввести этот код
+      в нижестоящее поле.
+  </div>
+  <ng-template #codeToEmail>
+    <div class="site-content__subtitle">На Ваш email отправлен код подтверждения. Необходимо ввести этот код
+      в нижестоящее поле.
+    </div>
+  </ng-template>
+
+  <div class="errors" *ngIf="errors.length">
+    <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+  </div>
+
+  <form class="settings__form" [formGroup]="formConfirm" (ngSubmit)="onSubmitSms()" novalidate>
+    <label class="settings__label settings__label_register">
+      <div class="settings__field-name">Введите код подтверждения</div>
+      <input type="text" class="settings__field field field-number" mask="0 0 0 0 0 0" placeholder="_ _ _ _ _ _" formControlName="code">
+    </label>
+    <label class="settings__label">
+      <button type="submit" [disabled]="formConfirm.invalid || isLoading" class="btn btn_darkgray">
+        <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+        <span *ngIf="!isLoading">Вход</span>
+      </button>
+    </label>
+    <div class="settings__buttons settings__buttons_top flex">
+      <div *ngIf="!smsError" class="settings__button">
+        <input type="button"
+               [disabled]="isDisableResendSms"
+               [class.disabled]="isDisableResendSms"
+               class="btn btn_small"
+               value="Выслать код повторно"
+               (click)="onResendSms()">
+        <div *ngIf="isDisableResendSms" class="timer_cover" [innerHTML]='counter'></div>
+      </div>
+      <div  *ngIf="!smsError" class="settings__button">
+        <input type="button"
+        [disabled]="isDisableResendEmail"
+        [class.disabled]="isDisableResendEmail"
+        class="btn btn_small"
+        value="Выслать код на почту"
+        (click)="sendToMail()">
+ <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+      </div>
+      <div *ngIf="smsError" class="settings__button">
+        <input type="button"
+               [disabled]="isDisableResendEmail"
+               [class.disabled]="isDisableResendEmail"
+               class="btn btn_small"
+               value="Выслать код повторно"
+               (click)="sendToMail()">
+        <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+      </div>
+      <div *ngIf="smsError"  class="settings__button">
+        <a class="btn btn_green" routerLink="/auth/sign-in">Oтмена</a>
+      </div>
+    </div>
+    <label *ngIf="!smsError" class="settings__label">
+      <a class="btn btn_green" routerLink="/auth/sign-in">Отмена</a>
+    </label>
+  </form>
+
+  <app-auth-modal id="register-modal" style="display: none;" title='Проверьте Вашу почту'
+                  description='На Вашу почту (указанную Вами при регистрации Кабинета) отправлено письмо.<br> Перейдите по ссылке из этого письма для завершения процедуры смены пароля.'>
+  </app-auth-modal>
+  <app-auth-modal id="code-modal" style="display: none;" title='Новый код подтверждения' description='Вам направлен новый код подтверждения. Введите его и закончите процедуру
+    регистрации Личного кабинета.'>
+  </app-auth-modal>
+</ng-container>

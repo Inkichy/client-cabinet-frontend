@@ -1,0 +1,52 @@
+.faq__content {
+  max-height: 0;
+  overflow-y: hidden;
+
+  transition: .6s max-height;
+}
+.faq__content.active {
+  overflow-y: auto;
+  max-height: 600px;
+}
+.pd__table-link.active span:first-child {
+  display: block;
+}
+.pd__description .pd__description-items_bo:last-child .rur:after {
+  display: none;
+}
+.assignmentLoader {
+  width: 100%;
+  text-align: center;
+}
+.faq__accordion {
+  cursor: default;
+}
+.faq__accordion .pd__table-delite {
+  cursor: pointer;
+}
+.pd__table-delite svg {
+  width: 25px;
+  height: 33px;
+}
+.pd__table-td {
+  align-items: center;
+}
+@media (max-width: 1280px) {
+  .pd__table-delite svg {
+    width: 25px;
+    height: 33px;
+  }
+  .pd__table-td {
+    align-items: center;
+  }
+}
+@media (max-width: 640px) {
+  .pd__table-delite svg {
+    height: 24px;
+  }
+}
+.modal__notification .modal__notification__desc {
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}

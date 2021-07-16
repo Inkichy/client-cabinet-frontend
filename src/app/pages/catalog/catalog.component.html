@@ -1,0 +1,41 @@
+<app-layout [isSiteGray]="true">
+  <app-top-panel class="top-panel flex" title="Каталог продуктов" smallTitle=''></app-top-panel>
+  <div class="errors" *ngIf="errors.length">
+    <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+  </div>
+
+  <div class="products-block products-block_pb main-du-list">
+
+    <div class="products-block__title">Доверительное управление</div>
+    <div class="products-block__description">Доверительное управление активами — услуга, которая в одинаковой мере
+      востребована как у начинающих, так и у опытных инвесторов. Целевая доходность по стратегиям и результаты
+      управления варьируются, подбор конкретного портфеля основывается на риск-профиле клиента. Стратегии управления
+      активами подобраны под различный клиентский профиль и задачи.</div>
+    <div class="du-list flex" *ngFor="let group of trustManagementItems">
+      <app-product-card *ngFor="let item of group" [item]="item" class="du-list__item">
+      </app-product-card>
+    </div>
+  </div>
+
+  <div class="products-block products-block_gray products-block_pt">
+    <div class="products-block__title">Брокерское обслуживание</div>
+    <div class="products-block__description">Брокерское обслуживание подойдет тем, кто хочет инвестировать
+      самостоятельно. Клиенту QBF становится доступен широкий спектр инвестиционных возможностей российского рынка
+      ценных бумаг. Открыв брокерский счет, Вы сможете получить прямой доступ к Московской бирже и бирже
+      Санкт-Петербурга.
+      <br>
+      <br>
+      В зависимости от поставленных задач наши специалисты помогут выбрать наиболее подходящее для Вас решение.
+    </div>
+    <div class="products-block__content">
+      <div class="bo-list bo-list_v2 flex">
+
+        <div class="bo-list__item bo-list__item" *ngFor="let tariff of brokerItems">
+          <app-product-card-broker [product]="tariff"></app-product-card-broker>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</app-layout>

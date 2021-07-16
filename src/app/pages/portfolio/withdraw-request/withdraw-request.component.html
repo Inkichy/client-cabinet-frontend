@@ -1,0 +1,228 @@
+<app-layout [isSiteGray]="true">
+  <app-top-panel class="top-panel flex" title="{{item?.product.name}}" smallTitle='{{item?.product.ITEM_TYPE}}'>
+  </app-top-panel>
+  <app-top-panel-image
+    [ngClass]="item.product.ITEM_TYPE === 'Брокерское обслуживание' ? 'deposit_and_withdrawl-top_panel' : '' "
+    *ngIf="item" [product]="item.product"></app-top-panel-image>
+  <div class="products-block">
+
+    <div class="ycf__body">
+      <div class="ycf__coll-big">
+        <div #topOfPage class="main__title main__title_min">Заявка на вывод денежных средств</div>
+      </div>
+
+      <div *ngIf="step === 2 && !fileName">
+        <div class="ycf__preloader_wrapper-withdraw" *ngIf="!isLoadedYear"><i class="fa fa-spinner fa-spin fa-2x"></i></div>
+      </div>
+
+      <div *ngIf="step === 2 && fileName">
+        <div class="payment__block-desc-withdraw">Пожалуйста, скачайте документ и проверьте его правильность</div>
+        <div class="payment__block-list">
+          <ul>
+            <li>
+              <strong>{{fileName}}</strong>
+              <span> • </span>
+              <a [href]="fileUrl">Скачать</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ycf__form">
+        <!-- <div *ngIf="!filename">
+          <div class="ycf__preloader_wrapper" *ngIf="!isLoadedYear"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
+        </div> -->
+
+        <ng-container *ngIf='step === 1'>
+          <div class="ycf__form-content">
+            <div class="ycf__form-title">Оставьте заявку на вывод средств, указав желаемую сумму к выводу.</div>
+            <div class="ycf__form-desc">Данная заявка не является официальной формой подачи поручения на вывод
+              средств.<br> После получения заявки – с Вами свяжется наш сотрудник для подписания необходимых
+              документов.
+            </div>
+            <form class="settings__form" [formGroup]="formWithdraw" novalidate (submit)="sendRequest()">
+              <div>
+                <label class="settings__label">
+                  <div class="settings__field-name">БИК</div>
+                  <input type="text" class="settings__field field" dadata="bank" formControlName="bankBik" disabled="disabled">
+                  <div class="field__error"
+                      *ngIf="formWithdraw.get('bankBik').hasError('required') && formWithdraw.get('bankBik').touched">
+                    Для заполнения перейдите в аккаунт
+                  </div>
+                </label>
+                <label class="settings__label">
+                  <div class="settings__field-name">Наименование банка</div>
+                  <input type="text" class="settings__field field" dadata="bank" formControlName="bankName" disabled="disabled">
+                  <div class="field__error"
+                      *ngIf="formWithdraw.get('bankName').hasError('required') && formWithdraw.get('bankName').touched">
+                    Для заполнения перейдите в аккаунт
+                  </div>
+                </label>
+                <label class="settings__label">
+                  <div class="settings__field-name">Корреспондентский счет</div>
+                  <input type="text" class="settings__field field" formControlName="bankCorr" disabled="disabled">
+                  <div class="field__error"
+                      *ngIf="formWithdraw.get('bankCorr').hasError('required') && formWithdraw.get('bankCorr').touched">
+                    Для заполнения перейдите в аккаунт
+                  </div>
+                </label>
+                <label class="settings__label">
+                  <div class="settings__field-name">Номер расчетного счета получателя</div>
+                  <input type="text" class="settings__field field" formControlName="bankAccount" disabled="disabled">
+                  <div class="field__error"
+                      *ngIf="formWithdraw.get('bankAccount').invalid && formWithdraw.get('bankAccount').touched">
+                    Для заполнения перейдите в аккаунт
+                  </div>
+                </label>
+              </div>
+
+            <div class="requister__form-items flex">
+              <div class="requister__form-content-w-errors">
+                <div class="requister__form__content">
+                  <div class="requister__form-summ-new" >
+                    <input
+                    class="js-step-two-input requister__form-field-new field ng-pristine ng-valid ng-touched"
+                    placeholder="Введите сумму" type="number" formControlName="summ">
+
+                    <div class="field__error" *ngIf="formWithdraw.get('summ').invalid && formWithdraw.get('summ').touched">
+                      Обязательно к заполнению
+                    </div>
+
+                    <label class="checkbox">
+                      <input type="checkbox"
+                            name="type"
+                            class="checkbox__input"
+                            [(ngModel)]="allSumm"
+                            [ngModelOptions]="{standalone: true}"
+                            (change)="setAllSumm(currency?.value, $event.target.checked)">
+                      <span class="checkbox__theme"></span>
+                      <span class="checkbox__caption">Вывести всю сумму</span>
+                    </label>
+                  </div>
+                    <div class="requister__form-label-new">
+                      <div>
+                        <a class="currency-select"
+                        [ngClass]="{last: last, active: (this.currency == cur) || currencies.length === 1}"
+                        *ngFor="let cur of currencies; last as last" (click)="setCurrency(cur)"
+                        >
+                        <span>{{getCurrencyTitle(cur.name)}}</span>
+                      </a>
+                      </div>
+
+                      <div class="field__error field__error_cur" *ngIf="currencyError">
+                        Выберите валюту
+                      </div>
+                    </div>
+
+                  <div class="column-btn-new">
+                    <button class="btn btn_darkgray" type="submit" class="btn btn_darkgray">Отправить заявку</button>
+                  </div>
+                </div>
+
+                <div class="products-block-errors" *ngIf="isWrongSumm">Недостаточно средств для вывода. Доступно для
+                  снятия – {{currency.value}}&nbsp;{{currency.name}}
+                </div>
+              </div>
+            </div>
+          </form>
+          </div>
+        </ng-container>
+
+        <ng-container  *ngIf='step === 2'>
+          <div class="sms ycf__form-content">
+          <div class="site-content__title">Код подтверждения</div>
+
+          <div *ngIf="!smsError;else codeToEmail" class="site-content__subtitle">На Ваш телефон отправлено смс к кодом подтверждения.
+            Для подтверждения документов введите код из смс.
+          </div>
+          <ng-template #codeToEmail>
+            <div class="site-content__subtitle">На Ваш email отправлен код подтверждения.
+              Для подтверждения документов введите код.
+            </div>
+          </ng-template>
+
+          <div class="errors" *ngIf="errors.length">
+            <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+          </div>
+          <form class="settings__form" [formGroup]="formConfirm" (ngSubmit)="onSubmitSms()" novalidate>
+            <label class="settings__label settings__label_register">
+              <div class="settings__field-name settings__field-name-sms">Введите код подтверждения</div>
+              <input type="text" class="settings__field field field-number" mask="0 0 0 0 0 0" maxlength="6"
+                     placeholder="_ _ _ _ _ _" formControlName="code">
+            </label>
+            <label class="settings__label">
+              <button type="submit" [disabled]="validateErrors.length || isLoading" class="btn btn_darkgray">
+                <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+                <span *ngIf="!isLoading">Отправить</span>
+              </button>
+            </label>
+            <div class="settings__buttons settings__buttons_top flex">
+              <div *ngIf="!smsError" class="settings__button">
+                <input type="button"
+                       [disabled]="isDisableResendSms"
+                       [class.disabled]="isDisableResendSms"
+                       class="btn btn_small"
+                       value="Выслать код повторно"
+                       (click)="onResendSms()">
+                <div *ngIf="isDisableResendSms" class="timer_cover" [innerHTML]='counter'></div>
+              </div>
+              <div class="settings__button">
+                <input type="button"
+                  [disabled]="isDisableResendEmail"
+                  [class.disabled]="isDisableResendEmail"
+                  class="btn btn_small"
+                  value="Выслать код на почту"
+                  (click)="sendToMail()">
+                <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+              </div>
+              <div *ngIf="smsError"  class="settings__button">
+                  <a class="btn btn_green" (click)="backToPreviousPage()">Oтмена</a>
+              </div>
+            </div>
+
+            <label *ngIf="!smsError" class="settings__label">
+                <a class="btn btn_green" (click)="backToPreviousPage()">Oтмена</a>
+            </label>
+          </form>
+        </div>
+        </ng-container>
+
+        <ng-container *ngIf='step === 3'>
+          <div class="sms ycf__form-content">
+            <div>
+              Вы уже оформили распоряжение на вывод денежный средств. Отменить?
+            </div>
+
+            <div class="settings__buttons settings__buttons_top flex">
+              <label class="settings__button">
+                <a class="btn btn_small" (click)="cancelWithdraw()">Да</a>
+              </label>
+
+              <label class="settings__button">
+                <a class="btn btn_green" [routerLink]="['/portfolio', portfolioId]">Нет</a>
+              </label>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+    <div class="pd__body flex">
+      <app-product-menu *ngIf="item" [id]="item.id" [type]="item.product.ITEM_TYPE" class="pd__column flex">
+      </app-product-menu>
+      <div class="pd__coll">
+        <app-bottom-portfolio-btns></app-bottom-portfolio-btns>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="item.product.ITEM_TYPE === 'Брокерское обслуживание'; then broker else trust"></div>
+  <ng-template #broker>
+    <app-product-slider class="products-block products-block_pb products-block_gray products-block_pt">
+    </app-product-slider>
+  </ng-template>
+  <ng-template #trust>
+    <app-footer-slick></app-footer-slick>
+  </ng-template>
+</app-layout>

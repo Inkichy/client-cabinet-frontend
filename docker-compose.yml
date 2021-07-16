@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: nginx_1
+    image: nginx:latest
+    volumes:
+      - './nginx/default.conf:/etc/nginx/conf.d/default.conf'
+      - './src/assets:/data/static/assets'
+    ports:
+      - '8001:8001'
+    links:
+      - qbfin
+
+  qbfin:
+    container_name: qbfin_1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    links:
+      - qbphp
+
+  qbphp:
+    container_name: qbphp_1
+    build:
+      context: qbserv
+      dockerfile: Dockerfile
+    volumes:
+      - './qbserv/:/usr/src/server'
+    command: php -S 0.0.0.0:8080

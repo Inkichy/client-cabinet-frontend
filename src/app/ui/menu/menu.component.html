@@ -1,0 +1,15 @@
+<ul>
+  <li [routerLinkActive]="'current'" [class.current]="(getActiveUrl() == '/what-is-iis') ||(getActiveUrl() == '/select-product') ">
+    <a [routerLink]="['/main']">Продукты</a>
+    <ul *ngIf='recursive'>
+      <li><a [routerLink]="['/trust-management']" [routerLinkActive]="'current'">Доверительное управление</a></li>
+      <li><a [routerLink]="['/broker-service']" [routerLinkActive]="'current'">Брокерское обслуживание</a></li>
+      <!--<li><a href="open-funds.html">Открытые паевые фонды</a></li>-->
+    </ul>
+  </li>
+  <li *ngIf="!newUser" [routerLinkActive]="'current'" [class.current]="setActiveUrl('/portfolio')"><a [routerLink]="['/portfolio']">Портфель</a></li>
+  <li [routerLinkActive]="'current'" [class.current]="setActiveUrl('/functions')"><a [routerLink]="['/functions']">Функции</a></li>
+  <li [routerLinkActive]="'current'"><a [routerLink]="'/payment'" >Реквизиты</a></li>
+  <li [routerLinkActive]="'current'" [class.current]="(getActiveUrl() == '/account-customer-questionnaire') || (getActiveUrl() == '/investment-profile')"><a [routerLink]="['/account']">Аккаунт</a></li>
+  <li [routerLinkActive]="'current'"><a [routerLink]="['/faq']">FAQ</a></li>
+</ul>

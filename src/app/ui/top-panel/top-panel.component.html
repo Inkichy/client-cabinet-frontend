@@ -1,0 +1,21 @@
+<div class="top-panel__title">
+  <div class="top-panel__title-small" *ngIf='smallTitle'>{{smallTitle}}</div>
+  <strong [innerHTML]="title"></strong>
+  <div *ngIf='!smallTitle && !modeUnderline' class="top-panel__title-line"></div>
+</div>
+<div class="top-panel__links flex">
+  <a (click)="navigate('/select-product')" class="top-panel__link">
+    <img src="/assets/images/main/header-icon-1.svg" class="top-panel__img" alt="">
+    <div class="top-panel__caption">Подобрать<br> продукты</div>
+  </a>
+  <a (click)="navigate('/what-is-iis')" class="top-panel__link">
+    <img src="/assets/images/main/header-icon-2.svg" class="top-panel__img" alt="">
+    <div class="top-panel__caption">Что такое<br> ИИС</div>
+  </a>
+  <a (click)="navigate('/catalog')" class="top-panel__link">
+    <img src="/assets/images/main/header-icon-3.svg" class="top-panel__img" alt="">
+    <div class="top-panel__caption">Каталог<br> продуктов</div>
+  </a>
+</div>
+<div *ngIf="modeUnderline" class="top-panel__images">
+</div>

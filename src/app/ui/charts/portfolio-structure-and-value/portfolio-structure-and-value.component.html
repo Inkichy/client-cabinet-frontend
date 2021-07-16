@@ -1,0 +1,8 @@
+<div *ngIf="needRates" class="ycf__date ycf__date_items flex">
+  <span>По курсу ЦБ на текущую дату</span>
+</div>
+<div class="ycf__chart-big">
+
+  <canvas id="myChartCB"></canvas>
+  <div class="ycf__chart-price">{{sum | number:'1.2-2':'ru-RU'}}<br> руб.</div>
+</div>

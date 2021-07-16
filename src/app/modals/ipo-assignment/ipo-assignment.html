@@ -1,0 +1,242 @@
+
+<div class="modal__window">
+  <i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-3x"></i>
+  <div
+    *ngIf="!isLoading
+            && !isSent
+            && !isrequestComplete
+            && user.client.isKval !== ''
+            && userPortfolioItem.generalAgreement"
+    class="modal__row"
+  >
+    <div class="modal__caption">Поручение</div>
+    <div class="deadline-block"></div>
+    <div class="modal__subtitle">
+      <div *ngIf="deadline">
+        Подача поручения возможна до <span>{{deadline}}</span>
+      </div>
+    </div>
+    <form [formGroup]="formAssignment" action="" class="settings__formsettings__form_modal">
+      <div class="settings__label">
+        <div class="settings__field-name">Продукт</div>
+        <p-dropdown
+          [options]="ipoDropDown"
+          formControlName="IpoProduct"
+          placeholder="Выберите IPO"
+          (onChange)="onTickerChanges($event)"
+        ></p-dropdown>
+        <div
+          class="field__error"
+          *ngIf="formAssignment.get('IpoProduct').hasError('required')
+                  && formAssignment.get('IpoProduct').touched"
+        >
+          Поле не может быть пустым
+        </div>
+      </div>
+      <label class="settings__label">
+        <div class="settings__field-name">Сумма</div>
+        <input formControlName="AssignmentSumm" type="text" class="settings__field field"
+        placeholder="5 000 000">
+        <div
+          class="field__error"
+          *ngIf="formAssignment.get('AssignmentSumm').hasError('min')
+                  && formAssignment.get('AssignmentSumm').value"
+        >
+          указанная сумма неверна
+        </div>
+        <div
+          class="field__error"
+          *ngIf="formAssignment.get('AssignmentSumm').hasError('pattern')
+                  && formAssignment.get('AssignmentSumm').value"
+        >
+          допустимы только цифры
+        </div>
+      </label>
+      <div class="settings__buttons flex">
+        <div class="settings__button">
+          <button
+            [disabled]="formAssignment.invalid
+                        || !formAssignment.get('AssignmentSumm').value"
+            (click)="createAssignment()"
+            type="button"
+            class="btn btn_darkgray"
+            data-fancybox-close
+            value="Отправить"
+          >
+            Отправить
+          </button>
+        </div>
+        <div class="settings__button">
+          <button
+            type="button"
+            class="btn btn_small"
+            (click)="cancel()"
+            data-fancybox-close
+          >
+            Отмена
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div
+    *ngIf="!isLoading && isSent && !isrequestComplete && isDocumentsSpecReady && !isDocumentsSpecConfirm && user.client.isKval !== '' && userPortfolioItem.generalAgreement"
+    class="modal__row">
+    <div class="register__title">Уважаемый клиент!</div>
+        <div class="site-content__subtitle">Информация об условиях продукта размещена ниже. <br>Ознакомьтесь с документами, находящимися в файлах, перед подачей поручения</div>
+          <ul class="assignment-document-list">
+              <li><span (click)="getAssignmentDocument('frame_contract')" class="product-anons-v2__link">Соглашение об общих условиях предоставления опционов(Рамочный договор) &gt;</span></li>
+              <li><span (click)="getAssignmentDocument('condition_option')" class="product-anons-v2__link">Условия опциона &gt;</span></li>
+              <li><span (click)="getAssignmentDocument('fin_instrum_passport')" class="product-anons-v2__link">Паспорт финансового инструмента &gt;</span></li>
+              <li><span (click)="getAssignmentDocument('notif_conflict_interest')" class="product-anons-v2__link">Уведомление о конфликте интересов &gt;</span></li>
+          </ul>
+          <form  class="settings__buttons settings__form settings__form_modal">
+            <label class="checkbox">
+              <input
+                    type="checkbox"
+                    [(ngModel)]="isMoneyTransferRequest"
+                    [ngModelOptions]="{standalone: true}"
+                    class="checkbox__input">
+              <span class="checkbox__theme"></span>
+              <span class="checkbox__caption">
+                Прошу перечислить сумму денежных средств, необходимую для исполнения настоящего поручения с моего брокерского счета в пределах остатка,
+                но не более суммы, недостаточной до предельной цены оферты, в качестве обеспечительного платежа по Соглашению,
+                в случае если размер оставшегося обеспечения по Соглашению не позволяет исполнить настоящее поручение.
+              </span>
+            </label>
+            <label class="checkbox">
+              <input
+                    type="checkbox"
+                    [(ngModel)]="isSpecConfirm"
+                    [ngModelOptions]="{standalone: true}"
+                    class="checkbox__input">
+              <span class="checkbox__theme"></span>
+              <span class="checkbox__caption">
+                Я подтверждаю, что ознакомился со следующими документами:Спецификация продукта,
+                Рамочный договор, их содержание мне понятно, а указанные условия сделки соответствует моему волеизъявлению и поручению
+              </span>
+            </label>
+          </form>
+          <div class="settings__buttons flex">
+            <label class="settings__button">
+              <button [disabled]="!isSpecConfirm" type="button" class="btn btn_darkgray" (click)="confirmSpec()">Далее</button>
+            </label>
+            <label class="settings__button">
+              <button type="button"  class="btn btn_small" (click)="cancel()">Назад</button>
+            </label>
+          </div>
+    </div>
+  <div *ngIf="!isLoading && isSent && !isrequestComplete && isDocumentsReady && !isDocumentsConfirm && user.client.isKval !== '' && userPortfolioItem.generalAgreement" class="modal__row">
+  <div class="register__title">Уважаемый клиент</div>
+
+      <div class="site-content__subtitle">Ваше поручение сформировано. По ссылке ниже с ним можно ознакомиться и скачать</div>
+      <span (click)="getAssignmentDocument('order_buy_ga')" class="product-anons-v2__link">Поручение клиента &gt;</span>
+      <div class="site-content__subtitle site-content__subtitle-margin">
+        Вы всегда можете ознакомиться и скачать этот документ на <a class="ycf__finance-link ipo-link" [routerLink]="['/online-request', userPortfolioItem.id]">странице</a> в личном кабинете
+      </div>
+      <div class="settings__buttons flex">
+        <label class="settings__button">
+          <a class="btn btn_darkgray" (click)="createAssignmentSms()">Далее</a>
+        </label>
+        <label class="settings__button">
+          <a class="btn btn_small" (click)="backToSpec()">Назад</a>
+        </label>
+      </div>
+  </div>
+  <div *ngIf="!isLoading && isSent && !isrequestComplete && isDocumentsReady && isDocumentsConfirm && isDocumentsSpecReady && isDocumentsSpecConfirm  && user.client.isKval !== '' && userPortfolioItem.generalAgreement" class="modal__row">
+    <div>
+
+      <div class="register__title">Код подтверждения</div>
+
+      <div *ngIf="!smsError;else codeToEmail" class="site-content__subtitle">На Ваш телефон отправлено смс к кодом подтверждения. Необходимо ввести этот код
+        в нижестоящее поле. Вводя смс код вы подписываете поручение и подтверждаете ознакомление с документами по продукту.
+      </div>
+      <ng-template #codeToEmail>
+        <div class="site-content__subtitle">На Ваш email отправлен код подтверждения. Необходимо ввести этот код
+          в нижестоящее поле.
+        </div>
+      </ng-template>
+
+      <div class="errors" *ngIf="errors.length">
+        <div class="errors__item" *ngFor="let error of errors">{{error}}</div>
+      </div>
+      <form class="settings__form" [formGroup]="formConfirm" (ngSubmit)="onSubmitSms()" novalidate>
+        <label class="settings__label settings__label_register">
+          <div class="settings__field-name">Введите код подтверждения</div>
+          <input type="text" class="settings__field field field-number" mask="0 0 0 0 0 0" placeholder="_ _ _ _ _ _" formControlName="code">
+        </label>
+        <label class="settings__label">
+          <button type="submit" [disabled]="formConfirm.invalid" class="btn btn_darkgray btn_save"  >Отправить</button>
+        </label>
+        <div class="settings__buttons settings__buttons_top flex">
+          <div *ngIf="!smsError" class="settings__button">
+
+            <input
+                    type="button"
+                    [disabled]="isDisableResendSms"
+                      [class.disabled]="isDisableResendSms"
+                    class="btn btn_small"
+                    value="Выслать код повторно"
+                    (click)="onResendSms()">
+            <div *ngIf="isDisableResendSms" class="timer_cover" [innerHTML]='counter'></div>
+          </div>
+          <div  *ngIf="!smsError" class="settings__button">
+            <input type="button"
+            [disabled]="isDisableResendEmail"
+            [class.disabled]="isDisableResendEmail"
+            class="btn btn_small"
+            value="Выслать код на почту"
+            (click)="sendToMail()">
+      <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+          </div>
+          <div *ngIf="smsError" class="settings__button">
+            <input type="button"
+                    [disabled]="isDisableResendEmail"
+                    [class.disabled]="isDisableResendEmail"
+                    class="btn btn_small"
+                    value="Выслать код повторно"
+                    (click)="sendToMail()">
+            <div *ngIf="isDisableResendEmail" class="timer_cover" [innerHTML]='counterEmail'></div>
+          </div>
+
+          <div *ngIf="smsError"  class="settings__button">
+            <a class="btn btn_green btn_save" (click)="cancel()">Отмена</a>
+          </div>
+        </div>
+        <label *ngIf="!smsError" class="settings__label">
+            <a class="btn btn_green btn_save" (click)="cancel()">Отмена</a>
+        </label>
+      </form>
+
+    </div>
+  </div>
+  <div class="modal__row" *ngIf="!isLoading && isSent && isrequestComplete && user.client.isKval !== '' && userPortfolioItem.generalAgreement">
+    <div class="modal__notification">
+      <div class="modal__background-opacity"></div>
+      <div class="modal__notification__content">
+          <div class="modal__notification__title">Уважаемый клиент!</div>
+          <div *ngIf="!errors.length" class="modal__notification__desc"><p>Ваше поручение успешно отправлено.</p></div>
+          <div *ngIf="errors.length">
+            <div class="modal__notification__desc" *ngFor="let error of errors">
+              <p>
+              {{error}}
+            </p>
+          </div>
+          </div>
+          <a class="btn btn_darkgray"  (click)="cancel();popUpClose();">Закрыть</a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="user.client.isKval === '' || user.client.isKval === null || !userPortfolioItem.generalAgreement" class="modal__row">
+    <div class="modal__notification">
+      <div class="modal__background-opacity"></div>
+      <div class="modal__notification__content">
+        <div class="modal__notification__title">Уважаемый клиент!</div>
+        <div class="site-content__subtitle">
+          <p>К сожалению, вы не являетесь квалифицированным инвестором. Пожалуйста, обратитесь к своему финансовому советнику</p>
+        </div>
+        <a class="btn btn_darkgray" (click)="cancel(); popUpClose();">Закрыть</a>
+      </div>
+    </div>
+  </div>
+  </div>

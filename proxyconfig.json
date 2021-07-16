@@ -1,0 +1,21 @@
+{
+  "/api/profile": {
+    "target": "https://virtserver.swaggerhub.com/Rubedite/qbfinance/1.0.0/",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api/tm": {
+    "target": "https://virtserver.swaggerhub.com/Rubedite/qbfinance/1.0.0/",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api": {
+    "target": {
+      "host": "client.qbfin.ru",
+      "protocol": "https:",
+      "port": 443
+    },
+    "secure": false,
+    "changeOrigin": true
+  }
+}
